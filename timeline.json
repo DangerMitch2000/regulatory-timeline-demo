@@ -1,0 +1,2126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Fictional regulatory timeline demonstration with expandable groups and milestone tracks.",
+  "width": 1380,
+  "height": 740,
+  "padding": 16,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "#ffffff",
+  "config": {
+    "font": "Segoe UI",
+    "text": {
+      "font": "Segoe UI",
+      "fill": "#263747"
+    },
+    "axis": {
+      "labelFont": "Segoe UI",
+      "labelColor": "#72808d",
+      "domain": false,
+      "tickColor": "#e4e9ee",
+      "labelFontSize": 11
+    }
+  },
+  "signals": [
+    {
+      "name": "left",
+      "value": 520
+    },
+    {
+      "name": "top",
+      "value": 142
+    },
+    {
+      "name": "rowH",
+      "value": 64
+    },
+    {
+      "name": "pageSize",
+      "update": "max(1,min(24,floor((height-top-48)/rowH)))"
+    },
+    {
+      "name": "clicked",
+      "value": null,
+      "on": [
+        {
+          "events": "@toggle:click",
+          "update": "{key:datum.key}"
+        }
+      ]
+    },
+    {
+      "name": "reset",
+      "value": 0,
+      "on": [
+        {
+          "events": "@collapse:click",
+          "update": "reset+1"
+        }
+      ]
+    },
+    {
+      "name": "page",
+      "value": 0,
+      "on": [
+        {
+          "events": "@next:click",
+          "update": "min(page+1,max(0,ceil(length(data(\"visible\"))/pageSize)-1))"
+        },
+        {
+          "events": "@prev:click",
+          "update": "max(0,page-1)"
+        },
+        {
+          "events": {
+            "signal": "clicked"
+          },
+          "update": "0"
+        },
+        {
+          "events": {
+            "signal": "reset"
+          },
+          "update": "0"
+        }
+      ]
+    },
+    {
+      "name": "safePage",
+      "update": "min(page,max(0,ceil(length(data(\"visible\"))/pageSize)-1))"
+    },
+    {
+      "name": "lo",
+      "update": "length(data(\"extent\")) && isValid(data(\"extent\")[0].lo) ? data(\"extent\")[0].lo : utc(2026,0,1)"
+    },
+    {
+      "name": "hi",
+      "update": "length(data(\"extent\")) && isValid(data(\"extent\")[0].hi) ? data(\"extent\")[0].hi : utc(2026,11,31)"
+    },
+    {
+      "name": "pad",
+      "update": "max(86400000*7,(hi-lo)*0.04)"
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset"
+    },
+    {
+      "name": "expanded",
+      "values": [],
+      "on": [
+        {
+          "trigger": "clicked",
+          "toggle": "clicked"
+        },
+        {
+          "trigger": "reset",
+          "remove": true
+        }
+      ]
+    },
+    {
+      "name": "raw",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "AppID",
+          "expr": "isValid(datum.AppID) ? trim(''+datum.AppID) : ''"
+        },
+        {
+          "type": "formula",
+          "as": "ROID",
+          "expr": "isValid(datum.ROID) ? trim(''+datum.ROID) : ''"
+        },
+        {
+          "type": "formula",
+          "as": "SubID",
+          "expr": "isValid(datum.SubID) ? trim(''+datum.SubID) : ''"
+        },
+        {
+          "type": "formula",
+          "as": "validKey",
+          "expr": "datum.AppID!=='' && datum.ROID!=='' && datum.SubID!==''"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalDispatch",
+          "expr": "!isValid(datum.OriginalDispatch) || datum.OriginalDispatch==='' ? null : (isNumber(datum.OriginalDispatch) || isDate(datum.OriginalDispatch) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.OriginalDispatch)) ? toNumber(toDate(datum.OriginalDispatch)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalDispatch",
+          "expr": "isValid(datum._OriginalDispatch) && isFinite(datum._OriginalDispatch) ? datum._OriginalDispatch : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badOriginalDispatch",
+          "expr": "isValid(datum.OriginalDispatch) && datum.OriginalDispatch!=='' && !isValid(datum._OriginalDispatch) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestDispatch",
+          "expr": "!isValid(datum.LatestDispatch) || datum.LatestDispatch==='' ? null : (isNumber(datum.LatestDispatch) || isDate(datum.LatestDispatch) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.LatestDispatch)) ? toNumber(toDate(datum.LatestDispatch)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestDispatch",
+          "expr": "isValid(datum._LatestDispatch) && isFinite(datum._LatestDispatch) ? datum._LatestDispatch : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badLatestDispatch",
+          "expr": "isValid(datum.LatestDispatch) && datum.LatestDispatch!=='' && !isValid(datum._LatestDispatch) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualDispatch",
+          "expr": "!isValid(datum.ActualDispatch) || datum.ActualDispatch==='' ? null : (isNumber(datum.ActualDispatch) || isDate(datum.ActualDispatch) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.ActualDispatch)) ? toNumber(toDate(datum.ActualDispatch)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualDispatch",
+          "expr": "isValid(datum._ActualDispatch) && isFinite(datum._ActualDispatch) ? datum._ActualDispatch : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badActualDispatch",
+          "expr": "isValid(datum.ActualDispatch) && datum.ActualDispatch!=='' && !isValid(datum._ActualDispatch) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalSubmission",
+          "expr": "!isValid(datum.OriginalSubmission) || datum.OriginalSubmission==='' ? null : (isNumber(datum.OriginalSubmission) || isDate(datum.OriginalSubmission) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.OriginalSubmission)) ? toNumber(toDate(datum.OriginalSubmission)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalSubmission",
+          "expr": "isValid(datum._OriginalSubmission) && isFinite(datum._OriginalSubmission) ? datum._OriginalSubmission : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badOriginalSubmission",
+          "expr": "isValid(datum.OriginalSubmission) && datum.OriginalSubmission!=='' && !isValid(datum._OriginalSubmission) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestSubmission",
+          "expr": "!isValid(datum.LatestSubmission) || datum.LatestSubmission==='' ? null : (isNumber(datum.LatestSubmission) || isDate(datum.LatestSubmission) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.LatestSubmission)) ? toNumber(toDate(datum.LatestSubmission)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestSubmission",
+          "expr": "isValid(datum._LatestSubmission) && isFinite(datum._LatestSubmission) ? datum._LatestSubmission : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badLatestSubmission",
+          "expr": "isValid(datum.LatestSubmission) && datum.LatestSubmission!=='' && !isValid(datum._LatestSubmission) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualSubmission",
+          "expr": "!isValid(datum.ActualSubmission) || datum.ActualSubmission==='' ? null : (isNumber(datum.ActualSubmission) || isDate(datum.ActualSubmission) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.ActualSubmission)) ? toNumber(toDate(datum.ActualSubmission)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualSubmission",
+          "expr": "isValid(datum._ActualSubmission) && isFinite(datum._ActualSubmission) ? datum._ActualSubmission : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badActualSubmission",
+          "expr": "isValid(datum.ActualSubmission) && datum.ActualSubmission!=='' && !isValid(datum._ActualSubmission) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalApproval",
+          "expr": "!isValid(datum.OriginalApproval) || datum.OriginalApproval==='' ? null : (isNumber(datum.OriginalApproval) || isDate(datum.OriginalApproval) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.OriginalApproval)) ? toNumber(toDate(datum.OriginalApproval)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_OriginalApproval",
+          "expr": "isValid(datum._OriginalApproval) && isFinite(datum._OriginalApproval) ? datum._OriginalApproval : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badOriginalApproval",
+          "expr": "isValid(datum.OriginalApproval) && datum.OriginalApproval!=='' && !isValid(datum._OriginalApproval) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestApproval",
+          "expr": "!isValid(datum.LatestApproval) || datum.LatestApproval==='' ? null : (isNumber(datum.LatestApproval) || isDate(datum.LatestApproval) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.LatestApproval)) ? toNumber(toDate(datum.LatestApproval)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_LatestApproval",
+          "expr": "isValid(datum._LatestApproval) && isFinite(datum._LatestApproval) ? datum._LatestApproval : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badLatestApproval",
+          "expr": "isValid(datum.LatestApproval) && datum.LatestApproval!=='' && !isValid(datum._LatestApproval) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualApproval",
+          "expr": "!isValid(datum.ActualApproval) || datum.ActualApproval==='' ? null : (isNumber(datum.ActualApproval) || isDate(datum.ActualApproval) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.ActualApproval)) ? toNumber(toDate(datum.ActualApproval)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_ActualApproval",
+          "expr": "isValid(datum._ActualApproval) && isFinite(datum._ActualApproval) ? datum._ActualApproval : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badActualApproval",
+          "expr": "isValid(datum.ActualApproval) && datum.ActualApproval!=='' && !isValid(datum._ActualApproval) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_RegistrationStart",
+          "expr": "!isValid(datum.RegistrationStart) || datum.RegistrationStart==='' ? null : (isNumber(datum.RegistrationStart) || isDate(datum.RegistrationStart) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.RegistrationStart)) ? toNumber(toDate(datum.RegistrationStart)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_RegistrationStart",
+          "expr": "isValid(datum._RegistrationStart) && isFinite(datum._RegistrationStart) ? datum._RegistrationStart : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badRegistrationStart",
+          "expr": "isValid(datum.RegistrationStart) && datum.RegistrationStart!=='' && !isValid(datum._RegistrationStart) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_SubCreated",
+          "expr": "!isValid(datum.SubCreated) || datum.SubCreated==='' ? null : (isNumber(datum.SubCreated) || isDate(datum.SubCreated) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.SubCreated)) ? toNumber(toDate(datum.SubCreated)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_SubCreated",
+          "expr": "isValid(datum._SubCreated) && isFinite(datum._SubCreated) ? datum._SubCreated : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badSubCreated",
+          "expr": "isValid(datum.SubCreated) && datum.SubCreated!=='' && !isValid(datum._SubCreated) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_ROCreated",
+          "expr": "!isValid(datum.ROCreated) || datum.ROCreated==='' ? null : (isNumber(datum.ROCreated) || isDate(datum.ROCreated) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.ROCreated)) ? toNumber(toDate(datum.ROCreated)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_ROCreated",
+          "expr": "isValid(datum._ROCreated) && isFinite(datum._ROCreated) ? datum._ROCreated : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badROCreated",
+          "expr": "isValid(datum.ROCreated) && datum.ROCreated!=='' && !isValid(datum._ROCreated) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "_AppCreated",
+          "expr": "!isValid(datum.AppCreated) || datum.AppCreated==='' ? null : (isNumber(datum.AppCreated) || isDate(datum.AppCreated) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.AppCreated)) ? toNumber(toDate(datum.AppCreated)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_AppCreated",
+          "expr": "isValid(datum._AppCreated) && isFinite(datum._AppCreated) ? datum._AppCreated : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badAppCreated",
+          "expr": "isValid(datum.AppCreated) && datum.AppCreated!=='' && !isValid(datum._AppCreated) ? 1 : 0"
+        },
+        {
+          "type": "formula",
+          "as": "SubStatus",
+          "expr": "isValid(datum.SubStatus) && datum.SubStatus!=='' ? toString(datum.SubStatus) : '(missing)'"
+        },
+        {
+          "type": "formula",
+          "as": "ROStatus",
+          "expr": "isValid(datum.ROStatus) && datum.ROStatus!=='' ? toString(datum.ROStatus) : '(missing)'"
+        },
+        {
+          "type": "formula",
+          "as": "Manufacturer",
+          "expr": "isValid(datum.Manufacturer) && datum.Manufacturer!=='' ? toString(datum.Manufacturer) : '(missing)'"
+        }
+      ]
+    },
+    {
+      "name": "invalid",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.validKey"
+        }
+      ]
+    },
+    {
+      "name": "sub",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.validKey"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "AppID",
+            "ROID",
+            "SubID"
+          ],
+          "fields": [
+            null,
+            "_OriginalDispatch",
+            "_OriginalDispatch",
+            "_OriginalDispatch",
+            "_badOriginalDispatch",
+            "_LatestDispatch",
+            "_LatestDispatch",
+            "_LatestDispatch",
+            "_badLatestDispatch",
+            "_ActualDispatch",
+            "_ActualDispatch",
+            "_ActualDispatch",
+            "_badActualDispatch",
+            "_OriginalSubmission",
+            "_OriginalSubmission",
+            "_OriginalSubmission",
+            "_badOriginalSubmission",
+            "_LatestSubmission",
+            "_LatestSubmission",
+            "_LatestSubmission",
+            "_badLatestSubmission",
+            "_ActualSubmission",
+            "_ActualSubmission",
+            "_ActualSubmission",
+            "_badActualSubmission",
+            "_OriginalApproval",
+            "_OriginalApproval",
+            "_OriginalApproval",
+            "_badOriginalApproval",
+            "_LatestApproval",
+            "_LatestApproval",
+            "_LatestApproval",
+            "_badLatestApproval",
+            "_ActualApproval",
+            "_ActualApproval",
+            "_ActualApproval",
+            "_badActualApproval",
+            "_RegistrationStart",
+            "_RegistrationStart",
+            "_RegistrationStart",
+            "_badRegistrationStart",
+            "_SubCreated",
+            "_SubCreated",
+            "_SubCreated",
+            "_badSubCreated",
+            "_ROCreated",
+            "_ROCreated",
+            "_ROCreated",
+            "_badROCreated",
+            "_AppCreated",
+            "_AppCreated",
+            "_AppCreated",
+            "_badAppCreated",
+            "SubStatus",
+            "SubStatus",
+            "SubStatus",
+            "ROStatus",
+            "ROStatus",
+            "ROStatus",
+            "Manufacturer",
+            "Manufacturer",
+            "Manufacturer"
+          ],
+          "ops": [
+            "count",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "valid",
+            "sum",
+            "min",
+            "max",
+            "distinct",
+            "min",
+            "max",
+            "distinct",
+            "min",
+            "max",
+            "distinct"
+          ],
+          "as": [
+            "sourceRows",
+            "OriginalDispatchMin",
+            "OriginalDispatchMax",
+            "OriginalDispatchValid",
+            "OriginalDispatchBad",
+            "LatestDispatchMin",
+            "LatestDispatchMax",
+            "LatestDispatchValid",
+            "LatestDispatchBad",
+            "ActualDispatchMin",
+            "ActualDispatchMax",
+            "ActualDispatchValid",
+            "ActualDispatchBad",
+            "OriginalSubmissionMin",
+            "OriginalSubmissionMax",
+            "OriginalSubmissionValid",
+            "OriginalSubmissionBad",
+            "LatestSubmissionMin",
+            "LatestSubmissionMax",
+            "LatestSubmissionValid",
+            "LatestSubmissionBad",
+            "ActualSubmissionMin",
+            "ActualSubmissionMax",
+            "ActualSubmissionValid",
+            "ActualSubmissionBad",
+            "OriginalApprovalMin",
+            "OriginalApprovalMax",
+            "OriginalApprovalValid",
+            "OriginalApprovalBad",
+            "LatestApprovalMin",
+            "LatestApprovalMax",
+            "LatestApprovalValid",
+            "LatestApprovalBad",
+            "ActualApprovalMin",
+            "ActualApprovalMax",
+            "ActualApprovalValid",
+            "ActualApprovalBad",
+            "RegistrationStartMin",
+            "RegistrationStartMax",
+            "RegistrationStartValid",
+            "RegistrationStartBad",
+            "SubCreatedMin",
+            "SubCreatedMax",
+            "SubCreatedValid",
+            "SubCreatedBad",
+            "ROCreatedMin",
+            "ROCreatedMax",
+            "ROCreatedValid",
+            "ROCreatedBad",
+            "AppCreatedMin",
+            "AppCreatedMax",
+            "AppCreatedValid",
+            "AppCreatedBad",
+            "SubStatusMin",
+            "SubStatusMax",
+            "SubStatusDistinct",
+            "ROStatusMin",
+            "ROStatusMax",
+            "ROStatusDistinct",
+            "ManufacturerMin",
+            "ManufacturerMax",
+            "ManufacturerDistinct"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "OriginalDispatch",
+          "expr": "datum.OriginalDispatchValid>0 && datum.OriginalDispatchMin===datum.OriginalDispatchMax && datum.OriginalDispatchBad===0 ? datum.OriginalDispatchMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "LatestDispatch",
+          "expr": "datum.LatestDispatchValid>0 && datum.LatestDispatchMin===datum.LatestDispatchMax && datum.LatestDispatchBad===0 ? datum.LatestDispatchMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "ActualDispatch",
+          "expr": "datum.ActualDispatchValid>0 && datum.ActualDispatchMin===datum.ActualDispatchMax && datum.ActualDispatchBad===0 ? datum.ActualDispatchMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "OriginalSubmission",
+          "expr": "datum.OriginalSubmissionValid>0 && datum.OriginalSubmissionMin===datum.OriginalSubmissionMax && datum.OriginalSubmissionBad===0 ? datum.OriginalSubmissionMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "LatestSubmission",
+          "expr": "datum.LatestSubmissionValid>0 && datum.LatestSubmissionMin===datum.LatestSubmissionMax && datum.LatestSubmissionBad===0 ? datum.LatestSubmissionMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "ActualSubmission",
+          "expr": "datum.ActualSubmissionValid>0 && datum.ActualSubmissionMin===datum.ActualSubmissionMax && datum.ActualSubmissionBad===0 ? datum.ActualSubmissionMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "OriginalApproval",
+          "expr": "datum.OriginalApprovalValid>0 && datum.OriginalApprovalMin===datum.OriginalApprovalMax && datum.OriginalApprovalBad===0 ? datum.OriginalApprovalMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "LatestApproval",
+          "expr": "datum.LatestApprovalValid>0 && datum.LatestApprovalMin===datum.LatestApprovalMax && datum.LatestApprovalBad===0 ? datum.LatestApprovalMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "ActualApproval",
+          "expr": "datum.ActualApprovalValid>0 && datum.ActualApprovalMin===datum.ActualApprovalMax && datum.ActualApprovalBad===0 ? datum.ActualApprovalMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "RegistrationStart",
+          "expr": "datum.RegistrationStartValid>0 && datum.RegistrationStartMin===datum.RegistrationStartMax && datum.RegistrationStartBad===0 ? datum.RegistrationStartMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "SubCreated",
+          "expr": "datum.SubCreatedValid>0 && datum.SubCreatedMin===datum.SubCreatedMax && datum.SubCreatedBad===0 ? datum.SubCreatedMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "ROCreated",
+          "expr": "datum.ROCreatedValid>0 && datum.ROCreatedMin===datum.ROCreatedMax && datum.ROCreatedBad===0 ? datum.ROCreatedMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "AppCreated",
+          "expr": "datum.AppCreatedValid>0 && datum.AppCreatedMin===datum.AppCreatedMax && datum.AppCreatedBad===0 ? datum.AppCreatedMin : null"
+        },
+        {
+          "type": "formula",
+          "as": "issues",
+          "expr": "(datum.OriginalDispatchBad>0 || datum.OriginalDispatchMin!==datum.OriginalDispatchMax ? 1 : 0)+(datum.LatestDispatchBad>0 || datum.LatestDispatchMin!==datum.LatestDispatchMax ? 1 : 0)+(datum.ActualDispatchBad>0 || datum.ActualDispatchMin!==datum.ActualDispatchMax ? 1 : 0)+(datum.OriginalSubmissionBad>0 || datum.OriginalSubmissionMin!==datum.OriginalSubmissionMax ? 1 : 0)+(datum.LatestSubmissionBad>0 || datum.LatestSubmissionMin!==datum.LatestSubmissionMax ? 1 : 0)+(datum.ActualSubmissionBad>0 || datum.ActualSubmissionMin!==datum.ActualSubmissionMax ? 1 : 0)+(datum.OriginalApprovalBad>0 || datum.OriginalApprovalMin!==datum.OriginalApprovalMax ? 1 : 0)+(datum.LatestApprovalBad>0 || datum.LatestApprovalMin!==datum.LatestApprovalMax ? 1 : 0)+(datum.ActualApprovalBad>0 || datum.ActualApprovalMin!==datum.ActualApprovalMax ? 1 : 0)+(datum.RegistrationStartBad>0 || datum.RegistrationStartMin!==datum.RegistrationStartMax ? 1 : 0)"
+        },
+        {
+          "type": "formula",
+          "as": "missing",
+          "expr": "(!isValid(datum.OriginalDispatch) ? 1 : 0)+(!isValid(datum.LatestDispatch) ? 1 : 0)+(!isValid(datum.ActualDispatch) ? 1 : 0)+(!isValid(datum.OriginalSubmission) ? 1 : 0)+(!isValid(datum.LatestSubmission) ? 1 : 0)+(!isValid(datum.ActualSubmission) ? 1 : 0)+(!isValid(datum.OriginalApproval) ? 1 : 0)+(!isValid(datum.LatestApproval) ? 1 : 0)+(!isValid(datum.ActualApproval) ? 1 : 0)+(!isValid(datum.RegistrationStart) ? 1 : 0)"
+        },
+        {
+          "type": "formula",
+          "as": "partial",
+          "expr": "(datum.OriginalDispatchValid>0 && datum.OriginalDispatchValid<datum.sourceRows ? 1 : 0)+(datum.LatestDispatchValid>0 && datum.LatestDispatchValid<datum.sourceRows ? 1 : 0)+(datum.ActualDispatchValid>0 && datum.ActualDispatchValid<datum.sourceRows ? 1 : 0)+(datum.OriginalSubmissionValid>0 && datum.OriginalSubmissionValid<datum.sourceRows ? 1 : 0)+(datum.LatestSubmissionValid>0 && datum.LatestSubmissionValid<datum.sourceRows ? 1 : 0)+(datum.ActualSubmissionValid>0 && datum.ActualSubmissionValid<datum.sourceRows ? 1 : 0)+(datum.OriginalApprovalValid>0 && datum.OriginalApprovalValid<datum.sourceRows ? 1 : 0)+(datum.LatestApprovalValid>0 && datum.LatestApprovalValid<datum.sourceRows ? 1 : 0)+(datum.ActualApprovalValid>0 && datum.ActualApprovalValid<datum.sourceRows ? 1 : 0)+(datum.RegistrationStartValid>0 && datum.RegistrationStartValid<datum.sourceRows ? 1 : 0)"
+        },
+        {
+          "type": "formula",
+          "as": "sortDate",
+          "expr": "isValid(datum.SubCreated) ? datum.SubCreated : 8640000000000000"
+        },
+        {
+          "type": "formula",
+          "as": "appKey",
+          "expr": "length(datum.AppID)+':'+datum.AppID"
+        },
+        {
+          "type": "formula",
+          "as": "roKey",
+          "expr": "length(datum.AppID)+':'+datum.AppID+'|'+length(datum.ROID)+':'+datum.ROID"
+        },
+        {
+          "type": "formula",
+          "as": "key",
+          "expr": "length(datum.AppID)+':'+datum.AppID+'|'+length(datum.ROID)+':'+datum.ROID+'|'+length(datum.SubID)+':'+datum.SubID"
+        },
+        {
+          "type": "formula",
+          "as": "level",
+          "expr": "2"
+        },
+        {
+          "type": "formula",
+          "as": "n",
+          "expr": "1"
+        },
+        {
+          "type": "formula",
+          "as": "start",
+          "expr": "min(isValid(datum.OriginalDispatch) ? datum.OriginalDispatch : (1/0),isValid(datum.LatestDispatch) ? datum.LatestDispatch : (1/0),isValid(datum.ActualDispatch) ? datum.ActualDispatch : (1/0),isValid(datum.OriginalSubmission) ? datum.OriginalSubmission : (1/0),isValid(datum.LatestSubmission) ? datum.LatestSubmission : (1/0),isValid(datum.ActualSubmission) ? datum.ActualSubmission : (1/0),isValid(datum.OriginalApproval) ? datum.OriginalApproval : (1/0),isValid(datum.LatestApproval) ? datum.LatestApproval : (1/0),isValid(datum.ActualApproval) ? datum.ActualApproval : (1/0),isValid(datum.RegistrationStart) ? datum.RegistrationStart : (1/0))"
+        },
+        {
+          "type": "formula",
+          "as": "end",
+          "expr": "max(isValid(datum.OriginalDispatch) ? datum.OriginalDispatch : -(1/0),isValid(datum.LatestDispatch) ? datum.LatestDispatch : -(1/0),isValid(datum.ActualDispatch) ? datum.ActualDispatch : -(1/0),isValid(datum.OriginalSubmission) ? datum.OriginalSubmission : -(1/0),isValid(datum.LatestSubmission) ? datum.LatestSubmission : -(1/0),isValid(datum.ActualSubmission) ? datum.ActualSubmission : -(1/0),isValid(datum.OriginalApproval) ? datum.OriginalApproval : -(1/0),isValid(datum.LatestApproval) ? datum.LatestApproval : -(1/0),isValid(datum.ActualApproval) ? datum.ActualApproval : -(1/0),isValid(datum.RegistrationStart) ? datum.RegistrationStart : -(1/0))"
+        },
+        {
+          "type": "formula",
+          "as": "start",
+          "expr": "isFinite(datum.start) ? datum.start : null"
+        },
+        {
+          "type": "formula",
+          "as": "end",
+          "expr": "isFinite(datum.end) ? datum.end : null"
+        },
+        {
+          "type": "formula",
+          "as": "sortRO",
+          "expr": "datum.ROID"
+        },
+        {
+          "type": "formula",
+          "as": "tip",
+          "expr": "{'Submission':datum.SubID,'Regulatory objective':datum.ROID,'Application':datum.AppID,'Status':datum.SubStatusDistinct===1 ? datum.SubStatusMin : 'Multiple statuses ('+datum.SubStatusDistinct+')','RO status':datum.ROStatusDistinct===1 ? datum.ROStatusMin : 'Multiple statuses','Legal manufacturer':datum.ManufacturerDistinct===1 ? datum.ManufacturerMin : datum.ManufacturerDistinct+' manufacturers: '+datum.ManufacturerMin+' … '+datum.ManufacturerMax,'Submission created':isValid(datum.SubCreated) ? utcFormat(datum.SubCreated,'%d/%m/%Y') : 'Missing / conflicting / invalid; sorted last','RO created':isValid(datum.ROCreated) ? utcFormat(datum.ROCreated,'%d/%m/%Y') : 'Missing / conflicting / invalid','Application created':isValid(datum.AppCreated) ? utcFormat(datum.AppCreated,'%d/%m/%Y') : 'Missing / conflicting / invalid','Export rows received':datum.sourceRows,'Partly blank date fields':datum.partial,'Original dispatch':datum.OriginalDispatchBad>0 ? 'INVALID INPUT — withheld' : datum.OriginalDispatchMin!==datum.OriginalDispatchMax ? 'CONFLICT — '+utcFormat(datum.OriginalDispatchMin,'%d/%m/%Y')+' to '+utcFormat(datum.OriginalDispatchMax,'%d/%m/%Y')+'; withheld' : isValid(datum.OriginalDispatch) ? utcFormat(datum.OriginalDispatch,'%d/%m/%Y')+(datum.OriginalDispatchValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Latest dispatch':datum.LatestDispatchBad>0 ? 'INVALID INPUT — withheld' : datum.LatestDispatchMin!==datum.LatestDispatchMax ? 'CONFLICT — '+utcFormat(datum.LatestDispatchMin,'%d/%m/%Y')+' to '+utcFormat(datum.LatestDispatchMax,'%d/%m/%Y')+'; withheld' : isValid(datum.LatestDispatch) ? utcFormat(datum.LatestDispatch,'%d/%m/%Y')+(datum.LatestDispatchValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Actual dispatch':datum.ActualDispatchBad>0 ? 'INVALID INPUT — withheld' : datum.ActualDispatchMin!==datum.ActualDispatchMax ? 'CONFLICT — '+utcFormat(datum.ActualDispatchMin,'%d/%m/%Y')+' to '+utcFormat(datum.ActualDispatchMax,'%d/%m/%Y')+'; withheld' : isValid(datum.ActualDispatch) ? utcFormat(datum.ActualDispatch,'%d/%m/%Y')+(datum.ActualDispatchValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Original submission':datum.OriginalSubmissionBad>0 ? 'INVALID INPUT — withheld' : datum.OriginalSubmissionMin!==datum.OriginalSubmissionMax ? 'CONFLICT — '+utcFormat(datum.OriginalSubmissionMin,'%d/%m/%Y')+' to '+utcFormat(datum.OriginalSubmissionMax,'%d/%m/%Y')+'; withheld' : isValid(datum.OriginalSubmission) ? utcFormat(datum.OriginalSubmission,'%d/%m/%Y')+(datum.OriginalSubmissionValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Latest submission':datum.LatestSubmissionBad>0 ? 'INVALID INPUT — withheld' : datum.LatestSubmissionMin!==datum.LatestSubmissionMax ? 'CONFLICT — '+utcFormat(datum.LatestSubmissionMin,'%d/%m/%Y')+' to '+utcFormat(datum.LatestSubmissionMax,'%d/%m/%Y')+'; withheld' : isValid(datum.LatestSubmission) ? utcFormat(datum.LatestSubmission,'%d/%m/%Y')+(datum.LatestSubmissionValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Actual submission':datum.ActualSubmissionBad>0 ? 'INVALID INPUT — withheld' : datum.ActualSubmissionMin!==datum.ActualSubmissionMax ? 'CONFLICT — '+utcFormat(datum.ActualSubmissionMin,'%d/%m/%Y')+' to '+utcFormat(datum.ActualSubmissionMax,'%d/%m/%Y')+'; withheld' : isValid(datum.ActualSubmission) ? utcFormat(datum.ActualSubmission,'%d/%m/%Y')+(datum.ActualSubmissionValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Original approval':datum.OriginalApprovalBad>0 ? 'INVALID INPUT — withheld' : datum.OriginalApprovalMin!==datum.OriginalApprovalMax ? 'CONFLICT — '+utcFormat(datum.OriginalApprovalMin,'%d/%m/%Y')+' to '+utcFormat(datum.OriginalApprovalMax,'%d/%m/%Y')+'; withheld' : isValid(datum.OriginalApproval) ? utcFormat(datum.OriginalApproval,'%d/%m/%Y')+(datum.OriginalApprovalValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Latest approval':datum.LatestApprovalBad>0 ? 'INVALID INPUT — withheld' : datum.LatestApprovalMin!==datum.LatestApprovalMax ? 'CONFLICT — '+utcFormat(datum.LatestApprovalMin,'%d/%m/%Y')+' to '+utcFormat(datum.LatestApprovalMax,'%d/%m/%Y')+'; withheld' : isValid(datum.LatestApproval) ? utcFormat(datum.LatestApproval,'%d/%m/%Y')+(datum.LatestApprovalValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Actual approval':datum.ActualApprovalBad>0 ? 'INVALID INPUT — withheld' : datum.ActualApprovalMin!==datum.ActualApprovalMax ? 'CONFLICT — '+utcFormat(datum.ActualApprovalMin,'%d/%m/%Y')+' to '+utcFormat(datum.ActualApprovalMax,'%d/%m/%Y')+'; withheld' : isValid(datum.ActualApproval) ? utcFormat(datum.ActualApproval,'%d/%m/%Y')+(datum.ActualApprovalValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing','Registration start':datum.RegistrationStartBad>0 ? 'INVALID INPUT — withheld' : datum.RegistrationStartMin!==datum.RegistrationStartMax ? 'CONFLICT — '+utcFormat(datum.RegistrationStartMin,'%d/%m/%Y')+' to '+utcFormat(datum.RegistrationStartMax,'%d/%m/%Y')+'; withheld' : isValid(datum.RegistrationStart) ? utcFormat(datum.RegistrationStart,'%d/%m/%Y')+(datum.RegistrationStartValid<datum.sourceRows ? ' (some duplicate rows blank)' : '') : 'Missing'}"
+        }
+      ]
+    },
+    {
+      "name": "apps",
+      "source": "sub",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "AppID",
+            "appKey"
+          ],
+          "fields": [
+            "start",
+            "end",
+            "n",
+            "issues",
+            "missing"
+          ],
+          "ops": [
+            "min",
+            "max",
+            "sum",
+            "sum",
+            "sum"
+          ],
+          "as": [
+            "start",
+            "end",
+            "n",
+            "issues",
+            "missing"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "level",
+          "expr": "0"
+        },
+        {
+          "type": "formula",
+          "as": "key",
+          "expr": "datum.appKey"
+        },
+        {
+          "type": "formula",
+          "as": "sortRO",
+          "expr": "''"
+        },
+        {
+          "type": "formula",
+          "as": "sortDate",
+          "expr": "0"
+        },
+        {
+          "type": "formula",
+          "as": "tip",
+          "expr": "{'Level':'Application','Application':datum.AppID,'Filtered submissions':datum.n,'Span':'Available, non-conflicting lifecycle dates','Start':isValid(datum.start) ? utcFormat(datum.start,'%d/%m/%Y') : 'No dates','End':isValid(datum.end) ? utcFormat(datum.end,'%d/%m/%Y') : 'No dates','Withheld milestone fields':datum.issues,'Missing or withheld fields':datum.missing}"
+        }
+      ]
+    },
+    {
+      "name": "ros",
+      "source": "sub",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "AppID",
+            "ROID",
+            "appKey",
+            "roKey"
+          ],
+          "fields": [
+            "start",
+            "end",
+            "n",
+            "issues",
+            "missing"
+          ],
+          "ops": [
+            "min",
+            "max",
+            "sum",
+            "sum",
+            "sum"
+          ],
+          "as": [
+            "start",
+            "end",
+            "n",
+            "issues",
+            "missing"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "level",
+          "expr": "1"
+        },
+        {
+          "type": "formula",
+          "as": "key",
+          "expr": "datum.roKey"
+        },
+        {
+          "type": "formula",
+          "as": "sortRO",
+          "expr": "datum.ROID"
+        },
+        {
+          "type": "formula",
+          "as": "sortDate",
+          "expr": "0"
+        },
+        {
+          "type": "formula",
+          "as": "tip",
+          "expr": "{'Level':'Regulatory objective','Application':datum.AppID,'Regulatory objective':datum.ROID,'Filtered submissions':datum.n,'Span':'Available, non-conflicting lifecycle dates','Start':isValid(datum.start) ? utcFormat(datum.start,'%d/%m/%Y') : 'No dates','End':isValid(datum.end) ? utcFormat(datum.end,'%d/%m/%Y') : 'No dates','Withheld milestone fields':datum.issues,'Missing or withheld fields':datum.missing}"
+        }
+      ]
+    },
+    {
+      "name": "extent",
+      "source": "sub",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": [
+            "start",
+            "end"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ],
+          "as": [
+            "lo",
+            "hi"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "visible",
+      "source": [
+        "apps",
+        "ros",
+        "sub"
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.level===0 || (indata(\"expanded\",\"key\",datum.appKey) && (datum.level===1 || indata(\"expanded\",\"key\",datum.roKey)))"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": [
+              "AppID",
+              "sortRO",
+              "level",
+              "sortDate",
+              "SubID"
+            ],
+            "order": [
+              "ascending",
+              "ascending",
+              "ascending",
+              "ascending",
+              "ascending"
+            ]
+          }
+        },
+        {
+          "type": "window",
+          "sort": {
+            "field": [
+              "AppID",
+              "sortRO",
+              "level",
+              "sortDate",
+              "SubID"
+            ],
+            "order": [
+              "ascending",
+              "ascending",
+              "ascending",
+              "ascending",
+              "ascending"
+            ]
+          },
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "idx"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pageRows",
+      "source": "visible",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.idx>safePage*pageSize && datum.idx<=(safePage+1)*pageSize"
+        },
+        {
+          "type": "formula",
+          "as": "y",
+          "expr": "top+(datum.idx-safePage*pageSize-1)*rowH"
+        }
+      ]
+    },
+    {
+      "name": "parents",
+      "source": "pageRows",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.level<2"
+        }
+      ]
+    },
+    {
+      "name": "children",
+      "source": "pageRows",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.level===2"
+        }
+      ]
+    },
+    {
+      "name": "spans",
+      "source": "parents",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "isValid(datum.start) && isValid(datum.end)"
+        }
+      ]
+    },
+    {
+      "name": "milestones",
+      "source": "children",
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "OriginalDispatch",
+            "LatestDispatch",
+            "ActualDispatch",
+            "OriginalSubmission",
+            "LatestSubmission",
+            "ActualSubmission",
+            "OriginalApproval",
+            "LatestApproval",
+            "ActualApproval",
+            "RegistrationStart"
+          ],
+          "as": [
+            "milestone",
+            "date"
+          ]
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.date)"
+        },
+        {
+          "type": "formula",
+          "as": "track",
+          "expr": "indexof(datum.milestone,'Original')===0 ? 0 : indexof(datum.milestone,'Latest')===0 ? 1 : 2"
+        },
+        {
+          "type": "formula",
+          "as": "kind",
+          "expr": "indexof(datum.milestone,'Dispatch')>=0 ? 0 : indexof(datum.milestone,'Submission')>=0 ? 1 : indexof(datum.milestone,'Approval')>=0 ? 2 : 3"
+        }
+      ]
+    },
+    {
+      "name": "segments",
+      "source": "children",
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "OriginalDispatch",
+            "OriginalSubmission",
+            "LatestDispatch",
+            "LatestSubmission",
+            "ActualDispatch",
+            "ActualSubmission",
+            "ActualApproval"
+          ],
+          "as": [
+            "a",
+            "d1"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "b",
+          "expr": "datum.a==='ActualApproval' ? 'RegistrationStart' : replace(datum.a,'Dispatch','Submission')===datum.a ? replace(datum.a,'Submission','Approval') : replace(datum.a,'Dispatch','Submission')"
+        },
+        {
+          "type": "formula",
+          "as": "d2",
+          "expr": "datum[datum.b]"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.d1) && isValid(datum.d2)"
+        },
+        {
+          "type": "formula",
+          "as": "track",
+          "expr": "indexof(datum.a,'Original')===0 ? 0 : indexof(datum.a,'Latest')===0 ? 1 : 2"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "utc",
+      "domain": [
+        {
+          "signal": "lo-pad"
+        },
+        {
+          "signal": "hi+pad"
+        }
+      ],
+      "range": [
+        {
+          "signal": "left+18"
+        },
+        {
+          "signal": "width-18"
+        }
+      ]
+    },
+    {
+      "name": "trackColor",
+      "type": "ordinal",
+      "domain": [
+        0,
+        1,
+        2
+      ],
+      "range": [
+        "#a2acb8",
+        "#648aab",
+        "#207b72"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "top",
+      "offset": {
+        "signal": "-top+12"
+      },
+      "tickCount": {
+        "signal": "max(2,floor((width-left)/110))"
+      },
+      "format": "%b %Y",
+      "grid": false,
+      "gridColor": "#edf0f3",
+      "gridWidth": 1,
+      "zindex": 0
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 0
+          },
+          "width": {
+            "signal": "width"
+          },
+          "height": {
+            "value": 112
+          },
+          "fill": {
+            "value": "#ffffff"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 23
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 10
+          },
+          "y": {
+            "value": 19
+          },
+          "text": {
+            "value": "Regulatory lifecycle"
+          },
+          "fontWeight": {
+            "value": 600
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 10
+          },
+          "y": {
+            "value": 48
+          },
+          "text": {
+            "signal": "format(length(data(\"sub\")),\",\")+\" submissions  ·  \"+format(length(data(\"apps\")),\",\")+\" applications  ·  fictional sample data\""
+          },
+          "fill": {
+            "value": "#74818d"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "collapse",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "width-14"
+          },
+          "y": {
+            "value": 22
+          },
+          "align": {
+            "value": "right"
+          },
+          "text": {
+            "value": "Collapse all ↶"
+          },
+          "fill": {
+            "value": "#52778d"
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 10
+          },
+          "x2": {
+            "value": 30
+          },
+          "y": {
+            "value": 80
+          },
+          "stroke": {
+            "value": "#a2acb8"
+          },
+          "strokeWidth": {
+            "value": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 38
+          },
+          "y": {
+            "value": 80
+          },
+          "text": {
+            "value": "Original plan"
+          },
+          "fill": {
+            "value": "#697784"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 135
+          },
+          "x2": {
+            "value": 155
+          },
+          "y": {
+            "value": 80
+          },
+          "stroke": {
+            "value": "#648aab"
+          },
+          "strokeWidth": {
+            "value": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 163
+          },
+          "y": {
+            "value": 80
+          },
+          "text": {
+            "value": "Latest best estimate"
+          },
+          "fill": {
+            "value": "#697784"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 310
+          },
+          "x2": {
+            "value": 330
+          },
+          "y": {
+            "value": 80
+          },
+          "stroke": {
+            "value": "#207b72"
+          },
+          "strokeWidth": {
+            "value": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 338
+          },
+          "y": {
+            "value": 80
+          },
+          "text": {
+            "value": "Actual"
+          },
+          "fill": {
+            "value": "#697784"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 440
+          },
+          "y": {
+            "value": 80
+          },
+          "text": {
+            "value": "● Dispatch     ◆ Submission     ■ Approval     ▼ Registration start"
+          },
+          "fill": {
+            "value": "#697784"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 106
+          },
+          "width": {
+            "signal": "left"
+          },
+          "height": {
+            "value": 32
+          },
+          "fill": {
+            "value": "#f3f6f8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 54
+          },
+          "y": {
+            "value": 122
+          },
+          "text": {
+            "value": "SUB / HIERARCHY"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#7b8792"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 220
+          },
+          "y": {
+            "value": 122
+          },
+          "text": {
+            "value": "RO"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#7b8792"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 365
+          },
+          "y": {
+            "value": 122
+          },
+          "text": {
+            "value": "APP"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#7b8792"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "field": "y"
+          },
+          "width": {
+            "signal": "width"
+          },
+          "height": {
+            "signal": "rowH"
+          },
+          "fill": {
+            "signal": "datum.level===0 ? '#edf2f6' : datum.level===1 ? '#f4f7f9' : datum.idx%2 ? '#ffffff' : '#fafbfc'"
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "x2": {
+            "signal": "width"
+          },
+          "y": {
+            "signal": "datum.y+rowH"
+          },
+          "stroke": {
+            "value": "#e8edf1"
+          },
+          "strokeWidth": {
+            "value": 0.6
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "left"
+          },
+          "y": {
+            "value": 106
+          },
+          "y2": {
+            "signal": "height-36"
+          },
+          "stroke": {
+            "value": "#dce4e9"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "toggle",
+      "from": {
+        "data": "parents"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 19
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "datum.level===0 ? 20 : 34"
+          },
+          "y": {
+            "signal": "datum.y+31"
+          },
+          "text": {
+            "signal": "indata(\"expanded\",\"key\",datum.key) ? \"▾\" : \"▸\""
+          },
+          "fill": {
+            "value": "#567287"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "value": "Expand / collapse"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "parents"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "datum.level===0 ? 47 : 61"
+          },
+          "y": {
+            "signal": "datum.y+24"
+          },
+          "text": {
+            "signal": "datum.level===0 ? datum.AppID : datum.ROID"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "limit": {
+            "value": 290
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "parents"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "datum.level===0 ? 47 : 61"
+          },
+          "y": {
+            "signal": "datum.y+43"
+          },
+          "text": {
+            "signal": "(datum.level===0 ? \"Application\" : \"Regulatory objective\")+\"  ·  \"+datum.n+\" submissions\""
+          },
+          "fill": {
+            "value": "#81909c"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "parents"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 365
+          },
+          "y": {
+            "signal": "datum.y+24"
+          },
+          "text": {
+            "signal": "datum.level===1 ? datum.AppID : \"\""
+          },
+          "limit": {
+            "value": 126
+          },
+          "fill": {
+            "value": "#72818e"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 54
+          },
+          "y": {
+            "signal": "datum.y+24"
+          },
+          "text": {
+            "field": "SubID"
+          },
+          "limit": {
+            "value": 152
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 220
+          },
+          "y": {
+            "signal": "datum.y+24"
+          },
+          "text": {
+            "field": "ROID"
+          },
+          "limit": {
+            "value": 132
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 365
+          },
+          "y": {
+            "signal": "datum.y+24"
+          },
+          "text": {
+            "field": "AppID"
+          },
+          "limit": {
+            "value": 130
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 54
+          },
+          "y": {
+            "signal": "datum.y+44"
+          },
+          "text": {
+            "signal": "datum.issues>0 ? \"⚠ \"+datum.issues+\" conflicting / invalid dates\" : datum.missing===10 ? \"No milestone dates\" : datum.missing+\" missing dates\""
+          },
+          "fill": {
+            "signal": "datum.issues>0 ? \"#a26e32\" : \"#8a97a2\""
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "spans"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "start"
+          },
+          "x2": {
+            "signal": "max(scale(\"x\",datum.start)+3,scale(\"x\",datum.end))"
+          },
+          "y": {
+            "signal": "datum.y+27"
+          },
+          "height": {
+            "value": 9
+          },
+          "cornerRadius": {
+            "value": 3
+          },
+          "fill": {
+            "signal": "datum.level===0 ? \"#6d8599\" : \"#a0b0be\""
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 8
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "left+5"
+          },
+          "y": {
+            "signal": "datum.y+16+0*16"
+          },
+          "text": {
+            "value": "P"
+          },
+          "fill": {
+            "value": "#9aa7b1"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 8
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "left+5"
+          },
+          "y": {
+            "signal": "datum.y+16+1*16"
+          },
+          "text": {
+            "value": "E"
+          },
+          "fill": {
+            "value": "#9aa7b1"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "children"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 8
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "left+5"
+          },
+          "y": {
+            "signal": "datum.y+16+2*16"
+          },
+          "text": {
+            "value": "A"
+          },
+          "fill": {
+            "value": "#9aa7b1"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "segments"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "d1"
+          },
+          "x2": {
+            "scale": "x",
+            "field": "d2"
+          },
+          "y": {
+            "signal": "datum.y+16+datum.track*16"
+          },
+          "stroke": {
+            "scale": "trackColor",
+            "field": "track"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "strokeOpacity": {
+            "value": 0.65
+          },
+          "strokeDash": {
+            "signal": "datum.d2<datum.d1 ? [3,3] : [1,0]"
+          },
+          "tooltip": {
+            "signal": "{'Interval':datum.a+' → '+datum.b,'Start':utcFormat(datum.d1,'%d/%m/%Y'),'End':utcFormat(datum.d2,'%d/%m/%Y'),'Order':datum.d2<datum.d1 ? 'WARNING: dates reversed' : 'Chronological','Submission':datum.SubID}"
+          }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {
+        "data": "milestones"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "date"
+          },
+          "y": {
+            "signal": "datum.y+16+datum.track*16"
+          },
+          "shape": {
+            "signal": "[\"circle\",\"diamond\",\"square\",\"triangle-down\"][datum.kind]"
+          },
+          "size": {
+            "signal": "datum.kind===3 ? 70 : 47"
+          },
+          "fill": {
+            "scale": "trackColor",
+            "field": "track"
+          },
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 0.9
+          },
+          "tooltip": {
+            "field": "tip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 10
+          },
+          "y": {
+            "signal": "height-15"
+          },
+          "text": {
+            "signal": "length(data(\"invalid\")) ? \"⚠ \"+length(data(\"invalid\"))+\" rows excluded: missing APP / RO / SUB identifier\" : \"Arrows expand groups · P / E / A = plan / estimate / actual · Hover for dates\""
+          },
+          "fill": {
+            "value": "#8996a1"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "prev",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "width-228"
+          },
+          "y": {
+            "signal": "height-15"
+          },
+          "text": {
+            "value": "‹ Previous"
+          },
+          "fill": {
+            "signal": "safePage>0 ? \"#456b86\" : \"#bec7ce\""
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "width-125"
+          },
+          "y": {
+            "signal": "height-15"
+          },
+          "text": {
+            "signal": "(safePage+1)+\" / \"+max(1,ceil(length(data(\"visible\"))/pageSize))"
+          },
+          "align": {
+            "value": "center"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "next",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "width-12"
+          },
+          "y": {
+            "signal": "height-15"
+          },
+          "text": {
+            "value": "Next ›"
+          },
+          "align": {
+            "value": "right"
+          },
+          "fill": {
+            "signal": "(safePage+1)*pageSize<length(data(\"visible\")) ? \"#456b86\" : \"#bec7ce\""
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "left+25"
+          },
+          "y": {
+            "signal": "top+28"
+          },
+          "text": {
+            "signal": "length(data(\"sub\"))===0 ? \"No submissions in the current filter context\" : \"\""
+          },
+          "fill": {
+            "value": "#83929e"
+          }
+        }
+      }
+    }
+  ]
+}
