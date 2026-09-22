@@ -27,11 +27,3 @@ The browser loads timeline.json, which includes a host-size signal updated by th
 Live demo: https://dangermitch2000.github.io/regulatory-timeline-demo/
 
 See CHANGELOG.md for version history.
-
-## Vega / Deneb specifications
-
-The browser loads timeline.json, which includes a host-size signal updated by the page. deneb.vega.json omits that stub and uses Deneb 2.x host sizing; deneb-legacy.vega.json uses legacy host-size signal names. Both accept generic column aliases visible in the specifications and contain no embedded data. Native Power BI slicers should filter the incoming membership rows. Browser validation is not a live Power BI report test.
-
-Live demo: https://dangermitch2000.github.io/regulatory-timeline-demo/
-
-See CHANGELOG.md for version history.
