@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Compact dark regulatory timeline demonstration. Entirely fictional membership data.",
+  "description": "Compact dark regulatory timeline. Site means legal manufacturer. Native host filters apply before duplicate consolidation. Product membership is retained.",
   "padding": 0,
   "autosize": "none",
   "background": "#14181f",
@@ -18,13 +18,6 @@
     }
   },
   "signals": [
-    {
-      "name": "denebContainer",
-      "value": {
-        "width": 1100,
-        "height": 600
-      }
-    },
     {
       "name": "width",
       "update": "max(480,denebContainer.width)"

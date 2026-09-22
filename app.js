@@ -1,13 +1,48 @@
 (async()=>{
-const target=document.querySelector('#chart'),select=document.querySelector('#manufacturer'),tip=document.querySelector('#tooltip');
-try{
-const responses=await Promise.all([fetch('timeline.json'),fetch('sample.json')]);
-if(responses.some(r=>!r.ok))throw new Error('The demo files could not be loaded.');
-const [spec,rows]=await Promise.all(responses.map(r=>r.json()));
-for(const name of [...new Set(rows.map(r=>r.Manufacturer))].sort()){const option=document.createElement('option');option.value=name;option.textContent=name;select.appendChild(option);}
-let view;
-async function render(){if(view)view.finalize();target.replaceChildren();tip.style.display='none';view=new vega.View(vega.parse(spec),{renderer:'svg',hover:true}).initialize(target).tooltip((handler,event,item,value)=>{tip.replaceChildren();if(!value){tip.style.display='none';return;}const dl=document.createElement('dl');for(const [k,v] of Object.entries(typeof value === 'object' ? value : {Action:value})){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);dl.append(dt,dd);}tip.appendChild(dl);tip.style.display='block';tip.style.left=Math.max(8,Math.min(event.clientX+14,innerWidth-tip.offsetWidth-10))+'px';tip.style.top=Math.max(8,Math.min(event.clientY+14,innerHeight-tip.offsetHeight-10))+'px';});view.change('dataset',vega.changeset().insert(rows.filter(r=>!select.value||r.Manufacturer===select.value)));await view.runAsync();}
-select.addEventListener('change',()=>render().catch(showError));await render();
-}catch(e){showError(e);}
-function showError(e){target.textContent='Unable to load the demo. Please reload the page. If viewing downloaded files, use a local static server.';console.error(e);}
+ 'use strict';
+ const chart=document.querySelector('#chart'),tooltip=document.querySelector('#tooltip'),status=document.querySelector('#filter-status');
+ const selected={site:new Set(),product:new Set()};
+ const fields={site:'Manufacturer',product:'Product'};
+ const normalized=value=>value==null?'':String(value).trim();
+ let view,rows,queued=Promise.resolve(),hideTimer;
+ tooltip.addEventListener('mouseenter',()=>clearTimeout(hideTimer));
+ tooltip.addEventListener('mouseleave',()=>{tooltip.style.display='none';});
+ try{
+  const [spec,data]=window.__demoBundle ? [window.__demoBundle.spec,window.__demoBundle.rows] : await Promise.all(['timeline.json','sample.json'].map(async url=>{const response=await fetch(url);if(!response.ok)throw new Error('Unable to load '+url);return response.json();}));rows=data;
+  const options={};
+  for(const kind of ['site','product']){
+   options[kind]=[...new Set(rows.map(row=>normalized(row[fields[kind]])))].sort((a,b)=>a.localeCompare(b));
+   const search=document.querySelector('#'+kind+'-search');
+   document.querySelector('#'+kind+'-filter').addEventListener('toggle',()=>{if(document.querySelector('#'+kind+'-filter').open)document.querySelector('#'+(kind==='site'?'product':'site')+'-filter').open=false;});
+   const visible=()=>options[kind].filter(value=>(value||'(Missing)').toLocaleLowerCase().includes(search.value.toLocaleLowerCase()));
+   const draw=()=>{
+    const box=document.querySelector('#'+kind+'-options');box.replaceChildren();
+    for(const value of visible()){
+     const label=document.createElement('label');label.className='option';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.value=value;checkbox.checked=selected[kind].has(value);const name=document.createElement('span');name.textContent=value||'(Missing)';label.append(checkbox,name);box.append(label);
+     checkbox.addEventListener('change',()=>{checkbox.checked?selected[kind].add(value):selected[kind].delete(value);updateSummary(kind);requestFilter();});
+    }
+    if(!box.children.length){const empty=document.createElement('p');empty.className='empty-options';empty.textContent='No options match this search.';box.append(empty);}
+   };
+   search.addEventListener('input',draw);
+   document.querySelector('#'+kind+'-select').addEventListener('click',()=>{visible().forEach(x=>selected[kind].add(x));draw();updateSummary(kind);requestFilter();});
+   document.querySelector('#'+kind+'-clear').addEventListener('click',()=>{selected[kind].clear();draw();updateSummary(kind);requestFilter();});
+   document.querySelector('#'+kind+'-filter').addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelector('#'+kind+'-filter').open=false;document.querySelector('#'+kind+'-summary').focus();}});
+   options[kind+'Draw']=draw;draw();
+  }
+  document.querySelector('#reset-filters').addEventListener('click',()=>{for(const kind of ['site','product']){selected[kind].clear();document.querySelector('#'+kind+'-search').value='';options[kind+'Draw']();updateSummary(kind);}requestFilter();});
+  chart.replaceChildren();
+  view=new vega.View(vega.parse(spec),{renderer:'svg',hover:true}).initialize(chart).tooltip((handler,event,item,value)=>{
+   clearTimeout(hideTimer);if(value==null){hideTimer=setTimeout(()=>{tooltip.style.display='none';},180);return;}tooltip.replaceChildren();
+   const dl=document.createElement('dl');for(const [k,v] of Object.entries(typeof value==='object'?value:{Action:value})){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);dl.append(dt,dd);}tooltip.append(dl);tooltip.style.display='block';tooltip.style.left=Math.max(5,Math.min(event.clientX+12,innerWidth-tooltip.offsetWidth-6))+'px';tooltip.style.top=Math.max(5,Math.min(event.clientY+12,innerHeight-tooltip.offsetHeight-6))+'px';
+  });
+  const resize=new ResizeObserver(entries=>{const {width,height}=entries[0].contentRect;queued=queued.then(()=>view.signal('denebContainer',{width:Math.max(480,width),height:Math.max(260,height)}).runAsync()).catch(showError);});resize.observe(chart);
+  await requestFilter();
+  function updateSummary(kind){document.querySelector('#'+kind+'-summary').textContent=(kind==='site'?'Site':'Product')+' · '+(selected[kind].size?selected[kind].size+' selected':'All');}
+  function requestFilter(){queued=queued.then(async()=>{
+   const filtered=rows.filter(row=>['site','product'].every(kind=>!selected[kind].size||selected[kind].has(normalized(row[fields[kind]]))));
+   tooltip.style.display='none';view.signal('range',null).signal('page',0).change('expanded',vega.changeset().remove(()=>true)).change('dataset',vega.changeset().remove(()=>true).insert(filtered));await view.runAsync();
+   const n=view.data('sub').length;status.textContent=n+' matching '+(n===1?'submission':'submissions')+' · '+filtered.length+' fictional membership rows';
+  }).catch(showError);return queued;}
+ }catch(error){showError(error);}
+ function showError(error){status.textContent='Demo could not load. Reload the page or use a static web server for downloaded files.';console.error(error);}
 })();
