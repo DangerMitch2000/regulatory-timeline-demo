@@ -8,7 +8,7 @@
  const date=x=>x==null||!Number.isFinite(x)?'Not recorded':new Date(x).toISOString().slice(0,10);
  const duration=x=>x==null?'Not recorded / withheld':Math.round(x)+' days';
  try{
-  const [spec,data]=window.__demoBundle?[window.__demoBundle.spec,window.__demoBundle.rows]:await Promise.all(['timeline.json','sample.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Unable to load '+url);return r.json();}));rows=data;
+  const [spec,data]=window.__demoBundle?[window.__demoBundle.spec,window.__demoBundle.rows]:await Promise.all(['timeline.json','sample.json'].map(async url=>{const r=await fetch(url+'?v=1.3');if(!r.ok)throw Error('Unable to load '+url);return r.json();}));rows=data;
   // These are genuine Vega HTML input bindings, also included in the Deneb deliverable.
   view=new vega.View(vega.parse(spec),{renderer:'svg',hover:true}).initialize(chart,$('bindings')).tooltip((h,event,item,value)=>{
    const tip=$('tooltip');if(value==null){tip.hidden=true;return;}tip.replaceChildren();for(const [k,v]of Object.entries(value)){tip.append(el('strong',k+': '),el('span',String(v)),el('br'));}tip.hidden=false;tip.style.left=Math.max(6,Math.min(event.clientX+12,innerWidth-330))+'px';tip.style.top=Math.max(6,Math.min(event.clientY+12,innerHeight-160))+'px';
