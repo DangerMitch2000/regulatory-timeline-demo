@@ -25,13 +25,20 @@ jobs:
         run: npm install
       - name: Verify field mapping
         working-directory: powerbi-visual
-        run: npm test
+        run: |
+          npm test
+          npx tsc --noEmit
       - name: Test actual visual in browser host
         working-directory: powerbi-visual
         run: |
           npx esbuild verify/harness.ts --bundle --outfile=verify/harness.js --loader:.less=css
           npx playwright install --with-deps chromium
           node verify/run.cjs
+      - name: Preserve verified interface previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-interface-previews
+          path: powerbi-visual/verify/*.png
       - name: Build official Power BI package
         working-directory: powerbi-visual
         run: npm run package -- --verbose
