@@ -1,11 +1,6 @@
 name: Build Power BI visual
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'powerbi-visual.build.cjs'
-      - 'powerbi-visual.verify.cjs'
-      - '.github/workflows/powerbi-visual.yml'
 permissions:
   contents: write
 jobs:
@@ -45,7 +40,7 @@ jobs:
       - name: Prepare release files
         run: |
           mkdir -p release
-          cp powerbi-visual/dist/*.pbiviz release/regulatory-timeline-1.4.0.0.pbiviz
+          cp powerbi-visual/dist/*.pbiviz release/regulatory-tracker-1.5.0.0.pbiviz
           cp powerbi-visual/README.md release/POWER-BI-INSTALL.md
           cp powerbi-visual/verify/overview.png release/powerbi-overview.png
           cp powerbi-visual/verify/details.png release/powerbi-details.png
@@ -59,7 +54,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view powerbi-v1.4.0-preview.1 >/dev/null 2>&1; then
-            gh release create powerbi-v1.4.0-preview.1 --target "$GITHUB_SHA" --prerelease --title "Power BI visual 1.4 preview — demo interface" --notes "Installable Power BI custom visual reusing the demo interface and styling. Official Microsoft package build and browser host checks passed. Import into Power BI Desktop to verify tenant and host compatibility; this is an uncertified preview, not a Deneb JSON file. See POWER-BI-INSTALL.md. Clipboard depends on the host; selectable detail text remains available. Built from commit $GITHUB_SHA."
+          if ! gh release view v1.5 >/dev/null 2>&1; then
+            gh release create v1.5 --target "$GITHUB_SHA" --prerelease --title "Regulatory Tracker 1.5" --notes "Regulatory Tracker 1.5: larger text, green Health Authority Approved state, checkbox state filters, full date tooltips, compact columns and Ctrl+wheel horizontal timeline movement. No Pan dates slider. Official Microsoft package build and browser host checks passed. Import into Power BI Desktop to verify tenant and host compatibility; this is an uncertified preview, not a Deneb JSON file. See POWER-BI-INSTALL.md. Clipboard depends on the host; selectable detail text remains available. Built from commit $GITHUB_SHA."
           fi
-          gh release upload powerbi-v1.4.0-preview.1 release/* --clobber
+          gh release upload v1.5 release/* --clobber
+
