@@ -1,0 +1,38 @@
+/* Browser harness runs the actual Visual class with a synthetic Power BI table. */
+const fs=require('fs'),path=require('path');const out=process.argv[2]||'powerbi-visual';
+fs.mkdirSync(path.join(out,'verify'),{recursive:true});
+fs.writeFileSync(path.join(out,'verify/harness.ts'),`import {Visual} from '../src/visual';
+import {roles} from '../src/adapter';
+import rows from '../../sample.json';
+const host={eventService:{renderingStarted(){},renderingFinished(){document.body.dataset.ready='true'},renderingFailed(o,e){throw Error(e)}},fetchMoreData(){return false}};
+const table=(data)=>({columns:roles.map(role=>({displayName:role,roles:{[role]:true}})),rows:data.map(r=>roles.map(role=>r[role]??null))});
+const main=document.getElementById('host');const visual=new Visual({element:main,host} as any);
+const send=(data=rows,type=2)=>visual.update({type,viewport:{width:1280,height:850},dataViews:[{metadata:{},table:table(data)}]} as any);
+send();
+document.getElementById('refresh').onclick=()=>send(rows);
+document.getElementById('empty').onclick=()=>send([]);
+document.getElementById('resize').onclick=()=>visual.update({type:4,viewport:{width:900,height:700}} as any);
+document.getElementById('second').onclick=()=>{const element=document.getElementById('other');const second=new Visual({element,host} as any);second.update({type:2,viewport:{width:1280,height:850},dataViews:[{metadata:{},table:table(rows.filter(r=>r.AppID==='APP-001'))}]} as any);};
+`);
+fs.writeFileSync(path.join(out,'verify/index.html'),`<!doctype html><meta charset="utf-8"><title>Power BI visual host verification</title><link rel="stylesheet" href="harness.css"><style>body{margin:0;background:#101319}#host{width:1280px;height:850px}#other{width:1280px;height:850px}nav{padding:8px}</style><div id="host"></div><nav><button id="refresh">Refresh host data</button><button id="empty">Empty host data</button><button id="resize">Resize host</button><button id="second">Second instance</button></nav><div id="other"></div><script src="harness.js"></script>`);
+fs.writeFileSync(path.join(out,'verify/run.cjs'),`const {chromium}=require('@playwright/test'),assert=require('node:assert/strict'),http=require('http'),fs=require('fs'),path=require('path');
+(async()=>{const server=http.createServer((req,res)=>{const p=path.join(__dirname,new URL(req.url,'http://localhost').pathname);if(!p.startsWith(__dirname+path.sep)){res.writeHead(403).end();return;}fs.readFile(p,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',p.endsWith('.js')?'text/javascript':p.endsWith('.css')?'text/css':'text/html');res.end(b);});}).listen(8771,'127.0.0.1');const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1280,height:950}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{
+ await page.goto('http://127.0.0.1:8771/index.html');await page.waitForSelector('body[data-ready=true]');await page.locator('#host #filter-status').filter({hasText:'60 submissions'}).waitFor();
+ assert.equal(await page.locator('#host .filter').count(),4);assert.equal(await page.locator('#host input[type=search]').count(),7);
+ await page.locator('#host input[name=query]').fill('SUB-00002');await page.waitForFunction(()=>document.querySelector('#host #filter-status').textContent.startsWith('1 submissions'));
+ await page.getByRole('button',{name:'Refresh host data',exact:true}).click();assert.equal(await page.locator('#host input[name=query]').inputValue(),'SUB-00002');
+ await page.locator('#host [id=reset-filters]').click();await page.waitForFunction(()=>document.querySelector('#host #filter-status').textContent.startsWith('60 submissions'));
+ await page.locator('#host select[name=mode]').selectOption({label:'Compare'});await page.locator('#host select[name=axisMode]').selectOption({label:'Elapsed days'});
+ await page.locator('#host input[name=query]').fill('SUB-00002');await page.waitForFunction(()=>document.querySelector('#host #filter-status').textContent.startsWith('1 submissions'));
+ await page.locator('#host svg text').filter({hasText:/^SUB-00002$/}).click();await page.locator('#host #detail-title').click();await page.locator('#host #list-search').fill('096');assert((await page.locator('#host #member-lists').innerText()).includes('096'));
+ await page.screenshot({path:path.join(__dirname,'details.png'),fullPage:false});
+ await page.locator('#host #list-search').fill('');await page.locator('#host #list-next').click();assert((await page.locator('#host #list-page').innerText()).startsWith('2 /'));
+ await page.getByRole('button',{name:'Resize host',exact:true}).click();assert.equal(await page.locator('#host input[name=query]').inputValue(),'SUB-00002');
+ await page.getByRole('button',{name:'Second instance',exact:true}).click();await page.locator('#other #filter-status').filter({hasText:'18 submissions'}).waitFor();assert((await page.locator('#host #filter-status').innerText()).startsWith('1 submissions'));
+ await page.getByRole('button',{name:'Empty host data',exact:true}).click();await page.locator('#host #filter-status').filter({hasText:'0 submissions'}).waitFor();assert((await page.locator('#other #filter-status').innerText()).startsWith('18 submissions'));
+ await page.getByRole('button',{name:'Refresh host data',exact:true}).click();await page.locator('#host [id=reset-filters]').click();await page.locator('#host select[name=mode]').selectOption({label:'Hierarchy'});await page.locator('#host #detail-title').click();await page.locator('#host #filter-status').filter({hasText:'60 submissions'}).waitFor();
+ await page.screenshot({path:path.join(__dirname,'overview.png'),fullPage:false});assert.deepEqual(errors,[]);console.log('PASS: actual Visual class, CSP interpreter, 60 submissions, four filters, search, comparison, details, list search/paging, refresh/resize, empty data, isolated instances; no page errors.');
+}finally{await browser.close();server.close();}})().catch(e=>{console.error(e);process.exit(1)});
+`);
+console.log('Created actual-class browser verification harness.');
