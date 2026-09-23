@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3 — 2026-09-23
+
+- Own-state colours at Application/RO/Submission levels, distinct RO counts and visible submission type.
+- Comparison levels, pinning, actual-dispatch Day 0, valid durations/variances and sort controls.
+- Optional registration-end marker and range inclusion; excluded from processing durations.
+- Real input bindings, top search and additional country/type multiselect filters.
+- Collapsed structured browser details with selectable text/full-copy buttons and full searchable membership lists.
+- Native Power BI companion-table setup/helper with explicit manual selection linkage and honest host limits.
+- Preserved v1.2 anchor/scroll fixes; isolated pin index dependencies from expansion.
+
+
+
 ## 1.2 — 2026-09-23
 
 - Replaced row paging with anchored scrolling, fixed headers and a draggable scrollbar.

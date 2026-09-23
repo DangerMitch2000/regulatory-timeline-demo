@@ -1,35 +1,37 @@
-# Regulatory timeline — version 1.2
+# Regulatory timeline — version 1.3
 
-An interactive Vega timeline using entirely fictional records. No organizational records or private source-field mapping are included.
+[Open live demo](https://dangermitch2000.github.io/regulatory-timeline-demo/) · [Download release](https://github.com/DangerMitch2000/regulatory-timeline-demo/releases/tag/v1.3)
 
-[Live demo](https://dangermitch2000.github.io/regulatory-timeline-demo/)
+An interactive dark Vega timeline with entirely fictional data. No private source mappings, real records, photos or organizational branding are included.
 
-## Changes in 1.2
+## Explore and compare
 
-- Fixed-header row viewport with wheel scrolling, draggable scrollbar, row buttons and keyboard navigation.
-- Group expansion preserves the clicked anchor and reveals the first child at the bottom of the viewport. Calendar zoom stays unchanged.
-- Select a submission or a membership count for persistent, collapsible details below the chart. Full products, countries, sites and context/milestone fields are searchable and paged. Hover stays compact.
-- Optional Country alias, distinct membership counts, missing-value disclosure and separate lists without invented product-country pairings.
-- Searchable multi-select Site and Product filters retained. Choices are OR within a list and AND on actual delivered rows across lists.
+Expand Application → RO → Submission using parent labels/bars. Selection is separate: select a submission, parent subtitle or membership count, then open Details. Scroll rows with wheel, scrollbar, buttons or arrow/page keys after focusing the chart. Ctrl+wheel zooms the calendar; presets and earlier/later buttons also work. The anchored viewport retains the clicked parent; bottom expansion reveals its first child.
 
-## Use
+View → Compare shows equivalent Applications, ROs or Submissions. Pin/unpin with ◇/◆, then select Pinned rows only. Parent context stays visible. Submissions can use elapsed days with resolved actual dispatch as Day 0; missing/conflicting dispatch produces no plot and an explicit label. Actual D→S and S→A durations exclude missing/reversed/conflicting endpoints. Open stage age remains separate. Approval Δ O / L compares actual approval with Original / Latest dates; positive means later. Full milestone variances appear in browser details. Duration sorts are meaningful only for submissions.
 
-Click an Application/RO label, boxed control or summary bar to expand. Click a submission or membership count for details. Use the right scrollbar, wheel, or row buttons to move rows. After clicking a row/control, Arrow Up/Down, Page Up/Down and Home/End navigate. Ctrl+wheel zooms the calendar; presets and earlier/later buttons also navigate dates. Dragging the calendar itself does not pan.
+Colours encode each entity's **own state**, never a child's inferred state. Blue Active/Planned; cyan In Progress/Ready For Submission; purple Sent To Health Authority/Distributed; teal HA Received; green Completed; amber Deferred/On Hold By Mah; red Rejected; grey Inactive/Withdrawn/Archived and unrecognized/conflicting values. Original is dotted/hollow, Latest dashed, Actual solid. Dispatch circle, submission diamond, approval square, registration start down triangle, registration end up triangle. State text stays visible.
 
-The detail search inside Vega supports typing, Backspace, clear and Escape. The browser also provides a normal search input below the chart with standard editing/paste. Change tabs for Products, Countries, Sites or Context. Long text wraps and may continue onto another page. An asterisk marks missing memberships.
+Registration end is off initially and is excluded from the fit range until enabled. Toggling it refits the axis; it never changes processing durations. Registration start remains a distinct marker.
 
-Serve this folder with any static server; no build step. GitHub Pages publishes the main branch root. All runtime assets and fictional records are local to the page; no analytics or data uploads. Recommended chart size: at least 720 × 750. Minimum footprint: 480 × 480; narrow screens scroll horizontally. Collapse Details for more row space.
+## Search, membership and details
 
-## Deneb
+Genuine HTML search supports caret editing, paste and normal selection. Top search covers IDs/product/country/type and retains all delivered membership rows of matching submissions. Site (legal manufacturer), Product, Country and Type are searchable multiselect filters: OR within a list, AND across delivered rows. Singleton LM/country names display directly; multiple memberships use counts, with full independent lists in Details. No fabricated product–country pairings. Application counts use distinct filtered ROs/submissions.
 
-Use deneb.vega.json for current host-size signals, or deneb-legacy.vega.json for legacy host signals. Both contain no embedded data and accept generic aliases. Country is optional for backward compatibility. timeline.json supplies a browser-only host stub and should not be pasted into Deneb.
+Details starts collapsed, grows to its content up to a cap, and uses selectable HTML text. It includes relationships, a date matrix, registration dates, durations/variances, full paged/searchable memberships and separate data issues. Copy details includes full membership lists regardless of current page/search. Unknown dates read Not recorded; invalid/conflicting values are withheld.
 
-Native Power BI slicers need verified model relationships. Keep genuine delivered memberships; do not manufacture a cross-product of product and country tables. The chart aggregates each membership dimension independently.
+## Power BI
 
-Internal navigation preserves state; an external Deneb rebuild cannot. Deneb 2.x optional patching has a default 500-row threshold and a hard 5,000-row ceiling. Do not expect state retention through a 30,000-row host rebuild. No host setting is changed by these files. See [Deneb dataset documentation](https://deneb.guide/docs/dataset).
+Use deneb.vega.json for current Deneb or deneb-legacy.vega.json for legacy host sizing. deneb-comparison.vega.json starts with submission comparison. These files contain no embedded records and use generic aliases. AppStatus, SubmissionType and RegistrationEnd are new in 1.3; Country remains optional. Browser timeline.json supplies a host stub and is not a Deneb import.
 
-## Validation and limits
+The Deneb specs contain genuine native HTML signal bindings; the broken drawn-text imitation is removed. Browser HTML details are not part of Deneb. For report copying, follow [POWER-BI-DETAILS.md](POWER-BI-DETAILS.md) and the supplied generic Power Query helper. Selection in this aggregate chart is internal; companion tables use an explicit native submission selector. No automatic table filtering or aggregate drillthrough is claimed. Installed Power BI/Deneb and the helper's Power Query refresh require local verification. Recommended native visual 900 × 850 with overflow enabled as needed.
 
-Real Vega tests cover anchors, bottom-child reveal, selection, resizing, fresh in-place data replacement, optional Country, missing/duplicate memberships, 97 products and 8 countries, and 30,000 fictional source rows. Drawn rows are capped at 60, while all delivered records still require aggregation. Browser checks cover clicks, drag/wheel/keyboard row navigation, both search inputs, country paging, combined filters and narrow-screen overflow. Installed Power BI has not been tested; Ctrl+wheel was not browser-injected in automation. This is a visualization demonstration, not a regulatory decision system.
+Deneb host rebuilds can reset expansion, pins, query, selection, scroll and zoom. Optional patching has documented limits; there is no promise of 30,000-row host-state retention. See [Deneb dataset documentation](https://deneb.guide/docs/dataset) and [documented HTML bindings](https://deneb.guide/docs/changelog).
 
-Vega 5.33.0 is bundled with its BSD-3-Clause license in VEGA-LICENSE.txt. See CHANGELOG.md for version history.
+## Run and validation
+
+Serve this directory with any static server; all runtime assets are local. GitHub Pages serves the main branch root. No analytics or data uploads. Dark responsive layout; narrow screens scroll the chart horizontally.
+
+Real Vega parsing/rendering and functional tests cover state grain, distinct counts, full memberships, search, comparison level/pins, Day 0, expiry domains, date conflicts/reversals, exact duration/variance, sorts, anchored expansion and 30,000 fictional membership rows. Drawn rows are capped at60; aggregation still processes all delivered data. Browser tests check genuine controls, copying, filters and responsive layout. Actual Power BI cannot be verified in the standalone browser.
+
+Vega 5.33.0 is bundled under BSD-3-Clause; see VEGA-LICENSE.txt.

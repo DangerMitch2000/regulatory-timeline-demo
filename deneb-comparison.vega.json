@@ -20,11 +20,11 @@
   "signals": [
     {
       "name": "width",
-      "update": "max(480,pbiContainerWidth)"
+      "update": "max(480,denebContainer.width)"
     },
     {
       "name": "height",
-      "update": "max(600,pbiContainerHeight-130)"
+      "update": "max(600,denebContainer.height-130)"
     },
     {
       "name": "left",
@@ -457,7 +457,7 @@
     },
     {
       "name": "mode",
-      "value": "Hierarchy",
+      "value": "Compare",
       "bind": {
         "input": "select",
         "name": "View ",

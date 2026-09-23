@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Version 1.2: anchored row scrolling and selected details. Fictional browser sample. Country is optional.",
+  "description": "Regulatory timeline 1.3: own-state colours, anchored hierarchy, comparison and native input bindings. Generic aliases only.",
   "padding": 0,
   "autosize": "none",
   "background": "#14181f",
@@ -24,19 +24,19 @@
     },
     {
       "name": "height",
-      "update": "max(480,denebContainer.height)"
+      "update": "max(600,denebContainer.height-130)"
     },
     {
       "name": "left",
-      "update": "clamp(width*0.36,290,470)"
+      "update": "clamp(width*0.40,340,530)"
     },
     {
       "name": "hierarchyW",
-      "update": "left*0.46"
+      "update": "left*0.52"
     },
     {
       "name": "siteW",
-      "update": "left*0.24"
+      "update": "left*0.21"
     },
     {
       "name": "top",
@@ -44,7 +44,7 @@
     },
     {
       "name": "rowH",
-      "value": 38
+      "value": 54
     },
     {
       "name": "pageSize",
@@ -76,11 +76,11 @@
     },
     {
       "name": "lo",
-      "update": "length(data(\"extent\")) && isValid(data(\"extent\")[0].lo) ? data(\"extent\")[0].lo : utc(utcyear(nowDate),utcmonth(nowDate),1)"
+      "update": "length(data('extent')) && isValid(data('extent')[0].lo) && isFinite(data('extent')[0].lo) ? data('extent')[0].lo : elapsed ? 0 : utc(utcyear(nowDate),utcmonth(nowDate),1)"
     },
     {
       "name": "hi",
-      "update": "length(data(\"extent\")) && isValid(data(\"extent\")[0].hi) ? data(\"extent\")[0].hi : utc(utcyear(nowDate),utcmonth(nowDate)+1,1)"
+      "update": "length(data('extent')) && isValid(data('extent')[0].hi) && isFinite(data('extent')[0].hi) ? data('extent')[0].hi : elapsed ? 90*86400000 : utc(utcyear(nowDate),utcmonth(nowDate)+1,1)"
     },
     {
       "name": "pad",
@@ -96,7 +96,7 @@
       "on": [
         {
           "events": "@timeButton:click, @timeText:click",
-          "update": "datum.id==='fit' ? null : datum.id==='year' ? [utc(utcyear(center),0,1),utc(utcyear(center)+1,0,1)] : datum.id==='quarter' ? [utc(utcyear(center),floor(utcmonth(center)/3)*3,1),utc(utcyear(center),floor(utcmonth(center)/3)*3+3,1)] : datum.id==='month' ? [utc(utcyear(center),utcmonth(center),1),utc(utcyear(center),utcmonth(center)+1,1)] : datum.id==='earlier' ? [xlo-span*0.8,xhi-span*0.8] : [xlo+span*0.8,xhi+span*0.8]"
+          "update": "elapsed ? (datum.id==='fit' ? null : datum.id==='earlier' ? [xlo-span*0.8,xhi-span*0.8] : datum.id==='later' ? [xlo+span*0.8,xhi+span*0.8] : [xlo,xlo+(datum.id==='month' ? 30 : datum.id==='quarter' ? 90 : 365)*86400000]) : datum.id==='fit' ? null : datum.id==='year' ? [utc(utcyear(center),0,1),utc(utcyear(center)+1,0,1)] : datum.id==='quarter' ? [utc(utcyear(center),floor(utcmonth(center)/3)*3,1),utc(utcyear(center),floor(utcmonth(center)/3)*3+3,1)] : datum.id==='month' ? [utc(utcyear(center),utcmonth(center),1),utc(utcyear(center),utcmonth(center)+1,1)] : datum.id==='earlier' ? [xlo-span*0.8,xhi-span*0.8] : [xlo+span*0.8,xhi+span*0.8]"
         },
         {
           "events": {
@@ -109,6 +109,18 @@
             "consume": true
           },
           "update": "((x()>left) && (y()<viewBottom)) ? ([invert(\"x\",clamp(x(),left,width-1))-(invert(\"x\",clamp(x(),left,width-1))-xlo)*(clamp(span*pow(1.001,event.deltaY),86400000*7,86400000*365.25*300)/span),invert(\"x\",clamp(x(),left,width-1))+(xhi-invert(\"x\",clamp(x(),left,width-1)))*(clamp(span*pow(1.001,event.deltaY),86400000*7,86400000*365.25*300)/span)]) : range"
+        },
+        {
+          "events": {
+            "signal": "elapsed"
+          },
+          "update": "null"
+        },
+        {
+          "events": {
+            "signal": "showRegistrationEnd"
+          },
+          "update": "null"
         }
       ]
     },
@@ -164,7 +176,7 @@
     },
     {
       "name": "detailsOpen",
-      "value": true,
+      "value": false,
       "on": [
         {
           "events": "@detailToggle:click, @detailToggleText:click",
@@ -174,7 +186,7 @@
     },
     {
       "name": "detailH",
-      "update": "detailsOpen ? clamp(height*0.36,210,280) : 34"
+      "update": "detailsOpen ? min(height*0.48,detailTab==='Context' ? 290 : 138+min(7,length(data('detailLines')))*19) : 32"
     },
     {
       "name": "viewBottom",
@@ -211,6 +223,36 @@
         {
           "events": "@collapse:click, @collapseText:click",
           "update": "{key:length(data(\"pageRows\")) ? data(\"pageRows\")[0].appKey : \"\",rel:0,fallback:scrollTop}"
+        },
+        {
+          "events": {
+            "signal": "mode"
+          },
+          "update": "{key:'',rel:0,fallback:0}"
+        },
+        {
+          "events": {
+            "signal": "compareLevel"
+          },
+          "update": "{key:'',rel:0,fallback:0}"
+        },
+        {
+          "events": {
+            "signal": "query"
+          },
+          "update": "{key:'',rel:0,fallback:0}"
+        },
+        {
+          "events": {
+            "signal": "pinsOnly"
+          },
+          "update": "{key:'',rel:0,fallback:0}"
+        },
+        {
+          "events": {
+            "signal": "sortBy"
+          },
+          "update": "{key:'',rel:0,fallback:0}"
         }
       ]
     },
@@ -225,10 +267,6 @@
         {
           "events": "@toggle:click, @parentLabel:click, @parentBar:click, @parentCell:click, @rowBg:click, @subLabel:click, @subMeta:click, @siteText:click, @productText:click, @countryText:click, @milestone:click, @connector:click, @selectGroup:click, @next:click, @nextText:click, @prev:click, @prevText:click, @scrollTrack:pointerdown, @scrollThumb:pointerdown",
           "update": "true"
-        },
-        {
-          "events": "@detailSearch:click, @detailSearchText:click",
-          "update": "false"
         },
         {
           "events": "window:blur",
@@ -355,67 +393,7 @@
     {
       "name": "searchFocused",
       "value": false,
-      "on": [
-        {
-          "events": "@detailSearch:click, @detailSearchText:click",
-          "update": "true"
-        },
-        {
-          "events": "@toggle:click, @parentLabel:click, @parentBar:click, @parentCell:click, @rowBg:click, @subLabel:click, @subMeta:click, @siteText:click, @productText:click, @countryText:click, @milestone:click, @connector:click, @selectGroup:click, @next:click, @nextText:click, @prev:click, @prevText:click, @detailTab:click, @detailTabText:click, @detailToggle:click, @detailToggleText:click",
-          "update": "false"
-        },
-        {
-          "events": "window:blur",
-          "update": "false"
-        },
-        {
-          "events": {
-            "type": "keydown",
-            "source": "window",
-            "filter": [
-              "event.key==='Escape'"
-            ]
-          },
-          "update": "false"
-        }
-      ]
-    },
-    {
-      "name": "detailQuery",
-      "value": "",
-      "on": [
-        {
-          "events": {
-            "signal": "selectedKey"
-          },
-          "update": "''"
-        },
-        {
-          "events": {
-            "signal": "detailTab"
-          },
-          "update": "''"
-        },
-        {
-          "events": "@clearSearch:click",
-          "update": "''"
-        },
-        {
-          "events": {
-            "type": "keydown",
-            "source": "window",
-            "filter": [
-              "!event.ctrlKey",
-              "!event.metaKey",
-              "!event.altKey",
-              "event.key==='Backspace' || length(event.key)===1",
-              "event.target.tagName!=='INPUT' && event.target.tagName!=='TEXTAREA'"
-            ],
-            "consume": true
-          },
-          "update": "((searchFocused)) ? (event.key==='Backspace' ? slice(detailQuery,0,-1) : length(detailQuery)<100 ? detailQuery+event.key : detailQuery) : detailQuery"
-        }
-      ]
+      "on": []
     },
     {
       "name": "detailPage",
@@ -455,7 +433,7 @@
     },
     {
       "name": "detailLineSize",
-      "update": "max(1,floor((detailH-120)/18))"
+      "update": "max(1,floor((detailH-106)/19))"
     },
     {
       "name": "wrapChars",
@@ -468,9 +446,121 @@
     {
       "name": "safeDetailPage",
       "update": "clamp(detailPage,0,detailPages-1)"
+    },
+    {
+      "name": "query",
+      "value": "",
+      "bind": {
+        "input": "search",
+        "name": "Search IDs, products, countries, types "
+      }
+    },
+    {
+      "name": "mode",
+      "value": "Hierarchy",
+      "bind": {
+        "input": "select",
+        "name": "View ",
+        "options": [
+          "Hierarchy",
+          "Compare"
+        ]
+      }
+    },
+    {
+      "name": "compareLevel",
+      "value": 2,
+      "bind": {
+        "input": "select",
+        "name": "Compare level ",
+        "options": [
+          0,
+          1,
+          2
+        ],
+        "labels": [
+          "Applications",
+          "ROs",
+          "Submissions"
+        ]
+      }
+    },
+    {
+      "name": "axisMode",
+      "value": "Calendar",
+      "bind": {
+        "input": "select",
+        "name": "Comparison axis ",
+        "options": [
+          "Calendar",
+          "Elapsed days"
+        ]
+      }
+    },
+    {
+      "name": "sortBy",
+      "value": "Created",
+      "bind": {
+        "input": "select",
+        "name": "Sort ",
+        "options": [
+          "Created",
+          "Latest target approval",
+          "Dispatch to submission",
+          "Submission to approval"
+        ]
+      }
+    },
+    {
+      "name": "pinsOnly",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Pinned rows only "
+      }
+    },
+    {
+      "name": "showRegistrationEnd",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Show registration end "
+      }
+    },
+    {
+      "name": "detailQuery",
+      "value": "",
+      "bind": {
+        "input": "search",
+        "name": "Search selected lists "
+      }
+    },
+    {
+      "name": "elapsed",
+      "update": "mode==='Compare' && compareLevel===2 && axisMode==='Elapsed days'"
+    },
+    {
+      "name": "pinClick",
+      "value": null,
+      "on": [
+        {
+          "events": "@pin:click",
+          "update": "{pinKey:datum.key}"
+        }
+      ]
     }
   ],
   "data": [
+    {
+      "name": "pinned",
+      "values": [],
+      "on": [
+        {
+          "trigger": "pinClick",
+          "toggle": "pinClick"
+        }
+      ]
+    },
     {
       "name": "dataset"
     },
@@ -489,7 +579,7 @@
       ]
     },
     {
-      "name": "raw",
+      "name": "normalized",
       "source": "dataset",
       "transform": [
         {
@@ -751,6 +841,57 @@
           "type": "formula",
           "as": "subKey",
           "expr": "length(datum.AppID)+':'+datum.AppID+'|'+length(datum.ROID)+':'+datum.ROID+'|'+length(datum.SubID)+':'+datum.SubID"
+        },
+        {
+          "type": "formula",
+          "as": "AppStatus",
+          "expr": "isValid(datum.AppStatus) && trim(''+datum.AppStatus)!=='' ? trim(''+datum.AppStatus) : 'Not recorded'"
+        },
+        {
+          "type": "formula",
+          "as": "SubmissionType",
+          "expr": "isValid(datum.SubmissionType) && trim(''+datum.SubmissionType)!=='' ? trim(''+datum.SubmissionType) : 'Not recorded'"
+        },
+        {
+          "type": "formula",
+          "as": "_RegistrationEnd",
+          "expr": "!isValid(datum.RegistrationEnd) || datum.RegistrationEnd==='' ? null : (isNumber(datum.RegistrationEnd) || isDate(datum.RegistrationEnd) || test(regexp('^\\\\d{4}-\\\\d{2}-\\\\d{2}'),toString(datum.RegistrationEnd)) ? toNumber(toDate(datum.RegistrationEnd)) : null)"
+        },
+        {
+          "type": "formula",
+          "as": "_RegistrationEnd",
+          "expr": "isValid(datum._RegistrationEnd) && isFinite(datum._RegistrationEnd) ? datum._RegistrationEnd : null"
+        },
+        {
+          "type": "formula",
+          "as": "_badRegistrationEnd",
+          "expr": "isValid(datum.RegistrationEnd) && datum.RegistrationEnd!=='' && !isValid(datum._RegistrationEnd) ? 1 : 0"
+        }
+      ]
+    },
+    {
+      "name": "searchKeys",
+      "source": "normalized",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "query==='' || indexof(lower(datum.AppID+' '+datum.ROID+' '+datum.SubID+' '+datum._Product+' '+datum._Country+' '+datum.SubmissionType),lower(query))>=0"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "subKey"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "raw",
+      "source": "normalized",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "query==='' || indata('searchKeys','subKey',datum.subKey)"
         }
       ]
     },
@@ -1449,6 +1590,158 @@
       ]
     },
     {
+      "name": "appState",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.validKey"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "isValid(datum.AppStatus) && trim(''+datum.AppStatus)!=='' ? trim(''+datum.AppStatus) : 'Not recorded'"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "appKey"
+          ],
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "distinct"
+          ],
+          "as": [
+            "value",
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.n===1 ? datum.value : 'Conflicting values'"
+        }
+      ]
+    },
+    {
+      "name": "roState",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.validKey"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "isValid(datum.ROStatus) && trim(''+datum.ROStatus)!=='' ? trim(''+datum.ROStatus) : 'Not recorded'"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "roKey"
+          ],
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "distinct"
+          ],
+          "as": [
+            "value",
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.n===1 ? datum.value : 'Conflicting values'"
+        }
+      ]
+    },
+    {
+      "name": "subState",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.validKey"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "isValid(datum.SubStatus) && trim(''+datum.SubStatus)!=='' ? trim(''+datum.SubStatus) : 'Not recorded'"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "subKey"
+          ],
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "distinct"
+          ],
+          "as": [
+            "value",
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.n===1 ? datum.value : 'Conflicting values'"
+        }
+      ]
+    },
+    {
+      "name": "subType",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.validKey"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "isValid(datum.SubmissionType) && trim(''+datum.SubmissionType)!=='' ? trim(''+datum.SubmissionType) : 'Not recorded'"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "subKey"
+          ],
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "distinct"
+          ],
+          "as": [
+            "value",
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.n===1 ? datum.value : 'Conflicting values'"
+        }
+      ]
+    },
+    {
       "name": "sub",
       "source": "raw",
       "transform": [
@@ -1525,7 +1818,11 @@
             "ROStatus",
             "Manufacturer",
             "Manufacturer",
-            "Manufacturer"
+            "Manufacturer",
+            "_RegistrationEnd",
+            "_RegistrationEnd",
+            "_RegistrationEnd",
+            "_badRegistrationEnd"
           ],
           "ops": [
             "count",
@@ -1589,7 +1886,11 @@
             "distinct",
             "min",
             "max",
-            "distinct"
+            "distinct",
+            "min",
+            "max",
+            "valid",
+            "sum"
           ],
           "as": [
             "sourceRows",
@@ -1653,8 +1954,17 @@
             "ROStatusDistinct",
             "ManufacturerMin",
             "ManufacturerMax",
-            "ManufacturerDistinct"
+            "ManufacturerDistinct",
+            "RegistrationEndMin",
+            "RegistrationEndMax",
+            "RegistrationEndValid",
+            "RegistrationEndBad"
           ]
+        },
+        {
+          "type": "formula",
+          "as": "RegistrationEnd",
+          "expr": "datum.RegistrationEndValid>0 && datum.RegistrationEndMin===datum.RegistrationEndMax && datum.RegistrationEndBad===0 ? datum.RegistrationEndMin : null"
         },
         {
           "type": "formula",
@@ -1724,7 +2034,7 @@
         {
           "type": "formula",
           "as": "issues",
-          "expr": "(datum.OriginalDispatchBad>0 || datum.OriginalDispatchMin!==datum.OriginalDispatchMax ? 1 : 0)+(datum.LatestDispatchBad>0 || datum.LatestDispatchMin!==datum.LatestDispatchMax ? 1 : 0)+(datum.ActualDispatchBad>0 || datum.ActualDispatchMin!==datum.ActualDispatchMax ? 1 : 0)+(datum.OriginalSubmissionBad>0 || datum.OriginalSubmissionMin!==datum.OriginalSubmissionMax ? 1 : 0)+(datum.LatestSubmissionBad>0 || datum.LatestSubmissionMin!==datum.LatestSubmissionMax ? 1 : 0)+(datum.ActualSubmissionBad>0 || datum.ActualSubmissionMin!==datum.ActualSubmissionMax ? 1 : 0)+(datum.OriginalApprovalBad>0 || datum.OriginalApprovalMin!==datum.OriginalApprovalMax ? 1 : 0)+(datum.LatestApprovalBad>0 || datum.LatestApprovalMin!==datum.LatestApprovalMax ? 1 : 0)+(datum.ActualApprovalBad>0 || datum.ActualApprovalMin!==datum.ActualApprovalMax ? 1 : 0)+(datum.RegistrationStartBad>0 || datum.RegistrationStartMin!==datum.RegistrationStartMax ? 1 : 0)"
+          "expr": "(datum.OriginalDispatchBad>0 || datum.OriginalDispatchMin!==datum.OriginalDispatchMax ? 1 : 0)+(datum.LatestDispatchBad>0 || datum.LatestDispatchMin!==datum.LatestDispatchMax ? 1 : 0)+(datum.ActualDispatchBad>0 || datum.ActualDispatchMin!==datum.ActualDispatchMax ? 1 : 0)+(datum.OriginalSubmissionBad>0 || datum.OriginalSubmissionMin!==datum.OriginalSubmissionMax ? 1 : 0)+(datum.LatestSubmissionBad>0 || datum.LatestSubmissionMin!==datum.LatestSubmissionMax ? 1 : 0)+(datum.ActualSubmissionBad>0 || datum.ActualSubmissionMin!==datum.ActualSubmissionMax ? 1 : 0)+(datum.OriginalApprovalBad>0 || datum.OriginalApprovalMin!==datum.OriginalApprovalMax ? 1 : 0)+(datum.LatestApprovalBad>0 || datum.LatestApprovalMin!==datum.LatestApprovalMax ? 1 : 0)+(datum.ActualApprovalBad>0 || datum.ActualApprovalMin!==datum.ActualApprovalMax ? 1 : 0)+(datum.RegistrationStartBad>0 || datum.RegistrationStartMin!==datum.RegistrationStartMax ? 1 : 0)+(datum.RegistrationEndBad>0 || datum.RegistrationEndMin!==datum.RegistrationEndMax ? 1 : 0)"
         },
         {
           "type": "formula",
@@ -1858,6 +2168,162 @@
           "type": "formula",
           "as": "shortTip",
           "expr": "{'Row':substring(datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,0,70),'Products':datum.ProductInfo.count,'Countries':datum.CountryInfo.count,'Action':datum.level<2 ? 'Click label/bar to expand; counts for details' : 'Click for details below'}"
+        },
+        {
+          "type": "lookup",
+          "from": "subState",
+          "key": "subKey",
+          "fields": [
+            "subKey"
+          ],
+          "as": [
+            "OwnState"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "State",
+          "expr": "datum.OwnState.label"
+        },
+        {
+          "type": "formula",
+          "as": "StateKey",
+          "expr": "lower(datum.State)"
+        },
+        {
+          "type": "formula",
+          "as": "StateColor",
+          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+        },
+        {
+          "type": "formula",
+          "as": "CountryCountLabel",
+          "expr": "(datum.CountryInfo.count===1 ? join(pluck(datum.CountryInfo.members,'label'),' · ') : datum.CountryInfo.count+' countries')+(datum.CountryInfo.missing ? ' *' : '')"
+        },
+        {
+          "type": "lookup",
+          "from": "subType",
+          "key": "subKey",
+          "fields": [
+            "subKey"
+          ],
+          "as": [
+            "TypeInfo"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "SubmissionType",
+          "expr": "datum.TypeInfo.label"
+        },
+        {
+          "type": "formula",
+          "as": "shortTip",
+          "expr": "{'ID':datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,'Own state':datum.State,'Action':datum.level<2 ? 'Label/bar expands. Subtitle opens selection.' : 'Select for details; pin to compare'}"
+        },
+        {
+          "type": "formula",
+          "as": "DispatchDays",
+          "expr": "isValid(datum.ActualDispatch) && isValid(datum.ActualSubmission) && datum.ActualSubmission>=datum.ActualDispatch ? (datum.ActualSubmission-datum.ActualDispatch)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "ApprovalDays",
+          "expr": "isValid(datum.ActualSubmission) && isValid(datum.ActualApproval) && datum.ActualApproval>=datum.ActualSubmission ? (datum.ActualApproval-datum.ActualSubmission)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "OpenAge",
+          "expr": "indexof(['completed','inactive','withdrawn','rejected','archived','conflicting values','not recorded'],datum.StateKey)>=0 ? '' : isValid(datum.ActualSubmission) && !isValid(datum.ActualApproval) && datum.ActualApprovalValid===0 && datum.ActualApprovalBad===0 && nowDate>=datum.ActualSubmission ? 'Open approval '+floor((nowDate-datum.ActualSubmission)/86400000)+'d' : isValid(datum.ActualDispatch) && !isValid(datum.ActualSubmission) && datum.ActualSubmissionValid===0 && datum.ActualSubmissionBad===0 && nowDate>=datum.ActualDispatch ? 'Open submission '+floor((nowDate-datum.ActualDispatch)/86400000)+'d' : ''"
+        },
+        {
+          "type": "formula",
+          "as": "DispatchOriginalVariance",
+          "expr": "isValid(datum.ActualDispatch) && isValid(datum.OriginalDispatch) ? (datum.ActualDispatch-datum.OriginalDispatch)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "DispatchLatestVariance",
+          "expr": "isValid(datum.ActualDispatch) && isValid(datum.LatestDispatch) ? (datum.ActualDispatch-datum.LatestDispatch)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "SubmissionOriginalVariance",
+          "expr": "isValid(datum.ActualSubmission) && isValid(datum.OriginalSubmission) ? (datum.ActualSubmission-datum.OriginalSubmission)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "SubmissionLatestVariance",
+          "expr": "isValid(datum.ActualSubmission) && isValid(datum.LatestSubmission) ? (datum.ActualSubmission-datum.LatestSubmission)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "ApprovalOriginalVariance",
+          "expr": "isValid(datum.ActualApproval) && isValid(datum.OriginalApproval) ? (datum.ActualApproval-datum.OriginalApproval)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "ApprovalLatestVariance",
+          "expr": "isValid(datum.ActualApproval) && isValid(datum.LatestApproval) ? (datum.ActualApproval-datum.LatestApproval)/86400000 : null"
+        },
+        {
+          "type": "formula",
+          "as": "Reversed",
+          "expr": "(isValid(datum.ActualDispatch) && isValid(datum.ActualSubmission) && datum.ActualSubmission<datum.ActualDispatch) || (isValid(datum.ActualSubmission) && isValid(datum.ActualApproval) && datum.ActualApproval<datum.ActualSubmission)"
+        },
+        {
+          "type": "formula",
+          "as": "CreatedSort",
+          "expr": "isValid(datum.SubCreated) ? datum.SubCreated : 8640000000000000"
+        },
+        {
+          "type": "formula",
+          "as": "LatestSort",
+          "expr": "isValid(datum.LatestApproval) ? datum.LatestApproval : 8640000000000000"
+        }
+      ]
+    },
+    {
+      "name": "appsBreakdown",
+      "source": "sub",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "appKey",
+            "State"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.State+': '+datum.n"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "appKey"
+          ],
+          "fields": [
+            "label"
+          ],
+          "ops": [
+            "values"
+          ],
+          "as": [
+            "items"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "join(pluck(datum.items,'label'),' · ')"
         }
       ]
     },
@@ -1876,21 +2342,30 @@
             "end",
             "n",
             "issues",
-            "missing"
+            "missing",
+            "roKey",
+            "AppCreated",
+            "LatestApproval"
           ],
           "ops": [
             "min",
             "max",
             "sum",
             "sum",
-            "sum"
+            "sum",
+            "distinct",
+            "min",
+            "max"
           ],
           "as": [
             "start",
             "end",
             "n",
             "issues",
-            "missing"
+            "missing",
+            "ROCount",
+            "Created",
+            "LatestTarget"
           ]
         },
         {
@@ -1975,6 +2450,107 @@
           "type": "formula",
           "as": "shortTip",
           "expr": "{'Row':substring(datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,0,70),'Products':datum.ProductInfo.count,'Countries':datum.CountryInfo.count,'Action':datum.level<2 ? 'Click label/bar to expand; counts for details' : 'Click for details below'}"
+        },
+        {
+          "type": "lookup",
+          "from": "appState",
+          "key": "appKey",
+          "fields": [
+            "appKey"
+          ],
+          "as": [
+            "OwnState"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "State",
+          "expr": "datum.OwnState.label"
+        },
+        {
+          "type": "formula",
+          "as": "StateKey",
+          "expr": "lower(datum.State)"
+        },
+        {
+          "type": "formula",
+          "as": "StateColor",
+          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+        },
+        {
+          "type": "formula",
+          "as": "CountryCountLabel",
+          "expr": "(datum.CountryInfo.count===1 ? join(pluck(datum.CountryInfo.members,'label'),' · ') : datum.CountryInfo.count+' countries')+(datum.CountryInfo.missing ? ' *' : '')"
+        },
+        {
+          "type": "formula",
+          "as": "shortTip",
+          "expr": "{'ID':datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,'Own state':datum.State,'Action':datum.level<2 ? 'Label/bar expands. Subtitle opens selection.' : 'Select for details; pin to compare'}"
+        },
+        {
+          "type": "formula",
+          "as": "CreatedSort",
+          "expr": "isValid(datum.Created) ? datum.Created : 8640000000000000"
+        },
+        {
+          "type": "formula",
+          "as": "LatestSort",
+          "expr": "isValid(datum.LatestTarget) ? datum.LatestTarget : 8640000000000000"
+        },
+        {
+          "type": "lookup",
+          "from": "appsBreakdown",
+          "key": "appKey",
+          "fields": [
+            "appKey"
+          ],
+          "as": [
+            "Breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rosBreakdown",
+      "source": "sub",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "roKey",
+            "State"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "n"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.State+': '+datum.n"
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "roKey"
+          ],
+          "fields": [
+            "label"
+          ],
+          "ops": [
+            "values"
+          ],
+          "as": [
+            "items"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "join(pluck(datum.items,'label'),' · ')"
         }
       ]
     },
@@ -1995,21 +2571,30 @@
             "end",
             "n",
             "issues",
-            "missing"
+            "missing",
+            "roKey",
+            "ROCreated",
+            "LatestApproval"
           ],
           "ops": [
             "min",
             "max",
             "sum",
             "sum",
-            "sum"
+            "sum",
+            "distinct",
+            "min",
+            "max"
           ],
           "as": [
             "start",
             "end",
             "n",
             "issues",
-            "missing"
+            "missing",
+            "ROCount",
+            "Created",
+            "LatestTarget"
           ]
         },
         {
@@ -2094,18 +2679,99 @@
           "type": "formula",
           "as": "shortTip",
           "expr": "{'Row':substring(datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,0,70),'Products':datum.ProductInfo.count,'Countries':datum.CountryInfo.count,'Action':datum.level<2 ? 'Click label/bar to expand; counts for details' : 'Click for details below'}"
+        },
+        {
+          "type": "lookup",
+          "from": "roState",
+          "key": "roKey",
+          "fields": [
+            "roKey"
+          ],
+          "as": [
+            "OwnState"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "State",
+          "expr": "datum.OwnState.label"
+        },
+        {
+          "type": "formula",
+          "as": "StateKey",
+          "expr": "lower(datum.State)"
+        },
+        {
+          "type": "formula",
+          "as": "StateColor",
+          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+        },
+        {
+          "type": "formula",
+          "as": "CountryCountLabel",
+          "expr": "(datum.CountryInfo.count===1 ? join(pluck(datum.CountryInfo.members,'label'),' · ') : datum.CountryInfo.count+' countries')+(datum.CountryInfo.missing ? ' *' : '')"
+        },
+        {
+          "type": "formula",
+          "as": "shortTip",
+          "expr": "{'ID':datum.level===2 ? datum.SubID : datum.level===1 ? datum.ROID : datum.AppID,'Own state':datum.State,'Action':datum.level<2 ? 'Label/bar expands. Subtitle opens selection.' : 'Select for details; pin to compare'}"
+        },
+        {
+          "type": "formula",
+          "as": "CreatedSort",
+          "expr": "isValid(datum.Created) ? datum.Created : 8640000000000000"
+        },
+        {
+          "type": "formula",
+          "as": "LatestSort",
+          "expr": "isValid(datum.LatestTarget) ? datum.LatestTarget : 8640000000000000"
+        },
+        {
+          "type": "lookup",
+          "from": "rosBreakdown",
+          "key": "roKey",
+          "fields": [
+            "roKey"
+          ],
+          "as": [
+            "Breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "domainRows",
+      "source": [
+        "apps",
+        "ros",
+        "sub"
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "mode==='Hierarchy' ? datum.level===2 : datum.level===compareLevel && (!pinsOnly || indata('pinned','pinKey',datum.key))"
         }
       ]
     },
     {
       "name": "extent",
-      "source": "sub",
+      "source": "domainRows",
       "transform": [
+        {
+          "type": "formula",
+          "as": "_lo",
+          "expr": "elapsed ? (isValid(datum.ActualDispatch) && isValid(datum.start) ? datum.start-datum.ActualDispatch : null) : datum.start"
+        },
+        {
+          "type": "formula",
+          "as": "_hi",
+          "expr": "elapsed ? (isValid(datum.ActualDispatch) && isValid(datum.end) ? max(datum.end,showRegistrationEnd && isValid(datum.RegistrationEnd) ? datum.RegistrationEnd : datum.end)-datum.ActualDispatch : null) : max(isValid(datum.end) ? datum.end : -1/0,showRegistrationEnd && isValid(datum.RegistrationEnd) ? datum.RegistrationEnd : -1/0)"
+        },
         {
           "type": "aggregate",
           "fields": [
-            "start",
-            "end"
+            "_lo",
+            "_hi"
           ],
           "ops": [
             "min",
@@ -2131,24 +2797,37 @@
         },
         {
           "type": "filter",
-          "expr": "datum.level===0 || (indata(\"expanded\",\"key\",datum.appKey) && (datum.level===1 || indata(\"expanded\",\"key\",datum.roKey)))"
+          "expr": "mode==='Hierarchy' ? (datum.level===0 || (indata(\"expanded\",\"key\",datum.appKey) && (datum.level===1 || indata(\"expanded\",\"key\",datum.roKey)))) : datum.level===compareLevel && (!pinsOnly || indata('pinned','pinKey',datum.key))"
+        },
+        {
+          "type": "formula",
+          "as": "sortA",
+          "expr": "mode==='Hierarchy' ? datum.AppID : ''"
+        },
+        {
+          "type": "formula",
+          "as": "sortR",
+          "expr": "mode==='Hierarchy' ? datum.sortRO : ''"
+        },
+        {
+          "type": "formula",
+          "as": "sortL",
+          "expr": "mode==='Hierarchy' ? datum.level : 0"
+        },
+        {
+          "type": "formula",
+          "as": "sortValue",
+          "expr": "mode==='Hierarchy' ? datum.sortDate : sortBy==='Latest target approval' ? datum.LatestSort : sortBy==='Dispatch to submission' ? (isValid(datum.DispatchDays) ? datum.DispatchDays : 8640000000000000) : sortBy==='Submission to approval' ? (isValid(datum.ApprovalDays) ? datum.ApprovalDays : 8640000000000000) : datum.CreatedSort"
         },
         {
           "type": "collect",
           "sort": {
             "field": [
-              "AppID",
-              "sortRO",
-              "level",
-              "sortDate",
-              "SubID"
-            ],
-            "order": [
-              "ascending",
-              "ascending",
-              "ascending",
-              "ascending",
-              "ascending"
+              "sortA",
+              "sortR",
+              "sortL",
+              "sortValue",
+              "key"
             ]
           }
         },
@@ -2156,18 +2835,11 @@
           "type": "window",
           "sort": {
             "field": [
-              "AppID",
-              "sortRO",
-              "level",
-              "sortDate",
-              "SubID"
-            ],
-            "order": [
-              "ascending",
-              "ascending",
-              "ascending",
-              "ascending",
-              "ascending"
+              "sortA",
+              "sortR",
+              "sortL",
+              "sortValue",
+              "key"
             ]
           },
           "ops": [
@@ -2244,12 +2916,27 @@
             "OriginalApproval",
             "LatestApproval",
             "ActualApproval",
-            "RegistrationStart"
+            "RegistrationStart",
+            "RegistrationEnd"
           ],
           "as": [
             "milestone",
             "date"
           ]
+        },
+        {
+          "type": "filter",
+          "expr": "datum.milestone!=='RegistrationEnd' || showRegistrationEnd"
+        },
+        {
+          "type": "formula",
+          "as": "actualDate",
+          "expr": "datum.date"
+        },
+        {
+          "type": "formula",
+          "as": "date",
+          "expr": "elapsed ? (isValid(datum.date) && isValid(datum.ActualDispatch) ? datum.date-datum.ActualDispatch : null) : datum.date"
         },
         {
           "type": "filter",
@@ -2263,7 +2950,7 @@
         {
           "type": "formula",
           "as": "kind",
-          "expr": "indexof(datum.milestone,'Dispatch')>=0 ? 0 : indexof(datum.milestone,'Submission')>=0 ? 1 : indexof(datum.milestone,'Approval')>=0 ? 2 : 3"
+          "expr": "datum.milestone==='RegistrationEnd' ? 4 : indexof(datum.milestone,'Dispatch')>=0 ? 0 : indexof(datum.milestone,'Submission')>=0 ? 1 : indexof(datum.milestone,'Approval')>=0 ? 2 : 3"
         },
         {
           "type": "filter",
@@ -2283,8 +2970,7 @@
             "LatestDispatch",
             "LatestSubmission",
             "ActualDispatch",
-            "ActualSubmission",
-            "ActualApproval"
+            "ActualSubmission"
           ],
           "as": [
             "a",
@@ -2300,6 +2986,20 @@
           "type": "formula",
           "as": "d2",
           "expr": "datum[datum.b]"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.d2>=datum.d1"
+        },
+        {
+          "type": "formula",
+          "as": "d1",
+          "expr": "elapsed ? (isValid(datum.ActualDispatch) ? datum.d1-datum.ActualDispatch : null) : datum.d1"
+        },
+        {
+          "type": "formula",
+          "as": "d2",
+          "expr": "elapsed ? (isValid(datum.ActualDispatch) ? datum.d2-datum.ActualDispatch : null) : datum.d2"
         },
         {
           "type": "filter",
@@ -2371,7 +3071,7 @@
         {
           "type": "formula",
           "as": "date",
-          "expr": "tickUnit==='year' ? utc(floor(utcyear(xlo)/tickStep)*tickStep+datum.i*tickStep,0,1) : tickUnit==='quarter' ? utc(utcyear(xlo),floor(utcmonth(xlo)/(3*tickStep))*3*tickStep+datum.i*3*tickStep,1) : tickUnit==='month' ? utc(utcyear(xlo),floor(utcmonth(xlo)/tickStep)*tickStep+datum.i*tickStep,1) : floor(xlo/(86400000*tickStep))*86400000*tickStep+datum.i*86400000*tickStep"
+          "expr": "elapsed ? floor(xlo/(86400000*max(1,ceil(spanDays/tickTarget))))*86400000*max(1,ceil(spanDays/tickTarget))+datum.i*86400000*max(1,ceil(spanDays/tickTarget)) : tickUnit==='year' ? utc(floor(utcyear(xlo)/tickStep)*tickStep+datum.i*tickStep,0,1) : tickUnit==='quarter' ? utc(utcyear(xlo),floor(utcmonth(xlo)/(3*tickStep))*3*tickStep+datum.i*3*tickStep,1) : tickUnit==='month' ? utc(utcyear(xlo),floor(utcmonth(xlo)/tickStep)*tickStep+datum.i*tickStep,1) : floor(xlo/(86400000*tickStep))*86400000*tickStep+datum.i*86400000*tickStep"
         },
         {
           "type": "filter",
@@ -2380,7 +3080,7 @@
         {
           "type": "formula",
           "as": "label",
-          "expr": "tickUnit==='year' ? utcFormat(datum.date,'%Y') : tickUnit==='quarter' ? 'Q'+(floor(utcmonth(datum.date)/3)+1) : tickUnit==='month' ? utcFormat(datum.date,'%b') : utcFormat(datum.date,'%d %b')"
+          "expr": "elapsed ? 'Day '+format(datum.date/86400000,'.0f') : tickUnit==='year' ? utcFormat(datum.date,'%Y') : tickUnit==='quarter' ? 'Q'+(floor(utcmonth(datum.date)/3)+1) : tickUnit==='month' ? utcFormat(datum.date,'%b') : utcFormat(datum.date,'%d %b')"
         }
       ]
     },
@@ -2413,6 +3113,10 @@
           "type": "formula",
           "as": "label",
           "expr": "majorUnit==='decade' ? utcFormat(datum.date,'%Y')+'s' : majorUnit==='year' ? utcFormat(datum.date,'%Y') : utcFormat(datum.date,'%b %Y')"
+        },
+        {
+          "type": "filter",
+          "expr": "!elapsed"
         }
       ]
     },
@@ -2451,7 +3155,7 @@
         {
           "type": "formula",
           "as": "items",
-          "expr": "[\"Level\",\"Application\",\"Regulatory objective\",\"Submission\",\"Status\",\"RO status\",\"Submission created\",\"RO created\",\"Application created\",\"Export rows received\",\"Filtered submissions\",\"Span\",\"Start\",\"End\",\"Withheld milestone fields\",\"Missing or withheld fields\",\"Partly blank date fields\",\"Original dispatch\",\"Latest dispatch\",\"Actual dispatch\",\"Original submission\",\"Latest submission\",\"Actual submission\",\"Original approval\",\"Latest approval\",\"Actual approval\",\"Registration start\"]"
+          "expr": "[\"Application\",\"Regulatory objective\",\"Submission\"]"
         },
         {
           "type": "flatten",
@@ -2484,7 +3188,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "detailTab!=='Context'"
+          "expr": "detailTab!=='Context' && detailTab!=='Issues'"
         },
         {
           "type": "formula",
@@ -2517,10 +3221,48 @@
       ]
     },
     {
+      "name": "issueRows",
+      "source": "selectedRow",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "detailTab==='Issues' && datum.level===2"
+        },
+        {
+          "type": "formula",
+          "as": "fields",
+          "expr": "[\"OriginalDispatch\",\"LatestDispatch\",\"ActualDispatch\",\"OriginalSubmission\",\"LatestSubmission\",\"ActualSubmission\",\"OriginalApproval\",\"LatestApproval\",\"ActualApproval\",\"RegistrationStart\",\"RegistrationEnd\"]"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "fields"
+          ],
+          "as": [
+            "issueField"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "text",
+          "expr": "datum.issueField+': '+(datum[datum.issueField+'Bad']>0 ? 'Invalid input — withheld' : datum[datum.issueField+'Min']!==datum[datum.issueField+'Max'] ? 'Conflicting dates — withheld' : !isValid(datum[datum.issueField]) ? 'Not recorded' : datum[datum.issueField+'Valid']<datum.sourceRows ? 'Some membership rows blank' : 'OK')"
+        },
+        {
+          "type": "filter",
+          "expr": "indexof(lower(datum.text),lower(detailQuery))>=0"
+        },
+        {
+          "type": "formula",
+          "as": "detailOrder",
+          "expr": "0"
+        }
+      ]
+    },
+    {
       "name": "detailLines",
       "source": [
-        "detailContext",
-        "detailMembers"
+        "detailMembers",
+        "issueRows"
       ],
       "transform": [
         {
@@ -2591,7 +3333,7 @@
         {
           "type": "formula",
           "as": "dy",
-          "expr": "detailTop+101+(datum.lineIndex-safeDetailPage*detailLineSize-1)*18"
+          "expr": "detailTop+83+(datum.lineIndex-safeDetailPage*detailLineSize-1)*19"
         }
       ]
     },
@@ -2613,6 +3355,10 @@
         {
           "id": "Sites",
           "x": 284
+        },
+        {
+          "id": "Issues",
+          "x": 376
         }
       ]
     }
@@ -2638,20 +3384,6 @@
         }
       ],
       "zero": false
-    },
-    {
-      "name": "trackColor",
-      "type": "ordinal",
-      "domain": [
-        0,
-        1,
-        2
-      ],
-      "range": [
-        "#b799ff",
-        "#ffc466",
-        "#4adbb9"
-      ]
     }
   ],
   "axes": [],
@@ -2698,7 +3430,7 @@
             "value": 15
           },
           "text": {
-            "value": "Regulatory timeline · 1.2"
+            "value": "Regulatory timeline · 1.3"
           },
           "fontWeight": {
             "value": 600
@@ -2886,231 +3618,6 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 13
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 8
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "━"
-          },
-          "fill": {
-            "value": "#b799ff"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 10
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 25
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "Original plan"
-          },
-          "fill": {
-            "value": "#b799ff"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 13
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 124
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "━"
-          },
-          "fill": {
-            "value": "#ffc466"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 10
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 141
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "Latest estimate"
-          },
-          "fill": {
-            "value": "#ffc466"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 13
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 260
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "━"
-          },
-          "fill": {
-            "value": "#4adbb9"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 10
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 277
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "Actual"
-          },
-          "fill": {
-            "value": "#4adbb9"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 13
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 340
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "▼"
-          },
-          "fill": {
-            "value": "#ff8fad"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 10
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 357
-          },
-          "y": {
-            "value": 73
-          },
-          "text": {
-            "value": "Registration start"
-          },
-          "fill": {
-            "value": "#ff8fad"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 10
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 9
-          },
-          "y": {
-            "value": 91
-          },
-          "text": {
-            "value": "● Dispatch   ◆ Submission   ■ Approval"
-          },
-          "fill": {
-            "value": "#9bacc3"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
             "value": 10
           },
           "baseline": {
@@ -3126,7 +3633,7 @@
             "value": "right"
           },
           "text": {
-            "signal": "width>680 ? utcFormat(xlo,'%d %b %Y')+' – '+utcFormat(xhi,'%d %b %Y') : ''"
+            "signal": "elapsed ? 'Day 0 = actual dispatch · missing dispatch: no plot' : width>680 ? utcFormat(xlo,'%d %b %Y')+' – '+utcFormat(xhi,'%d %b %Y') : ''"
           },
           "fill": {
             "value": "#9bacc3"
@@ -3176,7 +3683,7 @@
             "value": 118
           },
           "text": {
-            "value": "Hierarchy"
+            "signal": "mode==='Compare' ? 'Comparison' : 'Hierarchy'"
           },
           "fontWeight": {
             "value": 600
@@ -3207,7 +3714,7 @@
             "value": 118
           },
           "text": {
-            "value": "Site"
+            "signal": "mode==='Compare' && compareLevel===2 ? 'Actual D→S' : 'Site (LM)'"
           },
           "fontWeight": {
             "value": 600
@@ -3238,7 +3745,7 @@
             "value": 118
           },
           "text": {
-            "value": "Memberships"
+            "signal": "mode==='Compare' && compareLevel===2 ? 'Actual S→A / Age' : 'Memberships'"
           },
           "fontWeight": {
             "value": 600
@@ -3667,7 +4174,7 @@
             "signal": "datum.y+28"
           },
           "text": {
-            "signal": "(datum.level===0 ? \"App\" : \"RO\")+\" · \"+datum.n+\" submissions\"+' · details'"
+            "signal": "(datum.level===0 ? datum.ROCount+' ROs · ' : '')+datum.n+' submissions'"
           },
           "fill": {
             "value": "#94a6bf"
@@ -3737,10 +4244,10 @@
             "value": 43
           },
           "y": {
-            "signal": "datum.y+27"
+            "signal": "datum.y+28"
           },
           "text": {
-            "signal": "datum.issues>0 ? \"⚠ \"+datum.issues+\" date issues\" : datum.missing===10 ? \"No dates\" : datum.missing ? datum.missing+\" dates missing\" : \"\""
+            "signal": "datum.SubmissionType"
           },
           "fill": {
             "signal": "datum.issues>0 ? \"#ffbd67\" : \"#8e9eb5\""
@@ -3779,7 +4286,7 @@
             "signal": "datum.y+19"
           },
           "text": {
-            "signal": "datum.ManufacturerInfo.count===1 && !datum.ManufacturerInfo.missing ? datum.ManufacturerInfo.label : datum.ManufacturerInfo.count+(datum.ManufacturerInfo.count===1 ? ' site' : ' sites')+(datum.ManufacturerInfo.missing ? ' *' : '')"
+            "signal": "mode==='Compare' && compareLevel===2 ? (isValid(datum.DispatchDays) ? format(datum.DispatchDays,'.0f')+'d D→S' : 'D→S: —') : datum.ManufacturerInfo.count===1 ? datum.ManufacturerInfo.detail : datum.ManufacturerInfo.count+' sites'+(datum.ManufacturerInfo.missing ? ' *' : '')"
           },
           "limit": {
             "signal": "siteW-12"
@@ -3814,7 +4321,7 @@
             "signal": "datum.y+12"
           },
           "text": {
-            "field": "ProductCountLabel"
+            "signal": "mode==='Compare' && compareLevel===2 ? (isValid(datum.ApprovalDays) ? format(datum.ApprovalDays,'.0f')+'d S→A' : 'S→A: —') : datum.ProductCountLabel"
           },
           "limit": {
             "signal": "left-hierarchyW-siteW-12"
@@ -3852,24 +4359,16 @@
             "value": 3
           },
           "fill": {
-            "signal": "datum.level===0 ? \"#495e94\" : \"#2d6573\""
+            "field": "StateColor"
           },
           "stroke": {
-            "signal": "datum.level===0 ? \"#92a6ef\" : \"#69b9c8\""
+            "field": "StateColor"
           },
           "cursor": {
             "value": "pointer"
           },
           "tooltip": {
             "field": "shortTip"
-          }
-        },
-        "hover": {
-          "fill": {
-            "value": "#6685b8"
-          },
-          "stroke": {
-            "value": "#d5e4ff"
           }
         }
       }
@@ -3889,20 +4388,19 @@
             "signal": "clamp(scale(\"x\",datum.d2),left+3,width-22)"
           },
           "y": {
-            "signal": "datum.y+8+datum.track*11"
+            "signal": "datum.y+10+datum.track*14"
           },
           "stroke": {
-            "scale": "trackColor",
-            "field": "track"
+            "field": "StateColor"
           },
           "strokeWidth": {
-            "value": 1.4
+            "signal": "datum.track===2 ? 2.3 : 1.5"
           },
           "strokeOpacity": {
-            "value": 0.85
+            "signal": "datum.track===0 ? 0.5 : 1"
           },
           "strokeDash": {
-            "signal": "datum.d2<datum.d1 ? [3,3] : [1,0]"
+            "signal": "datum.track===0 ? [1,4] : datum.track===1 ? [6,3] : [1,0]"
           },
           "tooltip": {
             "value": "Click submission for milestone details below."
@@ -3926,22 +4424,22 @@
             "field": "date"
           },
           "y": {
-            "signal": "datum.y+8+datum.track*11"
+            "signal": "datum.y+10+datum.track*14"
           },
           "shape": {
-            "signal": "[\"circle\",\"diamond\",\"square\",\"triangle-down\"][datum.kind]"
+            "signal": "['circle','diamond','square','triangle-down','triangle-up'][datum.kind]"
           },
           "size": {
-            "signal": "datum.kind===3 ? 44 : 30"
+            "signal": "datum.kind===1 ? 90 : 65"
           },
           "fill": {
-            "signal": "datum.kind===3 ? \"#ff8fad\" : scale(\"trackColor\",datum.track)"
+            "signal": "datum.track===0 || datum.kind===4 ? '#19222e' : datum.StateColor"
           },
           "stroke": {
-            "value": "#14181f"
+            "field": "StateColor"
           },
           "strokeWidth": {
-            "value": 0.5
+            "value": 1.6
           },
           "tooltip": {
             "field": "shortTip"
@@ -3986,7 +4484,7 @@
             ]
           },
           "opacity": {
-            "signal": "nowDate>=xlo && nowDate<=xhi ? 0.7 : 0"
+            "signal": "!elapsed && nowDate>=xlo && nowDate<=xhi ? 1 : 0"
           }
         }
       }
@@ -4017,7 +4515,7 @@
             "value": "center"
           },
           "opacity": {
-            "signal": "nowDate>=xlo && nowDate<=xhi ? 1 : 0"
+            "signal": "!elapsed && nowDate>=xlo && nowDate<=xhi ? 1 : 0"
           }
         }
       }
@@ -4278,10 +4776,10 @@
             "signal": "hierarchyW+siteW+6"
           },
           "y": {
-            "signal": "datum.y+26"
+            "signal": "datum.y+33"
           },
           "text": {
-            "field": "CountryCountLabel"
+            "signal": "mode==='Compare' && compareLevel===2 ? datum.OpenAge : datum.CountryCountLabel"
           },
           "limit": {
             "signal": "left-hierarchyW-siteW-12"
@@ -4428,7 +4926,7 @@
             "signal": "detailTop+16"
           },
           "text": {
-            "signal": "(detailsOpen ? '▾ ' : '▸ ')+'Details'+(length(data('selectedRow')) ? ' · '+(data('selectedRow')[0].level===2 ? data('selectedRow')[0].SubID : data('selectedRow')[0].level===1 ? data('selectedRow')[0].ROID : data('selectedRow')[0].AppID) : selectedKey ? ' · selection is outside the current data' : ' · select a submission or a membership count')"
+            "signal": "(detailsOpen ? '▾ ' : '▸ ')+'Details'+(length(data('selectedRow')) ? ' · '+(data('selectedRow')[0].level===2 ? data('selectedRow')[0].SubID : data('selectedRow')[0].level===1 ? data('selectedRow')[0].ROID : data('selectedRow')[0].AppID)+' · '+data('selectedRow')[0].State : ' · select a row or membership count')"
           },
           "limit": {
             "signal": "width-20"
@@ -4513,137 +5011,6 @@
       }
     },
     {
-      "type": "rect",
-      "name": "detailSearch",
-      "encode": {
-        "update": {
-          "x": {
-            "value": 8
-          },
-          "y": {
-            "signal": "detailsOpen ? detailTop+67 : height+100"
-          },
-          "width": {
-            "signal": "width-58"
-          },
-          "height": {
-            "value": 23
-          },
-          "fill": {
-            "value": "#101923"
-          },
-          "stroke": {
-            "signal": "searchFocused ? '#b799ff' : '#62738d'"
-          },
-          "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
-          },
-          "cursor": {
-            "value": "text"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "name": "detailSearchText",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 11
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 15
-          },
-          "y": {
-            "signal": "detailsOpen ? detailTop+79 : height+100"
-          },
-          "text": {
-            "signal": "detailQuery || (searchFocused ? 'Type to search · Backspace deletes · Esc finishes' : 'Click here and type to search '+lower(detailTab))"
-          },
-          "limit": {
-            "signal": "width-83"
-          },
-          "fill": {
-            "signal": "detailQuery ? '#eff3fc' : '#9baec8'"
-          },
-          "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
-          },
-          "cursor": {
-            "value": "text"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "name": "clearSearch",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 18
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "signal": "width-32"
-          },
-          "y": {
-            "signal": "detailsOpen ? detailTop+79 : height+100"
-          },
-          "text": {
-            "value": "×"
-          },
-          "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
-          },
-          "cursor": {
-            "value": "pointer"
-          },
-          "tooltip": {
-            "value": "Clear detail search"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "name": "detailLine",
-      "from": {
-        "data": "detailVisible"
-      },
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 11
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 15
-          },
-          "y": {
-            "field": "dy"
-          },
-          "text": {
-            "field": "line"
-          },
-          "font": {
-            "value": "Consolas"
-          },
-          "fill": {
-            "value": "#d9e5f6"
-          }
-        }
-      }
-    },
-    {
       "type": "text",
       "encode": {
         "update": {
@@ -4660,41 +5027,13 @@
             "signal": "detailTop+104"
           },
           "text": {
-            "signal": "!detailsOpen || length(data('detailLines')) ? '' : !length(data('selectedRow')) ? 'Select a submission, or click product/country counts on any group.' : 'No values match this search.'"
+            "signal": "detailTab==='Context' ? '' : !detailsOpen || length(data('detailLines')) ? '' : !length(data('selectedRow')) ? 'Select a submission, or click product/country counts on any group.' : 'No values match this search.'"
           },
           "fill": {
             "value": "#a9bad0"
           },
           "limit": {
             "signal": "width-28"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "update": {
-          "fontSize": {
-            "value": 9
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "x": {
-            "value": 10
-          },
-          "y": {
-            "signal": "height-13"
-          },
-          "text": {
-            "signal": "!detailsOpen ? '' : detailTab==='Context' ? 'Context and resolved milestones · paginate for all fields' : length(data('detailMembers'))+' matching values · separate '+lower(detailTab)+' list; no pairings implied'"
-          },
-          "limit": {
-            "signal": "width-232"
-          },
-          "fill": {
-            "value": "#9eafc5"
           }
         }
       }
@@ -4723,7 +5062,7 @@
             "value": "#51617a"
           },
           "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
+            "signal": "detailsOpen && detailTab!=='Context' ? 1 : 0"
           },
           "cursor": {
             "value": "pointer"
@@ -4755,7 +5094,7 @@
             "value": "center"
           },
           "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
+            "signal": "detailsOpen && detailTab!=='Context' ? 1 : 0"
           },
           "cursor": {
             "value": "pointer"
@@ -4787,7 +5126,7 @@
             "value": "#51617a"
           },
           "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
+            "signal": "detailsOpen && detailTab!=='Context' ? 1 : 0"
           },
           "cursor": {
             "value": "pointer"
@@ -4819,7 +5158,7 @@
             "value": "center"
           },
           "opacity": {
-            "signal": "detailsOpen ? 1 : 0"
+            "signal": "detailsOpen && detailTab!=='Context' ? 1 : 0"
           },
           "cursor": {
             "value": "pointer"
@@ -4844,10 +5183,871 @@
             "signal": "height-14"
           },
           "text": {
-            "signal": "detailsOpen ? (safeDetailPage+1)+' / '+detailPages : ''"
+            "signal": "detailTab==='Context' ? '' : detailsOpen ? (safeDetailPage+1)+' / '+detailPages : ''"
           },
           "align": {
             "value": "center"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "trackLegend",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 8
+          },
+          "y": {
+            "value": 73
+          },
+          "text": {
+            "value": "O ··· Original    L – – Latest    A ━ Actual     ▼ Reg start  △ Reg end"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "ownState",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "fill": {
+            "field": "StateColor"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "datum.level===2 ? 43 : 31+datum.level*12"
+          },
+          "y": {
+            "signal": "datum.y+43"
+          },
+          "text": {
+            "field": "State"
+          },
+          "limit": {
+            "signal": "hierarchyW-48"
+          },
+          "tooltip": {
+            "field": "shortTip"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "compareContext",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 9
+          },
+          "fill": {
+            "value": "#aabbd1"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "left+8"
+          },
+          "y": {
+            "signal": "datum.y+49"
+          },
+          "text": {
+            "signal": "mode==='Compare' ? (datum.level===2 ? datum.AppID+' / '+datum.ROID+(elapsed && !isValid(datum.ActualDispatch) ? ' · Actual dispatch not recorded / withheld' : '') : datum.level===1 ? datum.AppID : '') : ''"
+          },
+          "limit": {
+            "signal": "width-left-42"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "pin",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 15
+          },
+          "fill": {
+            "value": "#e5d1ff"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "width-29"
+          },
+          "y": {
+            "signal": "datum.y+10"
+          },
+          "text": {
+            "signal": "indata('pinned','pinKey',datum.key) ? '◆' : '◇'"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "value": "Pin/unpin this row for comparison"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "compareVariance",
+      "from": {
+        "data": "pageRows"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 9
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "hierarchyW+6"
+          },
+          "y": {
+            "signal": "datum.y+47"
+          },
+          "text": {
+            "signal": "mode==='Compare' && compareLevel===2 ? 'Approval Δ O '+(isValid(datum.ApprovalOriginalVariance) ? format(datum.ApprovalOriginalVariance,'+.0f') : '—')+' / L '+(isValid(datum.ApprovalLatestVariance) ? format(datum.ApprovalLatestVariance,'+.0f') : '—')+'d' : ''"
+          },
+          "limit": {
+            "signal": "left-hierarchyW-12"
+          },
+          "tooltip": {
+            "value": "Actual approval minus Original (O) / Latest (L), in days. Positive means later."
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "detailLine",
+      "from": {
+        "data": "detailVisible"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 14
+          },
+          "y": {
+            "field": "dy"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab!=='Context' ? datum.line : ''"
+          },
+          "limit": {
+            "signal": "width-28"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrixHead0",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+0*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+83"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && length(data('selectedRow')) && data('selectedRow')[0].level===2 ? 'Milestone' : ''"
+          },
+          "fontWeight": {
+            "value": 600
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrixHead1",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+1*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+83"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && length(data('selectedRow')) && data('selectedRow')[0].level===2 ? 'Original' : ''"
+          },
+          "fontWeight": {
+            "value": 600
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrixHead2",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+2*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+83"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && length(data('selectedRow')) && data('selectedRow')[0].level===2 ? 'Latest' : ''"
+          },
+          "fontWeight": {
+            "value": 600
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrixHead3",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+3*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+83"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && length(data('selectedRow')) && data('selectedRow')[0].level===2 ? 'Actual' : ''"
+          },
+          "fontWeight": {
+            "value": 600
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix00",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+0*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+107"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? \"Dispatch\" : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix01",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+1*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+107"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.OriginalDispatch) ? utcFormat(datum.OriginalDispatch,'%d %b %Y') : datum.OriginalDispatchBad>0 || datum.OriginalDispatchMin!==datum.OriginalDispatchMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix02",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+2*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+107"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.LatestDispatch) ? utcFormat(datum.LatestDispatch,'%d %b %Y') : datum.LatestDispatchBad>0 || datum.LatestDispatchMin!==datum.LatestDispatchMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix03",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+3*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+107"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.ActualDispatch) ? utcFormat(datum.ActualDispatch,'%d %b %Y') : datum.ActualDispatchBad>0 || datum.ActualDispatchMin!==datum.ActualDispatchMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix10",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+0*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+131"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? \"Submission\" : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix11",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+1*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+131"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.OriginalSubmission) ? utcFormat(datum.OriginalSubmission,'%d %b %Y') : datum.OriginalSubmissionBad>0 || datum.OriginalSubmissionMin!==datum.OriginalSubmissionMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix12",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+2*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+131"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.LatestSubmission) ? utcFormat(datum.LatestSubmission,'%d %b %Y') : datum.LatestSubmissionBad>0 || datum.LatestSubmissionMin!==datum.LatestSubmissionMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix13",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+3*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+131"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.ActualSubmission) ? utcFormat(datum.ActualSubmission,'%d %b %Y') : datum.ActualSubmissionBad>0 || datum.ActualSubmissionMin!==datum.ActualSubmissionMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix20",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+0*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+155"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? \"Approval\" : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix21",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+1*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+155"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.OriginalApproval) ? utcFormat(datum.OriginalApproval,'%d %b %Y') : datum.OriginalApprovalBad>0 || datum.OriginalApprovalMin!==datum.OriginalApprovalMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix22",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+2*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+155"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.LatestApproval) ? utcFormat(datum.LatestApproval,'%d %b %Y') : datum.LatestApprovalBad>0 || datum.LatestApprovalMin!==datum.LatestApprovalMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "matrix23",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "signal": "12+3*(width-24)/4"
+          },
+          "y": {
+            "signal": "detailTop+155"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? isValid(datum.ActualApproval) ? utcFormat(datum.ActualApproval,'%d %b %Y') : datum.ActualApprovalBad>0 || datum.ActualApprovalMin!==datum.ActualApprovalMax ? 'Withheld — see Issues' : 'Not recorded' : ''"
+          },
+          "limit": {
+            "signal": "(width-24)/4-8"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "registration",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 12
+          },
+          "y": {
+            "signal": "detailTop+183"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level===2 ? 'Registration start: '+(isValid(datum.RegistrationStart) ? utcFormat(datum.RegistrationStart,'%d %b %Y') : datum.RegistrationStartBad>0 || datum.RegistrationStartMin!==datum.RegistrationStartMax ? 'Withheld — see Issues' : 'Not recorded')+' · End: '+(isValid(datum.RegistrationEnd) ? utcFormat(datum.RegistrationEnd,'%d %b %Y') : datum.RegistrationEndBad>0 || datum.RegistrationEndMin!==datum.RegistrationEndMax ? 'Withheld — see Issues' : 'Not recorded') : ''"
+          },
+          "limit": {
+            "signal": "width-24"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "detailRelations",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 12
+          },
+          "y": {
+            "signal": "detailTop+207"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' ? datum.AppID+(datum.level>0 ? ' / '+datum.ROID : '')+(datum.level===2 ? ' · '+datum.SubmissionType : ' · '+datum.n+' submissions') : ''"
+          },
+          "limit": {
+            "signal": "width-24"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "detailIssues",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#e8b65f"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 12
+          },
+          "y": {
+            "signal": "detailTop+231"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' ? 'Data issues: '+datum.issues+' withheld milestone fields'+(datum.Reversed ? ' · reversed processing dates' : '')+' · Copy values from the companion Power BI table.' : ''"
+          },
+          "limit": {
+            "signal": "width-24"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "breakdown",
+      "from": {
+        "data": "selectedRow"
+      },
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#cedbec"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 12
+          },
+          "y": {
+            "signal": "detailTop+108"
+          },
+          "text": {
+            "signal": "detailsOpen && detailTab==='Context' && datum.level<2 ? 'Child submission states: '+datum.Breakdown.label : ''"
+          },
+          "limit": {
+            "signal": "width-24"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "legendHelp",
+      "encode": {
+        "update": {
+          "fontSize": {
+            "value": 10
+          },
+          "fill": {
+            "value": "#a9bbd3"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "x": {
+            "value": 9
+          },
+          "y": {
+            "value": 91
+          },
+          "text": {
+            "value": "● Dispatch ◆ Submission ■ Approval · Colour = own state (hover for legend)"
+          },
+          "tooltip": {
+            "value": {
+              "Active / Planned": "#6d9eff",
+              "Progress / Ready": "#43c6ec",
+              "Sent / Distributed": "#bd9aff",
+              "HA received": "#42cbbb",
+              "Completed": "#65d18c",
+              "Hold / Deferred": "#e8b65f",
+              "Rejected": "#f27b82",
+              "Inactive / Other": "#99a4b5"
+            }
           }
         }
       }
