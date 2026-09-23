@@ -35,15 +35,15 @@
     },
     {
       "name": "left",
-      "update": "clamp(width*0.40,340,530)"
+      "update": "clamp(width*0.33,360,460)"
     },
     {
       "name": "hierarchyW",
-      "update": "left*0.52"
+      "update": "left*0.53"
     },
     {
       "name": "siteW",
-      "update": "left*0.21"
+      "update": "left*0.18"
     },
     {
       "name": "top",
@@ -51,7 +51,7 @@
     },
     {
       "name": "rowH",
-      "value": 54
+      "value": 64
     },
     {
       "name": "pageSize",
@@ -115,7 +115,7 @@
             ],
             "consume": true
           },
-          "update": "((x()>left) && (y()<viewBottom)) ? ([invert(\"x\",clamp(x(),left,width-1))-(invert(\"x\",clamp(x(),left,width-1))-xlo)*(clamp(span*pow(1.001,event.deltaY),86400000*7,86400000*365.25*300)/span),invert(\"x\",clamp(x(),left,width-1))+(xhi-invert(\"x\",clamp(x(),left,width-1)))*(clamp(span*pow(1.001,event.deltaY),86400000*7,86400000*365.25*300)/span)]) : range"
+          "update": "x()>left && y()<viewBottom ? [xlo+span*clamp(event.deltaX || event.deltaY,-240,240)/max(1,width-left),xhi+span*clamp(event.deltaX || event.deltaY,-240,240)/max(1,width-left)] : range"
         },
         {
           "events": {
@@ -554,6 +554,20 @@
           "events": "@pin:click",
           "update": "{pinKey:datum.key}"
         }
+      ]
+    },
+    {
+      "name": "stateColours",
+      "value": [
+        "#6d9eff",
+        "#43c6ec",
+        "#bd9aff",
+        "#42cbbb",
+        "#65d18c",
+        "#37d67a",
+        "#e8b65f",
+        "#f27b82",
+        "#99a4b5"
       ]
     }
   ],
@@ -2200,7 +2214,7 @@
         {
           "type": "formula",
           "as": "StateColor",
-          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+          "expr": "datum.StateKey==='health authority approved' ? '#37d67a' : datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
         },
         {
           "type": "formula",
@@ -2482,7 +2496,7 @@
         {
           "type": "formula",
           "as": "StateColor",
-          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+          "expr": "datum.StateKey==='health authority approved' ? '#37d67a' : datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
         },
         {
           "type": "formula",
@@ -2711,7 +2725,7 @@
         {
           "type": "formula",
           "as": "StateColor",
-          "expr": "datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
+          "expr": "datum.StateKey==='health authority approved' ? '#37d67a' : datum.StateKey==='active' || datum.StateKey==='planned' ? '#6d9eff' : datum.StateKey==='in progress' || datum.StateKey==='ready for submission' ? '#43c6ec' : datum.StateKey==='sent to health authority' || datum.StateKey==='distributed' ? '#bd9aff' : datum.StateKey==='ha received' ? '#42cbbb' : datum.StateKey==='completed' ? '#65d18c' : datum.StateKey==='deferred' || datum.StateKey==='on hold by mah' ? '#e8b65f' : datum.StateKey==='rejected' ? '#f27b82' : '#99a4b5'"
         },
         {
           "type": "formula",
@@ -2747,6 +2761,20 @@
       ]
     },
     {
+      "name": "stateMatches",
+      "source": [
+        "apps",
+        "ros",
+        "sub"
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(stateColours,datum.StateColor)>=0"
+        }
+      ]
+    },
+    {
       "name": "domainRows",
       "source": [
         "apps",
@@ -2757,6 +2785,10 @@
         {
           "type": "filter",
           "expr": "mode==='Hierarchy' ? datum.level===2 : datum.level===compareLevel && (!pinsOnly || indata('pinned','pinKey',datum.key))"
+        },
+        {
+          "type": "filter",
+          "expr": "indexof(stateColours,datum.StateColor)>=0"
         }
       ]
     },
@@ -2801,6 +2833,10 @@
       "transform": [
         {
           "type": "project"
+        },
+        {
+          "type": "filter",
+          "expr": "indexof(stateColours,datum.StateColor)>=0 || (mode==='Hierarchy' && (datum.level===0 && indata('stateMatches','appKey',datum.key) || datum.level===1 && indata('stateMatches','roKey',datum.key)))"
         },
         {
           "type": "filter",
@@ -3425,7 +3461,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 14
+            "value": 16
           },
           "baseline": {
             "value": "middle"
@@ -3437,7 +3473,7 @@
             "value": 15
           },
           "text": {
-            "value": "Regulatory timeline · 1.3"
+            "value": "Regulatory Tracker · 1.5"
           },
           "fontWeight": {
             "value": 600
@@ -3453,7 +3489,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -3531,7 +3567,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -3597,7 +3633,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -3625,7 +3661,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -3678,7 +3714,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -3709,7 +3745,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -3740,7 +3776,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -3863,7 +3899,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -3894,7 +3930,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4115,7 +4151,7 @@
             "signal": "indata(\"expanded\",\"key\",datum.key) ? \"−\" : \"+\""
           },
           "fontSize": {
-            "value": 13
+            "value": 15
           },
           "fill": {
             "value": "#d6e8ff"
@@ -4132,7 +4168,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -4169,7 +4205,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4178,7 +4214,7 @@
             "signal": "31+datum.level*12"
           },
           "y": {
-            "signal": "datum.y+28"
+            "signal": "datum.y+32"
           },
           "text": {
             "signal": "(datum.level===0 ? datum.ROCount+' ROs · ' : '')+datum.n+' submissions'"
@@ -4208,7 +4244,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -4242,7 +4278,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4251,7 +4287,7 @@
             "value": 43
           },
           "y": {
-            "signal": "datum.y+28"
+            "signal": "datum.y+32"
           },
           "text": {
             "signal": "datum.SubmissionType"
@@ -4281,7 +4317,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4316,7 +4352,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4360,7 +4396,7 @@
             "signal": "datum.y+12"
           },
           "height": {
-            "value": 14
+            "value": 18
           },
           "cornerRadius": {
             "value": 3
@@ -4375,7 +4411,7 @@
             "value": "pointer"
           },
           "tooltip": {
-            "field": "shortTip"
+            "signal": "{'Record':datum.level===0 ? datum.AppID : datum.ROID,'State':datum.State,'Start':isValid(datum.start) ? utcFormat(datum.start,'%d %b %Y') : 'Not recorded','End':isValid(datum.end) ? utcFormat(datum.end,'%d %b %Y') : 'Not recorded','Submissions':datum.n,'Summary':'All children in membership/search filters; state checkboxes control row visibility'}"
           }
         }
       }
@@ -4410,7 +4446,7 @@
             "signal": "datum.track===0 ? [1,4] : datum.track===1 ? [6,3] : [1,0]"
           },
           "tooltip": {
-            "value": "Click submission for milestone details below."
+            "signal": "{'Submission':datum.SubID,'State':datum.State,'From':datum.a,'Start date':isValid(datum[datum.a]) ? utcFormat(datum[datum.a],'%d %b %Y') : 'Not recorded','To':datum.b,'End date':isValid(datum[datum.b]) ? utcFormat(datum[datum.b],'%d %b %Y') : 'Not recorded'}"
           },
           "cursor": {
             "value": "pointer"
@@ -4437,7 +4473,7 @@
             "signal": "['circle','diamond','square','triangle-down','triangle-up'][datum.kind]"
           },
           "size": {
-            "signal": "datum.kind===1 ? 90 : 65"
+            "signal": "datum.kind===1 ? 160 : 115"
           },
           "fill": {
             "signal": "datum.track===0 || datum.kind===4 ? '#19222e' : datum.StateColor"
@@ -4449,7 +4485,7 @@
             "value": 1.6
           },
           "tooltip": {
-            "field": "shortTip"
+            "signal": "{'Submission':datum.SubID,'State':datum.State,'Milestone':datum.milestone,'Date':isValid(datum.actualDate) ? utcFormat(datum.actualDate,'%d %b %Y') : 'Not recorded'}"
           },
           "cursor": {
             "value": "pointer"
@@ -4457,7 +4493,7 @@
         },
         "hover": {
           "size": {
-            "value": 80
+            "value": 190
           },
           "stroke": {
             "value": "#fff"
@@ -4501,7 +4537,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4557,7 +4593,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4569,7 +4605,7 @@
             "signal": "viewBottom+15"
           },
           "text": {
-            "signal": "length(data('invalid')) ? '⚠ '+length(data('invalid'))+' rows missing IDs' : 'Scroll rows · ↑ ↓ / PgUp PgDn · Ctrl+wheel zoom'"
+            "signal": "length(data('invalid')) ? '⚠ '+length(data('invalid'))+' rows missing IDs' : 'Scroll rows · ↑ ↓ / PgUp PgDn · Ctrl+wheel moves dates'"
           },
           "fill": {
             "value": "#9babbe"
@@ -4623,7 +4659,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4689,7 +4725,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4717,7 +4753,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4742,7 +4778,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "baseline": {
             "value": "middle"
@@ -4774,7 +4810,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4869,7 +4905,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "baseline": {
             "value": "middle"
@@ -4895,7 +4931,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 11
+            "value": 13
           },
           "fill": {
             "value": "#cedbec"
@@ -4924,7 +4960,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "fill": {
             "field": "StateColor"
@@ -4936,7 +4972,7 @@
             "signal": "datum.level===2 ? 43 : 31+datum.level*12"
           },
           "y": {
-            "signal": "datum.y+43"
+            "signal": "datum.y+50"
           },
           "text": {
             "field": "State"
@@ -4959,7 +4995,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "fill": {
             "value": "#aabbd1"
@@ -4971,7 +5007,7 @@
             "signal": "left+8"
           },
           "y": {
-            "signal": "datum.y+49"
+            "signal": "datum.y+57"
           },
           "text": {
             "signal": "mode==='Compare' ? (datum.level===2 ? datum.AppID+' / '+datum.ROID+(elapsed && !isValid(datum.ActualDispatch) ? ' · Actual dispatch not recorded / withheld' : '') : datum.level===1 ? datum.AppID : '') : ''"
@@ -4991,7 +5027,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 15
+            "value": 17
           },
           "fill": {
             "value": "#e5d1ff"
@@ -5026,7 +5062,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 9
+            "value": 12
           },
           "fill": {
             "value": "#cedbec"
@@ -5038,7 +5074,7 @@
             "signal": "hierarchyW+6"
           },
           "y": {
-            "signal": "datum.y+47"
+            "signal": "datum.y+52"
           },
           "text": {
             "signal": "mode==='Compare' && compareLevel===2 ? 'Approval Δ O '+(isValid(datum.ApprovalOriginalVariance) ? format(datum.ApprovalOriginalVariance,'+.0f') : '—')+' / L '+(isValid(datum.ApprovalLatestVariance) ? format(datum.ApprovalLatestVariance,'+.0f') : '—')+'d' : ''"
@@ -5058,7 +5094,7 @@
       "encode": {
         "update": {
           "fontSize": {
-            "value": 10
+            "value": 12
           },
           "fill": {
             "value": "#a9bbd3"
@@ -5084,7 +5120,8 @@
               "Completed": "#65d18c",
               "Hold / Deferred": "#e8b65f",
               "Rejected": "#f27b82",
-              "Inactive / Other": "#99a4b5"
+              "Inactive / Other": "#99a4b5",
+              "Health Authority Approved": "#37d67a"
             }
           }
         }

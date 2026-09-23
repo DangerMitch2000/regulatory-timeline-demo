@@ -19,6 +19,7 @@ fs.writeFileSync(path.join(out,'verify/run.cjs'),`const {chromium}=require('@pla
 (async()=>{const server=http.createServer((req,res)=>{const p=path.join(__dirname,new URL(req.url,'http://localhost').pathname);if(!p.startsWith(__dirname+path.sep)){res.writeHead(403).end();return;}fs.readFile(p,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',p.endsWith('.js')?'text/javascript':p.endsWith('.css')?'text/css':'text/html');res.end(b);});}).listen(8771,'127.0.0.1');const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1280,height:950}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto('http://127.0.0.1:8771/index.html');await page.waitForSelector('body[data-ready=true]');await page.locator('#host #filter-status').filter({hasText:'60 submissions'}).waitFor();
+ assert.equal(await page.locator('#host #state-legend input').count(),9);assert.equal(await page.locator('#host input[type=range]').count(),0);assert((await page.locator('#host h1').innerText()).includes('Regulatory Tracker'));
  assert.equal(await page.locator('#host .filter').count(),4);assert.equal(await page.locator('#host input[type=search]').count(),7);
  await page.locator('#host input[name=query]').fill('SUB-00002');await page.waitForFunction(()=>document.querySelector('#host #filter-status').textContent.startsWith('1 submissions'));
  await page.getByRole('button',{name:'Refresh host data',exact:true}).click();assert.equal(await page.locator('#host input[name=query]').inputValue(),'SUB-00002');
@@ -36,3 +37,4 @@ try{
 }finally{await browser.close();server.close();}})().catch(e=>{console.error(e);process.exit(1)});
 `);
 console.log('Created actual-class browser verification harness.');
+

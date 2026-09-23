@@ -1,3 +1,11 @@
+## 1.5 — Regulatory Tracker
+
+- Larger readable labels and milestones, tighter table/timeline split.
+- Health Authority Approved uses green. Tick state legend boxes to control record visibility, retaining parent context. Parent summaries retain membership/search-filtered children.
+- Bars and milestone tooltips include full calendar dates, including in elapsed comparison mode.
+- Ctrl+wheel pans dates without zooming. Existing time buttons retained; no Pan dates slider.
+- Public demo and installable Power BI visual updated; Deneb 1.3 files remain historical.
+
 # Changelog
 
 ## 1.3 — 2026-09-23

@@ -8,19 +8,23 @@
  const date=x=>x==null||!Number.isFinite(x)?'Not recorded':new Date(x).toISOString().slice(0,10);
  const duration=x=>x==null?'Not recorded / withheld':Math.round(x)+' days';
  try{
-  const [spec,data]=window.__demoBundle?[window.__demoBundle.spec,window.__demoBundle.rows]:await Promise.all(['timeline.json','sample.json'].map(async url=>{const r=await fetch(url+'?v=1.3');if(!r.ok)throw Error('Unable to load '+url);return r.json();}));rows=data;
+  const [spec,data]=window.__demoBundle?[window.__demoBundle.spec,window.__demoBundle.rows]:await Promise.all(['timeline.json','sample.json'].map(async url=>{const r=await fetch(url+'?v=1.5');if(!r.ok)throw Error('Unable to load '+url);return r.json();}));rows=data;
   // These are genuine Vega HTML input bindings, also included in the Deneb deliverable.
   view=new vega.View(vega.parse(spec),{renderer:'svg',hover:true}).initialize(chart,$('bindings')).tooltip((h,event,item,value)=>{
-   const tip=$('tooltip');if(value==null){tip.hidden=true;return;}tip.replaceChildren();for(const [k,v]of Object.entries(value)){tip.append(el('strong',k+': '),el('span',String(v)),el('br'));}tip.hidden=false;tip.style.left=Math.max(6,Math.min(event.clientX+12,innerWidth-330))+'px';tip.style.top=Math.max(6,Math.min(event.clientY+12,innerHeight-160))+'px';
+   const tip=$('tooltip');if(value==null){tip.hidden=true;return;}tip.replaceChildren();for(const [k,v]of Object.entries(typeof value==='object'?value:{Details:value})){tip.append(el('strong',k+': '),el('span',String(v)),el('br'));}tip.hidden=false;tip.style.left=Math.max(6,Math.min(event.clientX+12,innerWidth-330))+'px';tip.style.top=Math.max(6,Math.min(event.clientY+12,innerHeight-160))+'px';
   });
+  const stateLegend=$('state-legend');
+  const states=[['Active / Planned','#6d9eff'],['In progress / Ready','#43c6ec'],['Sent / Distributed','#bd9aff'],['HA received','#42cbbb'],['Completed','#65d18c'],['Health Authority Approved','#37d67a'],['Hold / Deferred','#e8b65f'],['Rejected','#f27b82'],['Inactive / Other','#99a4b5']];
+  for(const [label,colour]of states){const wrap=el('label'),cb=el('input'),sw=el('span',undefined,'state-swatch');cb.type='checkbox';cb.checked=true;cb.value=colour;sw.style.background=colour;wrap.append(cb,sw,el('span',label));stateLegend.append(wrap);cb.onchange=()=>run(async()=>{view.signal('stateColours',[...stateLegend.querySelectorAll('input:checked')].map(x=>x.value));await view.runAsync();updateStatus();});}
   for(const [kind,field]of Object.entries(fields)){
+
    const box=el('details',undefined,'filter'),summary=el('summary',(kind==='site'?'Site (LM)':kind[0].toUpperCase()+kind.slice(1))+' · All'),panel=el('div',undefined,'panel'),search=el('input');search.type='search';search.placeholder='Search '+kind+'s';search.setAttribute('aria-label','Search '+kind+' options');
    const choices=el('div',undefined,'options'),actions=el('div',undefined,'filter-actions'),all=el('button','Select shown'),clear=el('button','Clear');actions.append(all,clear);panel.append(search,actions,choices);box.append(summary,panel);$('filters').prepend(box);
    const values=[...new Set(rows.map(r=>norm(r[field])))].sort(),shown=()=>values.filter(x=>(x||'(Missing)').toLowerCase().includes(search.value.toLowerCase()));
    const draw=()=>{choices.replaceChildren();for(const value of shown()){const label=el('label',undefined,'option'),cb=el('input');cb.type='checkbox';cb.checked=selected[kind].has(value);label.append(cb,el('span',value||'(Missing)'));choices.append(label);cb.onchange=()=>{cb.checked?selected[kind].add(value):selected[kind].delete(value);update();};}};
    const update=()=>{summary.textContent=(kind==='site'?'Site (LM)':kind[0].toUpperCase()+kind.slice(1))+' · '+(selected[kind].size?selected[kind].size+' selected':'All');filter();};search.oninput=draw;all.onclick=()=>{shown().forEach(x=>selected[kind].add(x));draw();update();};clear.onclick=()=>{selected[kind].clear();draw();update();};box.ontoggle=()=>{if(box.open)for(const other of $('filters').querySelectorAll('details'))if(other!==box)other.open=false;};box.reset=()=>{selected[kind].clear();search.value='';draw();summary.textContent=(kind==='site'?'Site (LM)':kind[0].toUpperCase()+kind.slice(1))+' · All';};draw();
   }
-  $('reset-filters').onclick=()=>{for(const box of $('filters').querySelectorAll('details'))box.reset();run(async()=>{view.signal('query','');await view.runAsync();});filter();};
+  $('reset-filters').onclick=()=>{for(const cb of stateLegend.querySelectorAll('input'))cb.checked=true;run(()=>view.signal('stateColours',states.map(s=>s[1])).runAsync());for(const box of $('filters').querySelectorAll('details'))box.reset();run(async()=>{view.signal('query','');await view.runAsync();});filter();};
   const resize=new ResizeObserver(entries=>{const {width,height}=entries[0].contentRect;run(()=>view.signal('denebContainer',{width:Math.max(720,width),height:Math.max(480,height)}).runAsync());});resize.observe(chart);
   chart.addEventListener('pointerdown',e=>{if(!e.target.closest('input,select'))chart.focus({preventScroll:true});});
   for(const name of ['selectedKey','query','mode','compareLevel','pinsOnly','pinClick','showRegistrationEnd','sortBy','axisMode'])view.addSignalListener(name,()=>{clearTimeout(timer);timer=setTimeout(()=>{updateStatus();renderDetails();updateControls();},0);});
