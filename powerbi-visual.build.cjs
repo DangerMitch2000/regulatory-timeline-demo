@@ -59,7 +59,8 @@ export class Visual implements powerbi.extensibility.visual.IVisual {
  constructor(options:powerbi.extensibility.visual.VisualConstructorOptions){
   this.host=options.host;this.root=document.createElement('div');this.root.className='regulatory-timeline';
   // Static bundled markup only. All data values are inserted using textContent.
-  this.root.innerHTML=assets.html;options.element.appendChild(this.root);
+  const markup=new DOMParser().parseFromString(assets.html,'text/html');
+  this.root.append(...Array.from(markup.body.childNodes).map(node=>document.importNode(node,true)));options.element.appendChild(this.root);
  }
  public update(options:powerbi.extensibility.visual.VisualUpdateOptions):void{
   this.host.eventService?.renderingStarted(options);
