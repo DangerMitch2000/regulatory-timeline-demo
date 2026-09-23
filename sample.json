@@ -19,7 +19,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": null
   },
   {
     "AppID": "APP-001",
@@ -41,7 +42,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -63,7 +65,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -85,7 +88,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -107,7 +111,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -129,7 +134,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -151,7 +157,8 @@
     "OriginalApproval": "2026-03-24T00:00:00.000Z",
     "LatestApproval": "2026-03-31T00:00:00.000Z",
     "ActualApproval": "2026-04-07T00:00:00.000Z",
-    "RegistrationStart": "2026-05-03T00:00:00.000Z"
+    "RegistrationStart": "2026-05-03T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -173,7 +180,8 @@
     "OriginalApproval": "2026-03-24T00:00:00.000Z",
     "LatestApproval": "2026-03-31T00:00:00.000Z",
     "ActualApproval": "2026-04-07T00:00:00.000Z",
-    "RegistrationStart": "2026-05-03T00:00:00.000Z"
+    "RegistrationStart": "2026-05-03T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -195,7 +203,8 @@
     "OriginalApproval": "2026-03-24T00:00:00.000Z",
     "LatestApproval": "2026-07-30T00:00:00.000Z",
     "ActualApproval": "2026-04-07T00:00:00.000Z",
-    "RegistrationStart": "2026-05-03T00:00:00.000Z"
+    "RegistrationStart": "2026-05-03T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -217,7 +226,8 @@
     "OriginalApproval": "2026-03-25T00:00:00.000Z",
     "LatestApproval": "2026-04-01T00:00:00.000Z",
     "ActualApproval": "2026-04-08T00:00:00.000Z",
-    "RegistrationStart": "2026-05-04T00:00:00.000Z"
+    "RegistrationStart": "2026-05-04T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -239,7 +249,8 @@
     "OriginalApproval": "2026-03-25T00:00:00.000Z",
     "LatestApproval": "2026-04-01T00:00:00.000Z",
     "ActualApproval": "2026-04-08T00:00:00.000Z",
-    "RegistrationStart": "2026-05-04T00:00:00.000Z"
+    "RegistrationStart": "2026-05-04T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -261,7 +272,8 @@
     "OriginalApproval": "2026-03-25T00:00:00.000Z",
     "LatestApproval": "2026-04-01T00:00:00.000Z",
     "ActualApproval": "2026-04-08T00:00:00.000Z",
-    "RegistrationStart": "2026-05-04T00:00:00.000Z"
+    "RegistrationStart": "2026-05-04T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -283,7 +295,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -305,7 +318,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -327,7 +341,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -349,7 +364,8 @@
     "OriginalApproval": "2026-03-27T00:00:00.000Z",
     "LatestApproval": "2026-04-03T00:00:00.000Z",
     "ActualApproval": "2026-04-10T00:00:00.000Z",
-    "RegistrationStart": "2026-05-06T00:00:00.000Z"
+    "RegistrationStart": "2026-05-06T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -371,7 +387,8 @@
     "OriginalApproval": "2026-03-27T00:00:00.000Z",
     "LatestApproval": "2026-04-03T00:00:00.000Z",
     "ActualApproval": "2026-04-10T00:00:00.000Z",
-    "RegistrationStart": "2026-05-06T00:00:00.000Z"
+    "RegistrationStart": "2026-05-06T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -393,7 +410,8 @@
     "OriginalApproval": "2026-03-27T00:00:00.000Z",
     "LatestApproval": "2026-04-03T00:00:00.000Z",
     "ActualApproval": "2026-04-10T00:00:00.000Z",
-    "RegistrationStart": "2026-05-06T00:00:00.000Z"
+    "RegistrationStart": "2026-05-06T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -415,7 +433,8 @@
     "OriginalApproval": "2026-03-28T00:00:00.000Z",
     "LatestApproval": "2026-04-04T00:00:00.000Z",
     "ActualApproval": "2026-04-11T00:00:00.000Z",
-    "RegistrationStart": "2026-05-07T00:00:00.000Z"
+    "RegistrationStart": "2026-05-07T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -437,7 +456,8 @@
     "OriginalApproval": "2026-03-28T00:00:00.000Z",
     "LatestApproval": "2026-04-04T00:00:00.000Z",
     "ActualApproval": "2026-04-11T00:00:00.000Z",
-    "RegistrationStart": "2026-05-07T00:00:00.000Z"
+    "RegistrationStart": "2026-05-07T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -459,7 +479,8 @@
     "OriginalApproval": "2026-03-28T00:00:00.000Z",
     "LatestApproval": "2026-04-04T00:00:00.000Z",
     "ActualApproval": "2026-04-11T00:00:00.000Z",
-    "RegistrationStart": "2026-05-07T00:00:00.000Z"
+    "RegistrationStart": "2026-05-07T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-001",
@@ -481,7 +502,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -503,7 +525,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-001",
@@ -525,7 +548,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": null
   },
   {
     "AppID": "APP-001",
@@ -547,7 +571,8 @@
     "OriginalApproval": "2026-03-30T00:00:00.000Z",
     "LatestApproval": "2026-04-06T00:00:00.000Z",
     "ActualApproval": "2026-04-13T00:00:00.000Z",
-    "RegistrationStart": "2026-05-09T00:00:00.000Z"
+    "RegistrationStart": "2026-05-09T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-001",
@@ -569,7 +594,8 @@
     "OriginalApproval": "2026-03-30T00:00:00.000Z",
     "LatestApproval": "2026-04-06T00:00:00.000Z",
     "ActualApproval": "2026-04-13T00:00:00.000Z",
-    "RegistrationStart": "2026-05-09T00:00:00.000Z"
+    "RegistrationStart": "2026-05-09T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -591,7 +617,8 @@
     "OriginalApproval": "2026-03-30T00:00:00.000Z",
     "LatestApproval": "2026-04-06T00:00:00.000Z",
     "ActualApproval": "2026-04-13T00:00:00.000Z",
-    "RegistrationStart": "2026-05-09T00:00:00.000Z"
+    "RegistrationStart": "2026-05-09T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -613,7 +640,8 @@
     "OriginalApproval": "2026-03-31T00:00:00.000Z",
     "LatestApproval": "2026-04-07T00:00:00.000Z",
     "ActualApproval": "2026-04-14T00:00:00.000Z",
-    "RegistrationStart": "2026-05-10T00:00:00.000Z"
+    "RegistrationStart": "2026-05-10T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -635,7 +663,8 @@
     "OriginalApproval": "2026-03-31T00:00:00.000Z",
     "LatestApproval": "2026-04-07T00:00:00.000Z",
     "ActualApproval": "2026-04-14T00:00:00.000Z",
-    "RegistrationStart": "2026-05-10T00:00:00.000Z"
+    "RegistrationStart": "2026-05-10T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -657,7 +686,8 @@
     "OriginalApproval": "2026-03-31T00:00:00.000Z",
     "LatestApproval": "2026-04-07T00:00:00.000Z",
     "ActualApproval": "2026-04-14T00:00:00.000Z",
-    "RegistrationStart": "2026-05-10T00:00:00.000Z"
+    "RegistrationStart": "2026-05-10T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -679,7 +709,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -701,7 +732,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -723,7 +755,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -745,7 +778,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-001",
@@ -767,7 +801,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -789,7 +824,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -811,7 +847,8 @@
     "OriginalApproval": "2026-04-03T00:00:00.000Z",
     "LatestApproval": "2026-04-10T00:00:00.000Z",
     "ActualApproval": "2026-04-17T00:00:00.000Z",
-    "RegistrationStart": "2026-05-13T00:00:00.000Z"
+    "RegistrationStart": "2026-05-13T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-001",
@@ -833,7 +870,8 @@
     "OriginalApproval": "2026-04-03T00:00:00.000Z",
     "LatestApproval": "2026-04-10T00:00:00.000Z",
     "ActualApproval": "2026-04-17T00:00:00.000Z",
-    "RegistrationStart": "2026-05-13T00:00:00.000Z"
+    "RegistrationStart": "2026-05-13T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -855,7 +893,8 @@
     "OriginalApproval": "2026-04-03T00:00:00.000Z",
     "LatestApproval": "2026-04-10T00:00:00.000Z",
     "ActualApproval": "2026-04-17T00:00:00.000Z",
-    "RegistrationStart": "2026-05-13T00:00:00.000Z"
+    "RegistrationStart": "2026-05-13T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -877,7 +916,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-001",
@@ -899,7 +939,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -921,7 +962,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -943,7 +985,8 @@
     "OriginalApproval": "2026-04-05T00:00:00.000Z",
     "LatestApproval": "2026-04-12T00:00:00.000Z",
     "ActualApproval": "2026-04-19T00:00:00.000Z",
-    "RegistrationStart": "2026-05-15T00:00:00.000Z"
+    "RegistrationStart": "2026-05-15T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-001",
@@ -965,7 +1008,8 @@
     "OriginalApproval": "2026-04-05T00:00:00.000Z",
     "LatestApproval": "2026-04-12T00:00:00.000Z",
     "ActualApproval": "2026-04-19T00:00:00.000Z",
-    "RegistrationStart": "2026-05-15T00:00:00.000Z"
+    "RegistrationStart": "2026-05-15T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -987,7 +1031,8 @@
     "OriginalApproval": "2026-04-05T00:00:00.000Z",
     "LatestApproval": "2026-04-12T00:00:00.000Z",
     "ActualApproval": "2026-04-19T00:00:00.000Z",
-    "RegistrationStart": "2026-05-15T00:00:00.000Z"
+    "RegistrationStart": "2026-05-15T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-001",
@@ -1009,7 +1054,8 @@
     "OriginalApproval": "2026-04-06T00:00:00.000Z",
     "LatestApproval": "2026-04-13T00:00:00.000Z",
     "ActualApproval": "2026-04-20T00:00:00.000Z",
-    "RegistrationStart": "2026-05-16T00:00:00.000Z"
+    "RegistrationStart": "2026-05-16T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-001",
@@ -1031,7 +1077,8 @@
     "OriginalApproval": "2026-04-06T00:00:00.000Z",
     "LatestApproval": "2026-04-13T00:00:00.000Z",
     "ActualApproval": "2026-04-20T00:00:00.000Z",
-    "RegistrationStart": "2026-05-16T00:00:00.000Z"
+    "RegistrationStart": "2026-05-16T00:00:00.000Z",
+    "Country": null
   },
   {
     "AppID": "APP-001",
@@ -1053,7 +1100,8 @@
     "OriginalApproval": "2026-04-06T00:00:00.000Z",
     "LatestApproval": "2026-04-13T00:00:00.000Z",
     "ActualApproval": "2026-04-20T00:00:00.000Z",
-    "RegistrationStart": "2026-05-16T00:00:00.000Z"
+    "RegistrationStart": "2026-05-16T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -1075,7 +1123,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-001",
@@ -1097,7 +1146,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -1119,7 +1169,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -1141,7 +1192,8 @@
     "OriginalApproval": "2026-04-08T00:00:00.000Z",
     "LatestApproval": "2026-04-15T00:00:00.000Z",
     "ActualApproval": "2026-04-22T00:00:00.000Z",
-    "RegistrationStart": "2026-05-18T00:00:00.000Z"
+    "RegistrationStart": "2026-05-18T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-001",
@@ -1163,7 +1215,8 @@
     "OriginalApproval": "2026-04-08T00:00:00.000Z",
     "LatestApproval": "2026-04-15T00:00:00.000Z",
     "ActualApproval": "2026-04-22T00:00:00.000Z",
-    "RegistrationStart": "2026-05-18T00:00:00.000Z"
+    "RegistrationStart": "2026-05-18T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-001",
@@ -1185,7 +1238,8 @@
     "OriginalApproval": "2026-04-08T00:00:00.000Z",
     "LatestApproval": "2026-04-15T00:00:00.000Z",
     "ActualApproval": "2026-04-22T00:00:00.000Z",
-    "RegistrationStart": "2026-05-18T00:00:00.000Z"
+    "RegistrationStart": "2026-05-18T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1207,7 +1261,8 @@
     "OriginalApproval": "2026-04-09T00:00:00.000Z",
     "LatestApproval": "2026-04-16T00:00:00.000Z",
     "ActualApproval": "2026-04-23T00:00:00.000Z",
-    "RegistrationStart": "2026-05-19T00:00:00.000Z"
+    "RegistrationStart": "2026-05-19T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -1229,7 +1284,8 @@
     "OriginalApproval": "2026-04-09T00:00:00.000Z",
     "LatestApproval": "2026-04-16T00:00:00.000Z",
     "ActualApproval": "2026-04-23T00:00:00.000Z",
-    "RegistrationStart": "2026-05-19T00:00:00.000Z"
+    "RegistrationStart": "2026-05-19T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1251,7 +1307,8 @@
     "OriginalApproval": "2026-04-09T00:00:00.000Z",
     "LatestApproval": "2026-04-16T00:00:00.000Z",
     "ActualApproval": "2026-04-23T00:00:00.000Z",
-    "RegistrationStart": "2026-05-19T00:00:00.000Z"
+    "RegistrationStart": "2026-05-19T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1273,7 +1330,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1295,7 +1353,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1317,7 +1376,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1339,7 +1399,8 @@
     "OriginalApproval": "2026-04-11T00:00:00.000Z",
     "LatestApproval": "2026-04-18T00:00:00.000Z",
     "ActualApproval": "2026-04-25T00:00:00.000Z",
-    "RegistrationStart": "2026-05-21T00:00:00.000Z"
+    "RegistrationStart": "2026-05-21T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1361,7 +1422,8 @@
     "OriginalApproval": "2026-04-11T00:00:00.000Z",
     "LatestApproval": "2026-04-18T00:00:00.000Z",
     "ActualApproval": "2026-04-25T00:00:00.000Z",
-    "RegistrationStart": "2026-05-21T00:00:00.000Z"
+    "RegistrationStart": "2026-05-21T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1383,7 +1445,8 @@
     "OriginalApproval": "2026-04-11T00:00:00.000Z",
     "LatestApproval": "2026-04-18T00:00:00.000Z",
     "ActualApproval": "2026-04-25T00:00:00.000Z",
-    "RegistrationStart": "2026-05-21T00:00:00.000Z"
+    "RegistrationStart": "2026-05-21T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -1405,7 +1468,8 @@
     "OriginalApproval": "2026-04-12T00:00:00.000Z",
     "LatestApproval": "2026-04-19T00:00:00.000Z",
     "ActualApproval": "2026-04-26T00:00:00.000Z",
-    "RegistrationStart": "2026-05-22T00:00:00.000Z"
+    "RegistrationStart": "2026-05-22T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1427,7 +1491,8 @@
     "OriginalApproval": "2026-04-12T00:00:00.000Z",
     "LatestApproval": "2026-04-19T00:00:00.000Z",
     "ActualApproval": "2026-04-26T00:00:00.000Z",
-    "RegistrationStart": "2026-05-22T00:00:00.000Z"
+    "RegistrationStart": "2026-05-22T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -1449,7 +1514,8 @@
     "OriginalApproval": "2026-04-12T00:00:00.000Z",
     "LatestApproval": "2026-04-19T00:00:00.000Z",
     "ActualApproval": "2026-04-26T00:00:00.000Z",
-    "RegistrationStart": "2026-05-22T00:00:00.000Z"
+    "RegistrationStart": "2026-05-22T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-002",
@@ -1471,7 +1537,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -1493,7 +1560,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-002",
@@ -1515,7 +1583,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-002",
@@ -1537,7 +1606,8 @@
     "OriginalApproval": "2026-04-14T00:00:00.000Z",
     "LatestApproval": "2026-04-21T00:00:00.000Z",
     "ActualApproval": "2026-04-28T00:00:00.000Z",
-    "RegistrationStart": "2026-05-24T00:00:00.000Z"
+    "RegistrationStart": "2026-05-24T00:00:00.000Z",
+    "Country": null
   },
   {
     "AppID": "APP-002",
@@ -1559,7 +1629,8 @@
     "OriginalApproval": "2026-04-14T00:00:00.000Z",
     "LatestApproval": "2026-04-21T00:00:00.000Z",
     "ActualApproval": "2026-04-28T00:00:00.000Z",
-    "RegistrationStart": "2026-05-24T00:00:00.000Z"
+    "RegistrationStart": "2026-05-24T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-002",
@@ -1581,7 +1652,8 @@
     "OriginalApproval": "2026-04-14T00:00:00.000Z",
     "LatestApproval": "2026-04-21T00:00:00.000Z",
     "ActualApproval": "2026-04-28T00:00:00.000Z",
-    "RegistrationStart": "2026-05-24T00:00:00.000Z"
+    "RegistrationStart": "2026-05-24T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -1603,7 +1675,8 @@
     "OriginalApproval": "2026-04-15T00:00:00.000Z",
     "LatestApproval": "2026-04-22T00:00:00.000Z",
     "ActualApproval": "2026-04-29T00:00:00.000Z",
-    "RegistrationStart": "2026-05-25T00:00:00.000Z"
+    "RegistrationStart": "2026-05-25T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-002",
@@ -1625,7 +1698,8 @@
     "OriginalApproval": "2026-04-15T00:00:00.000Z",
     "LatestApproval": "2026-04-22T00:00:00.000Z",
     "ActualApproval": "2026-04-29T00:00:00.000Z",
-    "RegistrationStart": "2026-05-25T00:00:00.000Z"
+    "RegistrationStart": "2026-05-25T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -1647,7 +1721,8 @@
     "OriginalApproval": "2026-04-15T00:00:00.000Z",
     "LatestApproval": "2026-04-22T00:00:00.000Z",
     "ActualApproval": "2026-04-29T00:00:00.000Z",
-    "RegistrationStart": "2026-05-25T00:00:00.000Z"
+    "RegistrationStart": "2026-05-25T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -1669,7 +1744,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -1691,7 +1767,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -1713,7 +1790,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1735,7 +1813,8 @@
     "OriginalApproval": "2026-04-17T00:00:00.000Z",
     "LatestApproval": "2026-04-24T00:00:00.000Z",
     "ActualApproval": "2026-05-01T00:00:00.000Z",
-    "RegistrationStart": "2026-05-27T00:00:00.000Z"
+    "RegistrationStart": "2026-05-27T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -1757,7 +1836,8 @@
     "OriginalApproval": "2026-04-17T00:00:00.000Z",
     "LatestApproval": "2026-04-24T00:00:00.000Z",
     "ActualApproval": "2026-05-01T00:00:00.000Z",
-    "RegistrationStart": "2026-05-27T00:00:00.000Z"
+    "RegistrationStart": "2026-05-27T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1779,7 +1859,8 @@
     "OriginalApproval": "2026-04-17T00:00:00.000Z",
     "LatestApproval": "2026-04-24T00:00:00.000Z",
     "ActualApproval": "2026-05-01T00:00:00.000Z",
-    "RegistrationStart": "2026-05-27T00:00:00.000Z"
+    "RegistrationStart": "2026-05-27T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1801,7 +1882,8 @@
     "OriginalApproval": "2026-04-18T00:00:00.000Z",
     "LatestApproval": "2026-04-25T00:00:00.000Z",
     "ActualApproval": "2026-05-02T00:00:00.000Z",
-    "RegistrationStart": "2026-05-28T00:00:00.000Z"
+    "RegistrationStart": "2026-05-28T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -1823,7 +1905,8 @@
     "OriginalApproval": "2026-04-18T00:00:00.000Z",
     "LatestApproval": "2026-04-25T00:00:00.000Z",
     "ActualApproval": "2026-05-02T00:00:00.000Z",
-    "RegistrationStart": "2026-05-28T00:00:00.000Z"
+    "RegistrationStart": "2026-05-28T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1845,7 +1928,8 @@
     "OriginalApproval": "2026-04-18T00:00:00.000Z",
     "LatestApproval": "2026-04-25T00:00:00.000Z",
     "ActualApproval": "2026-05-02T00:00:00.000Z",
-    "RegistrationStart": "2026-05-28T00:00:00.000Z"
+    "RegistrationStart": "2026-05-28T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1867,7 +1951,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -1889,7 +1974,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1911,7 +1997,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -1933,7 +2020,8 @@
     "OriginalApproval": "2026-04-20T00:00:00.000Z",
     "LatestApproval": "2026-04-27T00:00:00.000Z",
     "ActualApproval": "2026-05-04T00:00:00.000Z",
-    "RegistrationStart": "2026-05-30T00:00:00.000Z"
+    "RegistrationStart": "2026-05-30T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-002",
@@ -1955,7 +2043,8 @@
     "OriginalApproval": "2026-04-20T00:00:00.000Z",
     "LatestApproval": "2026-04-27T00:00:00.000Z",
     "ActualApproval": "2026-05-04T00:00:00.000Z",
-    "RegistrationStart": "2026-05-30T00:00:00.000Z"
+    "RegistrationStart": "2026-05-30T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -1977,7 +2066,8 @@
     "OriginalApproval": "2026-04-20T00:00:00.000Z",
     "LatestApproval": "2026-04-27T00:00:00.000Z",
     "ActualApproval": "2026-05-04T00:00:00.000Z",
-    "RegistrationStart": "2026-05-30T00:00:00.000Z"
+    "RegistrationStart": "2026-05-30T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-002",
@@ -1999,7 +2089,8 @@
     "OriginalApproval": "2026-04-21T00:00:00.000Z",
     "LatestApproval": "2026-04-28T00:00:00.000Z",
     "ActualApproval": "2026-05-05T00:00:00.000Z",
-    "RegistrationStart": "2026-05-31T00:00:00.000Z"
+    "RegistrationStart": "2026-05-31T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-002",
@@ -2021,7 +2112,8 @@
     "OriginalApproval": "2026-04-21T00:00:00.000Z",
     "LatestApproval": "2026-04-28T00:00:00.000Z",
     "ActualApproval": "2026-05-05T00:00:00.000Z",
-    "RegistrationStart": "2026-05-31T00:00:00.000Z"
+    "RegistrationStart": "2026-05-31T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-002",
@@ -2043,7 +2135,8 @@
     "OriginalApproval": "2026-04-21T00:00:00.000Z",
     "LatestApproval": "2026-04-28T00:00:00.000Z",
     "ActualApproval": "2026-05-05T00:00:00.000Z",
-    "RegistrationStart": "2026-05-31T00:00:00.000Z"
+    "RegistrationStart": "2026-05-31T00:00:00.000Z",
+    "Country": null
   },
   {
     "AppID": "APP-002",
@@ -2065,7 +2158,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-002",
@@ -2087,7 +2181,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-002",
@@ -2109,7 +2204,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -2131,7 +2227,8 @@
     "OriginalApproval": "2026-04-23T00:00:00.000Z",
     "LatestApproval": "2026-04-30T00:00:00.000Z",
     "ActualApproval": "2026-05-07T00:00:00.000Z",
-    "RegistrationStart": "2026-06-02T00:00:00.000Z"
+    "RegistrationStart": "2026-06-02T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-002",
@@ -2153,7 +2250,8 @@
     "OriginalApproval": "2026-04-23T00:00:00.000Z",
     "LatestApproval": "2026-04-30T00:00:00.000Z",
     "ActualApproval": "2026-05-07T00:00:00.000Z",
-    "RegistrationStart": "2026-06-02T00:00:00.000Z"
+    "RegistrationStart": "2026-06-02T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -2175,7 +2273,8 @@
     "OriginalApproval": "2026-04-23T00:00:00.000Z",
     "LatestApproval": "2026-04-30T00:00:00.000Z",
     "ActualApproval": "2026-05-07T00:00:00.000Z",
-    "RegistrationStart": "2026-06-02T00:00:00.000Z"
+    "RegistrationStart": "2026-06-02T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -2197,7 +2296,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-002",
@@ -2219,7 +2319,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -2241,7 +2342,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -2263,7 +2365,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-002",
@@ -2285,7 +2388,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -2307,7 +2411,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -2329,7 +2434,8 @@
     "OriginalApproval": "2026-04-26T00:00:00.000Z",
     "LatestApproval": "2026-05-03T00:00:00.000Z",
     "ActualApproval": "2026-05-10T00:00:00.000Z",
-    "RegistrationStart": "2026-06-05T00:00:00.000Z"
+    "RegistrationStart": "2026-06-05T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-002",
@@ -2351,7 +2457,8 @@
     "OriginalApproval": "2026-04-26T00:00:00.000Z",
     "LatestApproval": "2026-05-03T00:00:00.000Z",
     "ActualApproval": "2026-05-10T00:00:00.000Z",
-    "RegistrationStart": "2026-06-05T00:00:00.000Z"
+    "RegistrationStart": "2026-06-05T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-002",
@@ -2373,7 +2480,8 @@
     "OriginalApproval": "2026-04-26T00:00:00.000Z",
     "LatestApproval": "2026-05-03T00:00:00.000Z",
     "ActualApproval": "2026-05-10T00:00:00.000Z",
-    "RegistrationStart": "2026-06-05T00:00:00.000Z"
+    "RegistrationStart": "2026-06-05T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -2395,7 +2503,8 @@
     "OriginalApproval": "2026-04-27T00:00:00.000Z",
     "LatestApproval": "2026-05-04T00:00:00.000Z",
     "ActualApproval": "2026-05-11T00:00:00.000Z",
-    "RegistrationStart": "2026-06-06T00:00:00.000Z"
+    "RegistrationStart": "2026-06-06T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -2417,7 +2526,8 @@
     "OriginalApproval": "2026-04-27T00:00:00.000Z",
     "LatestApproval": "2026-05-04T00:00:00.000Z",
     "ActualApproval": "2026-05-11T00:00:00.000Z",
-    "RegistrationStart": "2026-06-06T00:00:00.000Z"
+    "RegistrationStart": "2026-06-06T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -2439,7 +2549,8 @@
     "OriginalApproval": "2026-04-27T00:00:00.000Z",
     "LatestApproval": "2026-05-04T00:00:00.000Z",
     "ActualApproval": "2026-05-11T00:00:00.000Z",
-    "RegistrationStart": "2026-06-06T00:00:00.000Z"
+    "RegistrationStart": "2026-06-06T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -2461,7 +2572,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -2483,7 +2595,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -2505,7 +2618,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-003",
@@ -2527,7 +2641,8 @@
     "OriginalApproval": "2026-04-29T00:00:00.000Z",
     "LatestApproval": "2026-05-06T00:00:00.000Z",
     "ActualApproval": "2026-05-13T00:00:00.000Z",
-    "RegistrationStart": "2026-06-08T00:00:00.000Z"
+    "RegistrationStart": "2026-06-08T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -2549,7 +2664,8 @@
     "OriginalApproval": "2026-04-29T00:00:00.000Z",
     "LatestApproval": "2026-05-06T00:00:00.000Z",
     "ActualApproval": "2026-05-13T00:00:00.000Z",
-    "RegistrationStart": "2026-06-08T00:00:00.000Z"
+    "RegistrationStart": "2026-06-08T00:00:00.000Z",
+    "Country": null
   },
   {
     "AppID": "APP-003",
@@ -2571,7 +2687,8 @@
     "OriginalApproval": "2026-04-29T00:00:00.000Z",
     "LatestApproval": "2026-05-06T00:00:00.000Z",
     "ActualApproval": "2026-05-13T00:00:00.000Z",
-    "RegistrationStart": "2026-06-08T00:00:00.000Z"
+    "RegistrationStart": "2026-06-08T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -2593,7 +2710,8 @@
     "OriginalApproval": "2026-04-30T00:00:00.000Z",
     "LatestApproval": "2026-05-07T00:00:00.000Z",
     "ActualApproval": "2026-05-14T00:00:00.000Z",
-    "RegistrationStart": "2026-06-09T00:00:00.000Z"
+    "RegistrationStart": "2026-06-09T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-003",
@@ -2615,7 +2733,8 @@
     "OriginalApproval": "2026-04-30T00:00:00.000Z",
     "LatestApproval": "2026-05-07T00:00:00.000Z",
     "ActualApproval": "2026-05-14T00:00:00.000Z",
-    "RegistrationStart": "2026-06-09T00:00:00.000Z"
+    "RegistrationStart": "2026-06-09T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -2637,7 +2756,8 @@
     "OriginalApproval": "2026-04-30T00:00:00.000Z",
     "LatestApproval": "2026-05-07T00:00:00.000Z",
     "ActualApproval": "2026-05-14T00:00:00.000Z",
-    "RegistrationStart": "2026-06-09T00:00:00.000Z"
+    "RegistrationStart": "2026-06-09T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -2659,7 +2779,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -2681,7 +2802,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -2703,7 +2825,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -2725,7 +2848,8 @@
     "OriginalApproval": "2026-05-02T00:00:00.000Z",
     "LatestApproval": "2026-05-09T00:00:00.000Z",
     "ActualApproval": "2026-05-16T00:00:00.000Z",
-    "RegistrationStart": "2026-06-11T00:00:00.000Z"
+    "RegistrationStart": "2026-06-11T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -2747,7 +2871,8 @@
     "OriginalApproval": "2026-05-02T00:00:00.000Z",
     "LatestApproval": "2026-05-09T00:00:00.000Z",
     "ActualApproval": "2026-05-16T00:00:00.000Z",
-    "RegistrationStart": "2026-06-11T00:00:00.000Z"
+    "RegistrationStart": "2026-06-11T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -2769,7 +2894,8 @@
     "OriginalApproval": "2026-05-02T00:00:00.000Z",
     "LatestApproval": "2026-05-09T00:00:00.000Z",
     "ActualApproval": "2026-05-16T00:00:00.000Z",
-    "RegistrationStart": "2026-06-11T00:00:00.000Z"
+    "RegistrationStart": "2026-06-11T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -2791,7 +2917,8 @@
     "OriginalApproval": "2026-05-03T00:00:00.000Z",
     "LatestApproval": "2026-05-10T00:00:00.000Z",
     "ActualApproval": "2026-05-17T00:00:00.000Z",
-    "RegistrationStart": "2026-06-12T00:00:00.000Z"
+    "RegistrationStart": "2026-06-12T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -2813,7 +2940,8 @@
     "OriginalApproval": "2026-05-03T00:00:00.000Z",
     "LatestApproval": "2026-05-10T00:00:00.000Z",
     "ActualApproval": "2026-05-17T00:00:00.000Z",
-    "RegistrationStart": "2026-06-12T00:00:00.000Z"
+    "RegistrationStart": "2026-06-12T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -2835,7 +2963,8 @@
     "OriginalApproval": "2026-05-03T00:00:00.000Z",
     "LatestApproval": "2026-05-10T00:00:00.000Z",
     "ActualApproval": "2026-05-17T00:00:00.000Z",
-    "RegistrationStart": "2026-06-12T00:00:00.000Z"
+    "RegistrationStart": "2026-06-12T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -2857,7 +2986,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -2879,7 +3009,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -2901,7 +3032,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -2923,7 +3055,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -2945,7 +3078,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -2967,7 +3101,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -2989,7 +3124,8 @@
     "OriginalApproval": "2026-05-06T00:00:00.000Z",
     "LatestApproval": "2026-05-13T00:00:00.000Z",
     "ActualApproval": "2026-05-20T00:00:00.000Z",
-    "RegistrationStart": "2026-06-15T00:00:00.000Z"
+    "RegistrationStart": "2026-06-15T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -3011,7 +3147,8 @@
     "OriginalApproval": "2026-05-06T00:00:00.000Z",
     "LatestApproval": "2026-05-13T00:00:00.000Z",
     "ActualApproval": "2026-05-20T00:00:00.000Z",
-    "RegistrationStart": "2026-06-15T00:00:00.000Z"
+    "RegistrationStart": "2026-06-15T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -3033,7 +3170,8 @@
     "OriginalApproval": "2026-05-06T00:00:00.000Z",
     "LatestApproval": "2026-05-13T00:00:00.000Z",
     "ActualApproval": "2026-05-20T00:00:00.000Z",
-    "RegistrationStart": "2026-06-15T00:00:00.000Z"
+    "RegistrationStart": "2026-06-15T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-003",
@@ -3055,7 +3193,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": null
   },
   {
     "AppID": "APP-003",
@@ -3077,7 +3216,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-003",
@@ -3099,7 +3239,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -3121,7 +3262,8 @@
     "OriginalApproval": "2026-05-08T00:00:00.000Z",
     "LatestApproval": "2026-05-15T00:00:00.000Z",
     "ActualApproval": "2026-05-22T00:00:00.000Z",
-    "RegistrationStart": "2026-06-17T00:00:00.000Z"
+    "RegistrationStart": "2026-06-17T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-003",
@@ -3143,7 +3285,8 @@
     "OriginalApproval": "2026-05-08T00:00:00.000Z",
     "LatestApproval": "2026-05-15T00:00:00.000Z",
     "ActualApproval": "2026-05-22T00:00:00.000Z",
-    "RegistrationStart": "2026-06-17T00:00:00.000Z"
+    "RegistrationStart": "2026-06-17T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -3165,7 +3308,8 @@
     "OriginalApproval": "2026-05-08T00:00:00.000Z",
     "LatestApproval": "2026-05-15T00:00:00.000Z",
     "ActualApproval": "2026-05-22T00:00:00.000Z",
-    "RegistrationStart": "2026-06-17T00:00:00.000Z"
+    "RegistrationStart": "2026-06-17T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -3187,7 +3331,8 @@
     "OriginalApproval": "2026-05-09T00:00:00.000Z",
     "LatestApproval": "2026-05-16T00:00:00.000Z",
     "ActualApproval": "2026-05-23T00:00:00.000Z",
-    "RegistrationStart": "2026-06-18T00:00:00.000Z"
+    "RegistrationStart": "2026-06-18T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-003",
@@ -3209,7 +3354,8 @@
     "OriginalApproval": "2026-05-09T00:00:00.000Z",
     "LatestApproval": "2026-05-16T00:00:00.000Z",
     "ActualApproval": "2026-05-23T00:00:00.000Z",
-    "RegistrationStart": "2026-06-18T00:00:00.000Z"
+    "RegistrationStart": "2026-06-18T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -3231,7 +3377,8 @@
     "OriginalApproval": "2026-05-09T00:00:00.000Z",
     "LatestApproval": "2026-05-16T00:00:00.000Z",
     "ActualApproval": "2026-05-23T00:00:00.000Z",
-    "RegistrationStart": "2026-06-18T00:00:00.000Z"
+    "RegistrationStart": "2026-06-18T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -3253,7 +3400,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-003",
@@ -3275,7 +3423,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -3297,7 +3446,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -3319,7 +3469,8 @@
     "OriginalApproval": "2026-05-11T00:00:00.000Z",
     "LatestApproval": "2026-05-18T00:00:00.000Z",
     "ActualApproval": "2026-05-25T00:00:00.000Z",
-    "RegistrationStart": "2026-06-20T00:00:00.000Z"
+    "RegistrationStart": "2026-06-20T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-003",
@@ -3341,7 +3492,8 @@
     "OriginalApproval": "2026-05-11T00:00:00.000Z",
     "LatestApproval": "2026-05-18T00:00:00.000Z",
     "ActualApproval": "2026-05-25T00:00:00.000Z",
-    "RegistrationStart": "2026-06-20T00:00:00.000Z"
+    "RegistrationStart": "2026-06-20T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -3363,7 +3515,8 @@
     "OriginalApproval": "2026-05-11T00:00:00.000Z",
     "LatestApproval": "2026-05-18T00:00:00.000Z",
     "ActualApproval": "2026-05-25T00:00:00.000Z",
-    "RegistrationStart": "2026-06-20T00:00:00.000Z"
+    "RegistrationStart": "2026-06-20T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -3385,7 +3538,8 @@
     "OriginalApproval": "2026-05-12T00:00:00.000Z",
     "LatestApproval": "2026-05-19T00:00:00.000Z",
     "ActualApproval": "2026-05-26T00:00:00.000Z",
-    "RegistrationStart": "2026-06-21T00:00:00.000Z"
+    "RegistrationStart": "2026-06-21T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-003",
@@ -3407,7 +3561,8 @@
     "OriginalApproval": "2026-05-12T00:00:00.000Z",
     "LatestApproval": "2026-05-19T00:00:00.000Z",
     "ActualApproval": "2026-05-26T00:00:00.000Z",
-    "RegistrationStart": "2026-06-21T00:00:00.000Z"
+    "RegistrationStart": "2026-06-21T00:00:00.000Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -3429,7 +3584,8 @@
     "OriginalApproval": "2026-05-12T00:00:00.000Z",
     "LatestApproval": "2026-05-19T00:00:00.000Z",
     "ActualApproval": "2026-05-26T00:00:00.000Z",
-    "RegistrationStart": "2026-06-21T00:00:00.000Z"
+    "RegistrationStart": "2026-06-21T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -3451,7 +3607,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-003",
@@ -3473,7 +3630,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -3495,7 +3653,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -3517,7 +3676,8 @@
     "OriginalApproval": "2026-05-14T00:00:00.000Z",
     "LatestApproval": "2026-05-21T00:00:00.000Z",
     "ActualApproval": "2026-05-28T00:00:00.000Z",
-    "RegistrationStart": "2026-06-23T00:00:00.000Z"
+    "RegistrationStart": "2026-06-23T00:00:00.000Z",
+    "Country": "Netherlands"
   },
   {
     "AppID": "APP-003",
@@ -3539,7 +3699,8 @@
     "OriginalApproval": "2026-05-14T00:00:00.000Z",
     "LatestApproval": "2026-05-21T00:00:00.000Z",
     "ActualApproval": "2026-05-28T00:00:00.000Z",
-    "RegistrationStart": "2026-06-23T00:00:00.000Z"
+    "RegistrationStart": "2026-06-23T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-003",
@@ -3561,7 +3722,8 @@
     "OriginalApproval": "2026-05-14T00:00:00.000Z",
     "LatestApproval": "2026-05-21T00:00:00.000Z",
     "ActualApproval": "2026-05-28T00:00:00.000Z",
-    "RegistrationStart": "2026-06-23T00:00:00.000Z"
+    "RegistrationStart": "2026-06-23T00:00:00.000Z",
+    "Country": null
   },
   {
     "AppID": "APP-004",
@@ -3583,7 +3745,8 @@
     "OriginalApproval": "2026-05-15T00:00:00.000Z",
     "LatestApproval": "2026-05-22T00:00:00.000Z",
     "ActualApproval": "2026-05-29T00:00:00.000Z",
-    "RegistrationStart": "2026-06-24T00:00:00.000Z"
+    "RegistrationStart": "2026-06-24T00:00:00.000Z",
+    "Country": "Sweden"
   },
   {
     "AppID": "APP-004",
@@ -3605,7 +3768,8 @@
     "OriginalApproval": "2026-05-15T00:00:00.000Z",
     "LatestApproval": "2026-05-22T00:00:00.000Z",
     "ActualApproval": "2026-05-29T00:00:00.000Z",
-    "RegistrationStart": "2026-06-24T00:00:00.000Z"
+    "RegistrationStart": "2026-06-24T00:00:00.000Z",
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-004",
@@ -3627,7 +3791,8 @@
     "OriginalApproval": "2026-05-15T00:00:00.000Z",
     "LatestApproval": "2026-05-22T00:00:00.000Z",
     "ActualApproval": "2026-05-29T00:00:00.000Z",
-    "RegistrationStart": "2026-06-24T00:00:00.000Z"
+    "RegistrationStart": "2026-06-24T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-004",
@@ -3649,7 +3814,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Denmark"
   },
   {
     "AppID": "APP-004",
@@ -3671,7 +3837,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-004",
@@ -3693,7 +3860,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "France"
   },
   {
     "AppID": "APP-004",
@@ -3715,7 +3883,8 @@
     "OriginalApproval": "2026-05-17T00:00:00.000Z",
     "LatestApproval": "2026-05-24T00:00:00.000Z",
     "ActualApproval": "2026-05-31T00:00:00.000Z",
-    "RegistrationStart": "2026-06-26T00:00:00.000Z"
+    "RegistrationStart": "2026-06-26T00:00:00.000Z",
+    "Country": "Ireland"
   },
   {
     "AppID": "APP-004",
@@ -3737,7 +3906,8 @@
     "OriginalApproval": "2026-05-17T00:00:00.000Z",
     "LatestApproval": "2026-05-24T00:00:00.000Z",
     "ActualApproval": "2026-05-31T00:00:00.000Z",
-    "RegistrationStart": "2026-06-26T00:00:00.000Z"
+    "RegistrationStart": "2026-06-26T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-004",
@@ -3759,7 +3929,8 @@
     "OriginalApproval": "2026-05-17T00:00:00.000Z",
     "LatestApproval": "2026-05-24T00:00:00.000Z",
     "ActualApproval": "2026-05-31T00:00:00.000Z",
-    "RegistrationStart": "2026-06-26T00:00:00.000Z"
+    "RegistrationStart": "2026-06-26T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-004",
@@ -3781,7 +3952,8 @@
     "OriginalApproval": "2026-05-18T00:00:00.000Z",
     "LatestApproval": "2026-05-25T00:00:00.000Z",
     "ActualApproval": "2026-06-01T00:00:00.000Z",
-    "RegistrationStart": "2026-06-27T00:00:00.000Z"
+    "RegistrationStart": "2026-06-27T00:00:00.000Z",
+    "Country": "France"
   },
   {
     "AppID": "APP-004",
@@ -3803,7 +3975,8 @@
     "OriginalApproval": "2026-05-18T00:00:00.000Z",
     "LatestApproval": "2026-05-25T00:00:00.000Z",
     "ActualApproval": "2026-06-01T00:00:00.000Z",
-    "RegistrationStart": "2026-06-27T00:00:00.000Z"
+    "RegistrationStart": "2026-06-27T00:00:00.000Z",
+    "Country": "Germany"
   },
   {
     "AppID": "APP-004",
@@ -3825,7 +3998,8 @@
     "OriginalApproval": "2026-05-18T00:00:00.000Z",
     "LatestApproval": "2026-05-25T00:00:00.000Z",
     "ActualApproval": "2026-06-01T00:00:00.000Z",
-    "RegistrationStart": "2026-06-27T00:00:00.000Z"
+    "RegistrationStart": "2026-06-27T00:00:00.000Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-004",
@@ -3847,7 +4021,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Germany"
   },
   {
     "AppID": "APP-004",
@@ -3869,7 +4044,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Spain"
   },
   {
     "AppID": "APP-004",
@@ -3891,7 +4067,8 @@
     "OriginalApproval": null,
     "LatestApproval": null,
     "ActualApproval": null,
-    "RegistrationStart": null
+    "RegistrationStart": null,
+    "Country": "Italy"
   },
   {
     "AppID": "APP-004",
@@ -3913,7 +4090,8 @@
     "OriginalApproval": "2026-05-20T00:00:00.000Z",
     "LatestApproval": "2026-05-27T00:00:00.000Z",
     "ActualApproval": "2026-06-03T00:00:00.000Z",
-    "RegistrationStart": "2040-02-01T00:00:00Z"
+    "RegistrationStart": "2040-02-01T00:00:00Z",
+    "Country": "Spain"
   },
   {
     "AppID": "APP-004",
@@ -3935,7 +4113,8 @@
     "OriginalApproval": "2026-05-20T00:00:00.000Z",
     "LatestApproval": "2026-05-27T00:00:00.000Z",
     "ActualApproval": "2026-06-03T00:00:00.000Z",
-    "RegistrationStart": "2040-02-01T00:00:00Z"
+    "RegistrationStart": "2040-02-01T00:00:00Z",
+    "Country": "Italy"
   },
   {
     "AppID": "APP-004",
@@ -3957,6 +4136,2215 @@
     "OriginalApproval": "2026-05-20T00:00:00.000Z",
     "LatestApproval": "2026-05-27T00:00:00.000Z",
     "ActualApproval": "2026-06-03T00:00:00.000Z",
-    "RegistrationStart": "2040-02-01T00:00:00Z"
+    "RegistrationStart": "2040-02-01T00:00:00Z",
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 001",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 002 — extended descriptive name retained completely in the paged details list",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 003",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 004",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 005",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 006",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 007",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 008",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 009",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 010",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 011",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 012",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 013",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 014",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 015",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 016",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 017",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 018",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 019",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 020",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 021",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 022",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 023",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 024",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 025",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 026",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 027",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 028",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 029",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 030",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 031",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 032",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 033",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 034",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 035",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 036",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 037",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 038",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 039",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 040",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 041",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 042",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 043",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 044",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 045",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 046",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 047",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 048",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 049",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 050",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 051",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 052",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 053",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 054",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 055",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 056",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 057",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 058",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 059",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 060",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 061",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 062",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 063",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 064",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 065",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 066",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 067",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 068",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 069",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 070",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 071",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 072",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 073",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 074",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 075",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 076",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 077",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 078",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 079",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 080",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 081",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 082",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 083",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 084",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 085",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 086",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 087",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 088",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 089",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Ireland"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 090",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "France"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 091",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Germany"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 092",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Spain"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 093",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Italy"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 094",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Netherlands"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 095",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Sweden"
+  },
+  {
+    "AppID": "APP-001",
+    "ROID": "RO-0001",
+    "SubID": "SUB-00002",
+    "SubCreated": "2025-09-24T00:00:00.000Z",
+    "ROCreated": "2025-08-24T00:00:00.000Z",
+    "AppCreated": "2025-06-15T00:00:00.000Z",
+    "SubStatus": "In progress",
+    "ROStatus": "Active",
+    "Manufacturer": "Fictional site A",
+    "Product": "Fictional product 096",
+    "OriginalDispatch": "2026-01-02T00:00:00.000Z",
+    "LatestDispatch": "2026-01-09T00:00:00.000Z",
+    "ActualDispatch": "2026-01-16T00:00:00.000Z",
+    "OriginalSubmission": "2026-02-11T00:00:00.000Z",
+    "LatestSubmission": "2026-02-18T00:00:00.000Z",
+    "ActualSubmission": "2026-02-25T00:00:00.000Z",
+    "OriginalApproval": null,
+    "LatestApproval": null,
+    "ActualApproval": null,
+    "RegistrationStart": null,
+    "Country": "Denmark"
   }
 ]

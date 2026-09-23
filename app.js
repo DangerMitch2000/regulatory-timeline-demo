@@ -35,12 +35,18 @@
    clearTimeout(hideTimer);if(value==null){hideTimer=setTimeout(()=>{tooltip.style.display='none';},180);return;}tooltip.replaceChildren();
    const dl=document.createElement('dl');for(const [k,v] of Object.entries(typeof value==='object'?value:{Action:value})){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);dl.append(dt,dd);}tooltip.append(dl);tooltip.style.display='block';tooltip.style.left=Math.max(5,Math.min(event.clientX+12,innerWidth-tooltip.offsetWidth-6))+'px';tooltip.style.top=Math.max(5,Math.min(event.clientY+12,innerHeight-tooltip.offsetHeight-6))+'px';
   });
-  const resize=new ResizeObserver(entries=>{const {width,height}=entries[0].contentRect;queued=queued.then(()=>view.signal('denebContainer',{width:Math.max(480,width),height:Math.max(260,height)}).runAsync()).catch(showError);});resize.observe(chart);
+  const resize=new ResizeObserver(entries=>{const {width,height}=entries[0].contentRect;queued=queued.then(()=>view.signal('denebContainer',{width:Math.max(480,width),height:Math.max(480,height)}).runAsync()).catch(showError);});resize.observe(chart);
+  const searchProxy=document.querySelector('#detail-search-proxy');
+  searchProxy.addEventListener('input',()=>{const query=searchProxy.value;queued=queued.then(()=>view.signal('detailQuery',query).runAsync()).catch(showError);});
+  view.addSignalListener('detailQuery',(name,value)=>{searchProxy.value=value;});
+  for(const name of ['detailTab','selectedKey'])view.addSignalListener(name,()=>{requestAnimationFrame(()=>{searchProxy.value=view.signal('detailQuery');});});
+  view.addSignalListener('detailsOpen',(name,value)=>{searchProxy.closest('label').hidden=!value;});
+  chart.addEventListener('pointerdown',()=>chart.focus({preventScroll:true}));
   await requestFilter();
   function updateSummary(kind){document.querySelector('#'+kind+'-summary').textContent=(kind==='site'?'Site':'Product')+' · '+(selected[kind].size?selected[kind].size+' selected':'All');}
   function requestFilter(){queued=queued.then(async()=>{
    const filtered=rows.filter(row=>['site','product'].every(kind=>!selected[kind].size||selected[kind].has(normalized(row[fields[kind]]))));
-   tooltip.style.display='none';view.signal('range',null).signal('page',0).change('expanded',vega.changeset().remove(()=>true)).change('dataset',vega.changeset().remove(()=>true).insert(filtered));await view.runAsync();
+   tooltip.style.display='none';view.change('dataset',vega.changeset().remove(()=>true).insert(filtered.map(r=>({...r}))));await view.runAsync();
    const n=view.data('sub').length;status.textContent=n+' matching '+(n===1?'submission':'submissions')+' · '+filtered.length+' fictional membership rows';
   }).catch(showError);return queued;}
  }catch(error){showError(error);}

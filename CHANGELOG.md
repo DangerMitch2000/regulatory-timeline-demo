@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2 — 2026-09-23
+
+- Replaced row paging with anchored scrolling, fixed headers and a draggable scrollbar.
+- Bottom-row expansion reveals the first child without jumping to the top.
+- Added selected-row highlighting and persistent searchable, paged details below the chart.
+- Added optional Country membership, compact product/country counts and short hover content.
+- Retained separate real membership sets, missing-value disclosure, date-quality handling and existing filters/calendar controls.
+- Documented Power BI rebuild limits and current/legacy host variants.
+
+Validated locally and in the browser with fictional data; no installed Power BI verification.
+
 ## 1.1 — 2026-09-22
 
 - Compact fixed dark theme with purple, amber, teal and pink lifecycle tracks.
