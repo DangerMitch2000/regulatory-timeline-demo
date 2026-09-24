@@ -23,6 +23,8 @@ jobs:
         run: |
           npm test
           npx tsc --noEmit
+          npx esbuild src/visual.ts --bundle --platform=node --format=cjs --outfile=verify/visual-host.cjs --loader:.less=empty
+          node ../test-host.cjs
       - name: Verify actual visual
         working-directory: roadmap-2026
         run: |
@@ -35,18 +37,19 @@ jobs:
       - name: Prepare separate release assets
         run: |
           mkdir -p roadmap-release
-          cp roadmap-2026/dist/*.pbiviz roadmap-release/roadmap-2026-1.0.0.0.pbiviz
+          cp roadmap-2026/dist/*.pbiviz roadmap-release/roadmap-2026-1.1.0.0.pbiviz
           cp roadmap-2026/README.md roadmap-release/ROADMAP-INSTALL.md
           cp roadmap-2026/verify/roadmap-preview.png roadmap-release/roadmap-preview.png
-          tar --exclude=node_modules --exclude=.tmp --exclude=dist -czf roadmap-release/roadmap-2026-source.tar.gz roadmap-2026 roadmap-2026.build.cjs roadmap-2026.verify.cjs roadmap-2026.logic.js roadmap-2026.ui.js roadmap-2026.css roadmap-2026.README.md
+          cp roadmap-preview.html roadmap-release/roadmap-demo.html
+          tar --exclude=node_modules --exclude=.tmp --exclude=dist -czf roadmap-release/roadmap-2026-source.tar.gz roadmap-2026 roadmap-2026.build.cjs roadmap-2026.verify.cjs roadmap-2026.logic.js roadmap-2026.ui.js roadmap-2026.css roadmap-2026.README.md test-next.cjs test-render.cjs test-host.cjs prepare-preview.cjs make-standalone.cjs
           cd roadmap-release && sha256sum * > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: roadmap-2026-package
+          name: roadmap-2026-package-1.1
           path: roadmap-release/
       - name: Publish separate Roadmap preview
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create roadmap-2026-v1.0.0 --target "$GITHUB_SHA" --prerelease --title "2026 Roadmap 1.0" --notes "Separate Power BI visual for dispatch-only monthly outlook. Distinct SubID counting; blue Dispatched, orange In Progress / Expected, green Unconfirmed; 12-month average and separate Missing Dates cleanup count. Conflicting/invalid dates are explicitly flagged. Synthetic preview only. Existing Regulatory Tracker is unchanged. Classification tests, actual Visual host browser tests and official package build passed. Uncertified preview; actual Power BI import and tenant compatibility require verification. See ROADMAP-INSTALL.md."
-          gh release upload roadmap-2026-v1.0.0 roadmap-release/*
+          gh release create roadmap-2026-v1.1.0 --target "$GITHUB_SHA" --prerelease --title "Roadmap 1.1 — sites, business units and inferred dispatches" --notes "Current-year dispatch outlook with expandable site breakdown, dynamic Business unit filter (All initially), and optional purple inferred dispatches. Inference partitions counts using planned dispatch month; evidence dates are explicit. Missing Dates is current-year scoped and counted once. Multi-site records remain unallocated rather than double counted. Includes fictional interactive demo and source. Calculation tests, compiled host lifecycle tests, real-browser host tests and official Power BI package build passed. Regulatory Tracker is unchanged. Uncertified preview: actual Power BI import and tenant compatibility still require verification. See ROADMAP-INSTALL.md."
+          gh release upload roadmap-2026-v1.1.0 roadmap-release/*
