@@ -4,7 +4,7 @@ A separate installable Power BI visual with ten records per page, native search 
 
 ## Import
 
-Download `key-submissions-2026-1.0.0.0.pbiviz`, choose **Import a visual from a file** in Power BI, and add the new visual to your report. Map these field wells; your source columns do not need renaming.
+Download `key-submissions-2026-1.0.1.0.pbiviz`, choose **Import a visual from a file** in Power BI, and add the new visual to your report. Map these field wells; your source columns do not need renaming.
 
 | Field | Source |
 |---|---|
@@ -25,7 +25,7 @@ Use raw date columns, not date hierarchies. Optional unmapped values say “Not 
 ## Scope and display
 
 - Fixed to **2026** and business unit **ID**; does not roll forward in January. Matching ignores case/outer spaces.
-- Requires an explicit **Key Submission** flag. Non-Key Submission and blanks are not key; it never uses a substring match that would include Non-Key.
+- Accepts the explicit **Key Submission** or **Key Submissions** flag. Non-Key Submission, Non-Key Submissions and blanks are not key; it never uses a substring match that would include Non-Key.
 - Year uses the same date priority as Roadmap: ActualDispatch, otherwise LatestDispatch, otherwise OriginalDispatch. Only a selected dispatch date in 2026 qualifies. This is a dispatch-year list, not all submissions whose creation or approval happened in 2026.
 - Required mapping missing: show a setup prompt rather than misleading empty totals.
 - Count once per SubID. Any key-flagged delivered association qualifies the ID; any ID business-unit association qualifies it. Retain all delivered associations of matching IDs so products/countries and date conflicts are not hidden.

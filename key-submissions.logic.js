@@ -1,7 +1,7 @@
 export const roles=['SubID','ROID','KeySubmission','BusinessUnit','Product','Country','Site','SubStatus','OriginalDispatch','LatestDispatch','ActualDispatch','LatestSubmission','ActualSubmission','LatestApproval','ActualApproval'];
 export const dateRoles=roles.slice(8);
 const clean=v=>String(v??'').trim();
-export const isKey=v=>clean(v).toLowerCase().replace(/[_-]+/g,' ').replace(/\s+/g,' ')==='key submission';
+export const isKey=v=>/^key submissions?$/.test(clean(v).toLowerCase().replace(/[_-]+/g,' ').replace(/\s+/g,' '));
 export function day(v){if(v==null||v==='')return null;let y,m,d;if(v instanceof Date){if(!Number.isFinite(+v))return NaN;y=v.getUTCFullYear();m=v.getUTCMonth()+1;d=v.getUTCDate();}else {const s=clean(v),a=s.match(/^(\d{4})-(\d{2})-(\d{2})(?:T.*)?$/);if(!a||s.includes('T')&&!Number.isFinite(Date.parse(s)))return NaN;[,y,m,d]=a.map(Number);}const n=Date.UTC(y,m-1,d),dt=new Date(n);return dt.getUTCFullYear()===y&&dt.getUTCMonth()===m-1&&dt.getUTCDate()===d?n:NaN;}
 export function mapTable(table){const indices={},missing=[];for(const role of roles){const matches=(table?.columns||[]).flatMap((c,i)=>c.roles?.[role]?[i]:[]);if(matches.length>1)throw Error('Map only one column to '+role);if(matches.length)indices[role]=matches[0];}for(const k of ['SubID','KeySubmission','BusinessUnit'])if(indices[k]===undefined)missing.push(k);if(!['OriginalDispatch','LatestDispatch','ActualDispatch'].some(k=>indices[k]!==undefined))missing.push('a dispatch date');return {missing,rows:(table?.rows||[]).map(row=>Object.fromEntries(roles.map(k=>[k,indices[k]===undefined?null:row[indices[k]]])))};}
 export function collect(rows){
