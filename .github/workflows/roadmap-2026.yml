@@ -1,0 +1,52 @@
+name: Build 2026 Roadmap
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate separate Roadmap project
+        run: |
+          node roadmap-2026.build.cjs
+          node roadmap-2026.verify.cjs
+      - name: Install pinned build tools
+        working-directory: roadmap-2026
+        run: npm install
+      - name: Test classification and type checking
+        working-directory: roadmap-2026
+        run: |
+          npm test
+          npx tsc --noEmit
+      - name: Verify actual visual
+        working-directory: roadmap-2026
+        run: |
+          npx esbuild verify/harness.ts --bundle --outfile=verify/harness.js --loader:.less=css
+          npx playwright install --with-deps chromium
+          node verify/run.cjs
+      - name: Package visual
+        working-directory: roadmap-2026
+        run: npm run package -- --verbose
+      - name: Prepare separate release assets
+        run: |
+          mkdir -p roadmap-release
+          cp roadmap-2026/dist/*.pbiviz roadmap-release/roadmap-2026-1.0.0.0.pbiviz
+          cp roadmap-2026/README.md roadmap-release/ROADMAP-INSTALL.md
+          cp roadmap-2026/verify/roadmap-preview.png roadmap-release/roadmap-preview.png
+          tar --exclude=node_modules --exclude=.tmp --exclude=dist -czf roadmap-release/roadmap-2026-source.tar.gz roadmap-2026 roadmap-2026.build.cjs roadmap-2026.verify.cjs roadmap-2026.logic.js roadmap-2026.ui.js roadmap-2026.css roadmap-2026.README.md
+          cd roadmap-release && sha256sum * > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: roadmap-2026-package
+          path: roadmap-release/
+      - name: Publish separate Roadmap preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create roadmap-2026-v1.0.0 --target "$GITHUB_SHA" --prerelease --title "2026 Roadmap 1.0" --notes "Separate Power BI visual for dispatch-only monthly outlook. Distinct SubID counting; blue Dispatched, orange In Progress / Expected, green Unconfirmed; 12-month average and separate Missing Dates cleanup count. Conflicting/invalid dates are explicitly flagged. Synthetic preview only. Existing Regulatory Tracker is unchanged. Classification tests, actual Visual host browser tests and official package build passed. Uncertified preview; actual Power BI import and tenant compatibility require verification. See ROADMAP-INSTALL.md."
+          gh release upload roadmap-2026-v1.0.0 roadmap-release/*
