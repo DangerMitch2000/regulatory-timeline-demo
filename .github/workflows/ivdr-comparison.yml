@@ -1,0 +1,55 @@
+name: Build IVDR Registration Overview
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ivdr-*'
+      - '.github/workflows/ivdr-comparison.yml'
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate separate IVDR project
+        run: |
+          node ivdr-comparison.build.cjs
+          node ivdr-demo.cjs
+      - name: Install pinned build tools
+        working-directory: ivdr-comparison
+        run: npm install
+      - name: Check calculations and actual visual
+        run: |
+          node ivdr-test.cjs
+          cd ivdr-comparison
+          npx tsc --noEmit
+          npx esbuild src/visual.ts --bundle --platform=node --format=cjs --outfile=verify/visual-host.cjs --loader:.less=empty
+          node ../ivdr-host-test.cjs
+          npx esbuild verify/harness.ts --bundle --outfile=verify/harness.js --loader:.less=css
+          npx playwright install --with-deps chromium
+          node ../ivdr-browser-test.cjs
+          npm run package
+      - name: Prepare release
+        run: |
+          mkdir -p ivdr-release
+          cp ivdr-comparison/dist/*.pbiviz ivdr-release/ivdr-registration-overview-1.0.0.0.pbiviz
+          cp ivdr-comparison.README.md ivdr-release/IVDR-INSTALL.md
+          cp ivdr-preview.html ivdr-release/ivdr-demo.html
+          cp ivdr-comparison/verify/ivdr-preview.png ivdr-release/ivdr-preview.png
+          tar --exclude=node_modules --exclude=.tmp --exclude=dist -czf ivdr-release/ivdr-source.tar.gz ivdr-comparison ivdr-comparison.build.cjs ivdr-roadmap.logic.js ivdr-comparison.logic.js ivdr-comparison.ui.js ivdr-comparison.css ivdr-comparison.README.md ivdr-test.cjs ivdr-host-test.cjs ivdr-browser-test.cjs ivdr-demo.cjs
+          cd ivdr-release && sha256sum * > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ivdr-registration-overview
+          path: ivdr-release/
+      - name: Publish separate preview release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create ivdr-overview-v1.0.0 --target "$GITHUB_SHA" --prerelease --title "IVDR Registration Overview 1.0" --notes "Separate current-year visual for a new report page. Site table plus stacked IVDR/Non-IVDR bars, Business unit/Site/Month/Registration group filters, expandable progress and optional inferred dispatches. Blanks count as Non-IVDR. Duplicate submissions count once; ambiguous sites stay unallocated. Roadmap and Tracker unchanged. Includes fictional demo, source and install guide. Calculation, compiled host and browser tests passed before packaging. Uncertified preview: actual Power BI import and model compatibility require verification."
+          gh release upload ivdr-overview-v1.0.0 ivdr-release/*

@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+(async()=>{
+ const {compare,isIVDR,mapTable}=await import('./ivdr-comparison.logic.js');
+ const today=Date.UTC(2026,8,24), row=(SubID,extra={})=>({SubID,LatestDispatch:'2026-10-12',Site:'North',BusinessUnit:'ID',...extra});
+ for(const v of ['IVDR','ivdr and rebranding','UDI; IVDR',['UDI','IVDR'],'Non-IVDR; IVDR'])assert.equal(isIVDR(v),true,String(v));
+ for(const v of [null,'','UDI','rebranding and UDI','Non-IVDR','non ivdr','Non_IVDR'])assert.equal(isIVDR(v),false,String(v));
+ const rows=[row('A',{Project:'IVDR',ActualDispatch:'2026-01-03'}),row('A',{Project:'UDI',ActualDispatch:'2026-01-03'}),row('B',{Project:null}),row('C',{Project:'UDI; IVDR',ActualSubmission:'2026-02-01'}),row('D',{Site:'South',BusinessUnit:null}),row('E',{Site:'South',Project:'IVDR'}),row('E',{Site:'West',Project:'IVDR'}),row('F',{LatestDispatch:null,ActualApproval:'2026-03-01'}),row('OLD',{ActualDispatch:'2025-01-01'}),row('',{})];
+ let r=compare(rows,today);assert.equal(r.total,5);assert.equal(r.ivdr,3);assert.equal(r.non,2);assert.deepEqual(r.missing,['F']);assert.equal(r.missingIdRows,1);
+ const reconcile=r=>{assert.equal(r.ivdr+r.non,r.total);assert.equal(r.sites.reduce((n,s)=>n+s.total,0),r.total);assert.equal(r.progress.reduce((n,p)=>n+p.total,0),r.total);for(const s of r.sites){assert.equal(s.ivdr+s.non,s.total);assert.equal(s.progress.reduce((n,p)=>n+p.total,0),s.total);}};
+ for(const state of [{},{month:0},{month:9},{classification:'ivdr'},{classification:'non'},{businessUnit:null},{businessUnit:'ID'},{site:'ambiguous'},{includeInferred:true}])reconcile(compare(rows,today,state));
+ assert.equal(compare(rows,today,{businessUnit:null}).total,1);
+ assert.equal(compare(rows,today,{month:0}).total,1);assert.equal(compare(rows,today,{month:9}).total,4);
+ assert.equal(compare(rows,today,{site:'ambiguous'}).total,1);assert.equal(compare(rows,today,{site:'site:South'}).total,1);
+ r=compare(rows,today,{includeInferred:true});assert.equal(r.progress[3].total,1);assert.equal(r.total,5);assert.deepEqual(r.missing,['F']);assert.deepEqual(r.undatedInferred,['F']);assert.deepEqual(compare(rows,today,{month:0}).missing,['F']);
+ assert.equal(compare([row('X',{LatestDispatch:'invalid'})],today).excluded.length,1);
+ assert.equal(mapTable({columns:[{roles:{SubID:true}}],rows:[['a']]}).missingProject,true);
+ assert.equal(mapTable({columns:[{roles:{SubID:true}},{roles:{Project:true}}],rows:[['a',null]]}).missingProject,false);
+ assert.throws(()=>mapTable({columns:[{roles:{Project:true}},{roles:{Project:true}}]}),/one column/);
+ r=compare(Array.from({length:30000},(_,i)=>row('S'+Math.floor(i/3),{Project:i%3===1?'IVDR':null})),today);assert.equal(r.total,10000);assert.equal(r.ivdr,10000);reconcile(r);
+ console.log('PASS: IVDR labels, duplicate memberships, 30,000 rows, all filter combinations, inference, month priority, missing dates, unmapped Project guard and reconciliation.');
+})().catch(e=>{console.error(e);process.exit(1)});
