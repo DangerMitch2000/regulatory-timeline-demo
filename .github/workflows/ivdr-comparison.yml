@@ -37,7 +37,7 @@ jobs:
       - name: Prepare release
         run: |
           mkdir -p ivdr-release
-          cp ivdr-comparison/dist/*.pbiviz ivdr-release/ivdr-registration-overview-1.1.1.0.pbiviz
+          cp ivdr-comparison/dist/*.pbiviz ivdr-release/ivdr-registration-overview-1.1.2.0.pbiviz
           cp ivdr-comparison.README.md ivdr-release/IVDR-INSTALL.md
           cp ivdr-preview.html ivdr-release/ivdr-demo.html
           cp ivdr-comparison/verify/ivdr-preview.png ivdr-release/ivdr-preview.png
@@ -52,5 +52,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create ivdr-overview-v1.1.1 --target "$GITHUB_SHA" --prerelease --title "IVDR Registration Overview 1.1 — PowerPoint screenshot layout" --notes "Slide-ready screenshot mode with larger proportional text, counts outside bars, retained filter context and Escape to restore controls. Calculations unchanged. Separate current-year visual for a new report page. Site table plus stacked IVDR/Non-IVDR bars, Business unit/Site/Month/Registration group filters, expandable progress and optional inferred dispatches. Blanks count as Non-IVDR. Duplicate submissions count once; ambiguous sites stay unallocated. Roadmap and Tracker unchanged. Includes fictional demo, source and install guide. Calculation, compiled host and browser tests passed before packaging. Uncertified preview: actual Power BI import and model compatibility require verification."
-          gh release upload ivdr-overview-v1.1.1 ivdr-release/*
+          gh release create ivdr-overview-v1.1.2 --target "$GITHUB_SHA" --prerelease --title "IVDR Registration Overview 1.1 — PowerPoint screenshot layout" --notes "Slide-ready screenshot mode with larger proportional text, counts outside bars, retained filter context and Escape to restore controls. Calculations unchanged. Separate current-year visual for a new report page. Site table plus stacked IVDR/Non-IVDR bars, Business unit/Site/Month/Registration group filters, expandable progress and optional inferred dispatches. Blanks count as Non-IVDR. Duplicate submissions count once; ambiguous sites stay unallocated. Roadmap and Tracker unchanged. Includes fictional demo, source and install guide. Calculation, compiled host and browser tests passed before packaging. Uncertified preview: actual Power BI import and model compatibility require verification."
+          gh release upload ivdr-overview-v1.1.2 ivdr-release/*

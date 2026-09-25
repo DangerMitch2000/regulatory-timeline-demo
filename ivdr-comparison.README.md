@@ -1,4 +1,4 @@
-# IVDR Registration Overview 1.0
+# IVDR Registration Overview 1.1.2
 
 A separate Power BI visual for a new report page named **IVDR Registration Overview**. It does not replace or modify the 2026 Roadmap or Regulatory Tracker. The new visual has its own GUID.
 
@@ -6,7 +6,7 @@ The left table shows sites with IVDR, Non-IVDR and Total columns. Expand a site 
 
 ## Import and field mapping
 
-Import `ivdr-registration-overview-1.0.0.0.pbiviz` using **Visualizations → … → Import a visual from a file**, then add it to a new report page. This package cannot create report pages itself.
+Import `ivdr-registration-overview-1.1.2.0.pbiviz` using **Visualizations → … → Import a visual from a file**, then add it to a new report page. This package cannot create report pages itself.
 
 | Field well | Map to |
 |---|---|
