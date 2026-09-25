@@ -4,7 +4,7 @@ Separate Power BI visual for compact site-update slides: **H1 and H2 side by sid
 
 ## Install and map
 
-Import `site-regulatory-plan-2026-1.0.0.0.pbiviz` as a custom visual. Add to a report page and map the following raw columns (not date hierarchies):
+Import `site-regulatory-plan-2026-1.0.1.0.pbiviz` as a custom visual. Add to a report page and map the following raw columns (not date hierarchies):
 
 | Field well | Source |
 |---|---|
