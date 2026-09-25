@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+(async()=>{const {summarize,mapTable,roles,parseDay}=await import('./site-plan.logic.js');const row=(SubID,x={})=>({SubID,Site:'North',BusinessUnit:'ID',OriginalDispatch:'2026-01-01',LatestDispatch:'2026-08-01',OriginalSubmission:'2026-04-01',LatestSubmission:'2026-05-01',OriginalApproval:'2026-10-01',LatestApproval:'2027-01-01',...x});
+let r=summarize([row('A'),row('A')]);assert.equal(r.selected.records,1);assert.deepEqual(r.selected.counts,[[{original:1,latest:0},{original:1,latest:1},{original:0,latest:0}],[{original:0,latest:1},{original:0,latest:0},{original:1,latest:0}]]);
+r=summarize([row('B',{LatestDispatch:null})]);assert.equal(r.selected.counts[0][0].latest,1);assert.equal(r.selected.fallback,1);
+r=summarize([row('B',{LatestDispatch:'invalid'})]);assert.equal(r.selected.counts[0][0].original,1);assert.equal(r.selected.counts[0][0].latest+r.selected.counts[1][0].latest,0);assert.equal(r.selected.issues.length,1);
+r=summarize([row('B',{OriginalDispatch:'bad'})]);assert.equal(r.selected.counts[1][0].latest,1);
+r=summarize([row('B'),row('B',{LatestDispatch:'2026-09-01'})]);assert.equal(r.selected.issues.length,1);assert.equal(r.selected.counts[1][0].latest,0);
+r=summarize([row('A'),row('A',{Site:'South'})],{site:'multiple'});assert.equal(r.selected.records,1);assert.equal(r.choices.length,1);
+r=summarize([row('A'),row('B',{Site:'South',BusinessUnit:null})],{unit:null});assert.equal(r.selected.label,'South');assert.equal(r.selected.records,1);
+r=summarize([row('A')],{site:'site:Missing'});assert.equal(r.selected.records,0);assert.equal(r.selected.key,'site:Missing');
+assert.equal(mapTable({columns:roles.map(k=>({roles:{[k]:true}})),rows:[]}).missing.length,0);assert.ok(mapTable({columns:[],rows:[]}).missing.includes('OriginalApproval'));assert.throws(()=>mapTable({columns:[{roles:{Site:true}},{roles:{Site:true}}]}),/one field/);
+assert.equal(parseDay('2026-06-30T23:00:00-05:00').day,Date.UTC(2026,5,30));assert.equal(parseDay('2026-02-30').kind,'invalid');
+const large=Array.from({length:30000},(_,i)=>row('X'+Math.floor(i/3),{Site:i<15000?'North':'South'}));r=summarize(large,{site:'site:North'});assert.equal(r.selected.records,5000);assert.equal(r.axisMax,summarize(large,{site:'site:South'}).axisMax);assert.equal(summarize([]).axisMax,2);
+console.log('PASS: per-milestone year/half, plan movement, duplicate counts, blank fallback, no invalid fallback, conflicts, site/unit scope, shared scale and 30,000 rows.');})().catch(e=>{console.error(e);process.exit(1)});

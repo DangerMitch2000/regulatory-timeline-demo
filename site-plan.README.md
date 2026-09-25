@@ -1,0 +1,49 @@
+# Site Regulatory Plan — 2026
+
+Separate Power BI visual for compact site-update slides: **H1 and H2 side by side**, three milestone rows, coloured latest-estimate bars and outlined original plans. Selected site name is always visible. No changes to Tracker, Roadmap, IVDR or Key Submissions.
+
+## Install and map
+
+Import `site-regulatory-plan-2026-1.0.0.0.pbiviz` as a custom visual. Add to a report page and map the following raw columns (not date hierarchies):
+
+| Field well | Source |
+|---|---|
+| SubID | Unique submission ID |
+| Site | Your site/legal-manufacturer field |
+| BusinessUnit (optional) | Business unit |
+| OriginalDispatch | Initial/original planned dispatch date |
+| LatestDispatch | Current/latest planned dispatch date |
+| OriginalSubmission | Initial planned submission date |
+| LatestSubmission | Current/latest planned submission date |
+| OriginalApproval | Initial planned approval date |
+| LatestApproval | Current/latest planned approval date |
+
+Map SubID, Site and all six date fields. A mapped column may contain blanks; an unmapped column prompts for setup rather than silently displaying zeros. Source columns do not need renaming. Dates accept raw Date objects or ISO calendar strings; ambiguous display-formatted date strings are rejected. Exact physical source names are not assumed.
+
+## Counts
+
+- Fixed to **2026**, H1 January–June, H2 July–December. Each milestone uses its **own** planned date. No actual completion dates or submission status filters are used.
+- Original plan counts use original dates. Latest estimates use latest dates, falling back to original **only when latest is blank**. The chart footer explicitly notes fallback use. Both blank means missing, not zero-date placement.
+- Each SubID counts once per milestone, half-year and plan. Product or country join duplicates do not inflate totals. One submission can have dispatch in H1 and approval in H2. An original date and revised date can fall in different halves or years.
+- Conflicting/invalid dates are flagged and omitted for the affected series. An invalid latest date does not fall back. A valid latest can count when its original is invalid.
+- Site choices are derived from delivered data, allowing your six main sites to be selected without inventing a fixed list. Optional Business unit filters both chart and site choices. All units is the default. Internal selections do not filter other Power BI visuals.
+- For IDs associated with several sites, all associations are retained and counted once in **Multiple sites (unallocated)**, never duplicated across named sites. Missing sites are **Unassigned**. Missing IDs are reported separately. Confirm relationships if you expect exactly one site per submission.
+- H1, H2 and all sites use one scale within the delivered data and selected business unit. Choosing a site alone does not change the scale, supporting fair comparison across six slides. Different report filters or refreshes can change that common scale.
+- Counts reflect delivered records. Partial delivery warnings remain visible, including in screenshot mode.
+
+## Screenshot workflow
+
+1. Select the site and optional Business unit in normal mode.
+2. Open Power BI focus/full-screen mode, then choose **Screenshot mode**.
+3. The chart uses a fixed wide aspect ratio; all text and bars scale together. Empty margins may appear to preserve its shape. Snip the white chart area closely.
+4. Resize the image proportionally in PowerPoint. **Escape** while the visual is focused returns to controls.
+
+The SVG chart is crisp at the rendered size, but a Snipping Tool capture is still a raster screenshot. Enlarging before capture helps resolution; it does not eliminate the need to check final text size. At approximately 550×204 pixels the principal 26–34-unit labels appear around 14–19 pixels. At smaller sizes readability will decrease. No claim of readability at arbitrary sizes.
+
+Hover/focus a bar for both exact counts. Outlines show originals; bold labels show latest estimates. Screenshot mode hides selectors/data-check controls, not meaningful warnings. The public demo includes small/full-size preview buttons; these are demonstration controls outside the Power BI visual.
+
+## Build and verification
+
+Run `node site-plan.build.cjs` and `node site-plan-demo.cjs`. Install pinned tools in `site-plan`, run type checking, and package using `pbiviz package`. The release workflow runs calculation, compiled host and actual-browser tests before publishing. It verifies two half-year panels, selections retained on resize, screenshot mode and Escape, and proportional SVG scaling at slide and full-screen sizes. Public data is fictional.
+
+Uncertified preview: import into real Power BI, data relationships and tenant compatibility still require testing. No network permission is requested by the visual.

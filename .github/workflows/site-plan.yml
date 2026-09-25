@@ -1,0 +1,56 @@
+name: Build Site Regulatory Plan 2026
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'site-plan*'
+      - '.github/workflows/site-plan.yml'
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate separate Site Regulatory Plan project
+        run: |
+          node site-plan.build.cjs
+          node site-plan-demo.cjs
+      - name: Install pinned build tools
+        working-directory: site-plan
+        run: npm install
+      - name: Verify calculations and actual visual
+        run: |
+          node site-plan-test.cjs
+          cd site-plan
+          npx tsc --noEmit
+          npx esbuild src/visual.ts --bundle --platform=node --format=cjs --outfile=verify/visual-host.cjs --loader:.less=empty
+          node ../site-plan-host-test.cjs
+          npx esbuild verify/harness.ts --bundle --outfile=verify/harness.js --loader:.less=css
+          npx playwright install --with-deps chromium
+          node ../site-plan-browser-test.cjs
+          npm run package
+      - name: Prepare separate release
+        run: |
+          mkdir -p site-plan-release
+          cp site-plan/dist/*.pbiviz site-plan-release/site-regulatory-plan-2026-1.0.0.0.pbiviz
+          cp site-plan.README.md site-plan-release/SITE-PLAN-INSTALL.md
+          cp site-plan-preview.html site-plan-release/site-plan-demo.html
+          cp site-plan/verify/site-plan-preview.png site-plan-release/site-plan-preview.png
+          cp site-plan/verify/site-plan-small.png site-plan-release/site-plan-small.png
+          tar --exclude=node_modules --exclude=.tmp --exclude=dist -czf site-plan-release/site-plan-source.tar.gz site-plan site-plan.build.cjs site-plan.logic.js site-plan.ui.js site-plan.css site-plan.README.md site-plan-test.cjs site-plan-host-test.cjs site-plan-browser-test.cjs site-plan-demo.cjs
+          cd site-plan-release && sha256sum * > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-regulatory-plan-2026
+          path: site-plan-release/
+      - name: Publish Site Regulatory Plan preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create site-plan-2026-v1.0.0 --target "$GITHUB_SHA" --prerelease --title "Site Regulatory Plan — 2026" --notes "Separate Power BI visual: site selector, H1/H2 panels, latest estimate bars versus original plan outlines for dispatches/submissions/approvals. Each milestone uses its own planned date; blank latest falls back to original with a visible note. Duplicate joins count once, multi-site submissions stay unallocated. Screenshot mode scales all chart text and bars proportionally. Scope, compiled host and browser tests passed before packaging. Public demo uses fictional data. Existing visuals unchanged. Uncertified preview: real Power BI import and relationships still need testing. See SITE-PLAN-INSTALL.md."
+          gh release upload site-plan-2026-v1.0.0 site-plan-release/*
