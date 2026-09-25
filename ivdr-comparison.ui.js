@@ -3,7 +3,7 @@ const months=['January','February','March','April','May','June','July','August',
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const percent=n=>n.toFixed(1)+'%';
 export function render(root,rows,{now=new Date(),state={},onChange=(patch)=>{},expanded=new Set(),onExpansion=(key)=>{},notice='',projectMapped=true,synthetic=false}={}){
- const r=compare(projectMapped?rows:[],viewingDay(now),state);root.replaceChildren();root.className='ivdrOverview';
+ const r=compare(projectMapped?rows:[],viewingDay(now),state);root.replaceChildren();root.className='ivdrOverview';const opts={now,state,onChange,expanded,onExpansion,notice,projectMapped,synthetic};const redraw=()=>render(root,rows,opts);if(root._slide&&projectMapped)return ivdrSlide(root,r,opts,redraw);root.onkeydown=null;
  const header=el('header'),titles=el('div');titles.append(el('h1','IVDR Registration Overview'),el('p',r.year+' · '+(r.month<0?'Full year':months[r.month])+' · distinct submissions','subtitle'));header.append(titles,el('span','As of '+now.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),'asof'));root.append(header);
  if(synthetic)root.append(el('p','Fictional demonstration data','demoNote'));
  if(notice)root.append(el('p',notice,'notice'));
@@ -38,5 +38,31 @@ export function render(root,rows,{now=new Date(),state={},onChange=(patch)=>{},e
  const checks=el('details',undefined,'checks');checks.append(el('summary','Counting and data checks'),el('p','Each submission counts once. IVDR plus rebranding or UDI counts as IVDR; blanks and labels without IVDR count as Non-IVDR. Multiple sites are counted once as unallocated. Dispatch month and inference rules match the Roadmap.'));
  checks.append(el('p',r.excluded.length+' excluded for required-date issues · '+r.issues.length+' records with date issues (all filtered years) · '+r.ambiguousSites.length+' multi-site records (full year) · '+r.missingIdRows+' rows without an identifier (business-unit scope).'));
  const list=el('ul');r.issues.forEach(x=>list.append(el('li',x.id+': '+x.fields.join(', '))));r.ambiguousSites.forEach(x=>list.append(el('li',x.id+': '+x.sites.join(', '))));checks.append(list);root.append(checks);
+ slideButton(root,redraw);return r;
+}
+
+function slideCanvas(root,title,subtitle,height,exit){
+ root.replaceChildren();root.className+=' slideCapture';root.tabIndex=0;root.onkeydown=e=>{if(e.key==='Escape'){root._slide=false;exit()}};
+ const canvas=document.createElementNS('http://www.w3.org/2000/svg','svg');canvas.setAttribute('viewBox','0 0 1200 '+height);canvas.setAttribute('role','img');canvas.setAttribute('aria-label',title+'. '+subtitle+'. Press Escape to return to controls.');canvas.setAttribute('preserveAspectRatio','xMidYMid meet');root.append(canvas);
+ const shape=(tag,a={},value)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(a))n.setAttribute(k,String(v));if(value!==undefined)n.textContent=String(value);if(a['font-size'])n.style.fontSize=a['font-size']+'px';if(a.fill)n.style.fill=a.fill;canvas.append(n);return n};
+ const text=(x,y,t,size=22,fill='#24364b',anchor='start',weight=400)=>shape('text',{x,y,'font-size':size,fill,'text-anchor':anchor,'font-weight':weight},t);
+ const rect=(x,y,w,h,fill)=>shape('rect',{x,y,width:w,height:h,fill});
+ rect(0,0,1200,height,'white');text(24,44,title,34,'#122c49','start',650);text(24,79,subtitle,20);
+ return {text,rect,shape};
+}
+function slideButton(root,draw){const b=el('button','Screenshot mode');b.className='captureButton';b.title='Slide-ready layout. Press Escape to return to controls.';b.onclick=()=>{root._slide=true;draw();root.focus?.()};root.append(b)}
+
+function ivdrSlide(root,r,o,exit){
+ const height=Math.max(780,354+r.sites.length*58+100),unit=o.state.businessUnit===undefined||o.state.businessUnit==='*'?'All':o.state.businessUnit??'Unassigned',site=o.state.site&&o.state.site!=='*'?(r.siteChoices.find(s=>s.key===o.state.site)?.label||o.state.site):'All sites',group=o.state.classification==='ivdr'?'IVDR':o.state.classification==='non'?'Non-IVDR':'IVDR + Non-IVDR';
+ const {text,rect}=slideCanvas(root,r.year+' Registration: IVDR vs Non-IVDR','Business unit: '+unit+' · '+site+' · '+(r.month<0?'Full year':months[r.month])+' · '+group,height,exit);
+ text(24,111,'Inferred dispatches '+(o.state.includeInferred?'included':'excluded')+' · As of '+o.now.toLocaleDateString('en-GB')+(o.synthetic?' · Fictional demonstration data':''),19);if(o.notice)text(24,143,o.notice,18,'#8a4b00');
+ [['Total submissions',r.total],['IVDR',r.ivdr],['Non-IVDR',r.non],['IVDR share',percent(r.share)]].forEach(([label,value],i)=>{const x=24+i*294;rect(x,162,275,89,'#f1f5fa');text(x+14,190,label,21);text(x+14,233,value,35,'#122c49','start',700)});
+ rect(24,274,17,17,'#7455c9');text(50,290,'IVDR',22);rect(155,274,17,17,'#16867e');text(181,290,'Non-IVDR',22);text(350,290,'Blank project values count as Non-IVDR',19);
+ text(24,333,'Site',22);text(280,333,'IVDR',21,'#6945be','end');text(402,333,'Non-IVDR',21,'#116d66','end');text(509,333,'Total',21,'#24364b','end');text(558,333,'Volume by site',24,'#122c49','start',650);text(1174,333,'IVDR / Non-IVDR · IVDR %',19,'#24364b','end');
+ const max=Math.max(1,...r.sites.map(s=>s.total));r.sites.forEach((s,i)=>{const y=378+i*58;rect(20,y-30,497,47,i%2?'#f2f5f9':'#fff');text(24,y,s.label.length>17?s.label.slice(0,16)+'…':s.label,22);text(280,y,s.ivdr,25,'#6945be','end',650);text(402,y,s.non,25,'#116d66','end',650);text(509,y,s.total,25,'#122c49','end',700);
+ rect(558,y-16,356,22,'#edf2f7');rect(558,y-16,s.ivdr/max*356,22,'#7455c9');rect(558+s.ivdr/max*356,y-16,s.non/max*356,22,'#16867e');text(1174,y,s.ivdr+' / '+s.non+' · '+percent(s.total?s.ivdr/s.total*100:0),22,'#24364b','end',600)});
+ const y=378+r.sites.length*58;rect(20,y-30,497,45,'#eaf0f8');text(24,y,'Grand total',22,'#122c49','start',700);text(280,y,r.ivdr,25,'#6945be','end',700);text(402,y,r.non,25,'#116d66','end',700);text(509,y,r.total,25,'#122c49','end',700);
+ if(!r.total)text(558,392,'No submissions match this selection',23);
+ text(24,height-30,'Missing Dates — '+r.year+': '+r.missing.length+' · All months within selected filters · Distinct submissions',19);
  return r;
 }

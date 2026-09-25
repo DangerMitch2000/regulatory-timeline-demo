@@ -38,3 +38,7 @@ Source columns do not need renaming. Map raw date columns, not date hierarchies.
 Run `node ivdr-comparison.build.cjs` and `node ivdr-demo.cjs`. In the generated `ivdr-comparison` folder run `npm install`, `npx tsc --noEmit`, and `npm run package`. Run the calculation tests from the repository root with `node ivdr-test.cjs`. The workflow also runs compiled Visual host tests and browser tests before publishing the package. The synthetic standalone demo is `ivdr-preview.html`.
 
 This is an uncertified preview. Real Power BI import, source mapping, report relationships and tenant compatibility require verification. No screenshots, work records or private source mappings are embedded in the public demo.
+
+## PowerPoint screenshot layout
+
+Choose your filters, then **Screenshot mode** at the bottom of the visual. The slide layout uses large labels and counts and scales proportionally with the visual. Both tables use collapsed site totals in this mode; your interactive expansion state is restored on exit. The selected filters, inference setting, as-of date and partial-data warnings remain visible. Press **Escape** while focused to restore controls. Capture the white chart area and resize proportionally in PowerPoint. Review at final slide size; many sites or long names need more slide space. Calculations are unchanged.

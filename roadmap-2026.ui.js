@@ -3,7 +3,7 @@ const colours=['#2875d9','#ed922d','#269968','#8159bd'],months=['Jan','Feb','Mar
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const svg=(tag,attrs)=>{const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,String(v));return e;};
 export function render(root,rows,{now=new Date(),notice='',synthetic=false,includeInferred=false,onInference=(value)=>{},businessUnit='*',onBusinessUnit=(value)=>{},expanded=new Set(),onExpansion=(key)=>{}}={}){
- const r=summarize(rows,viewingDay(now),includeInferred,businessUnit);root.replaceChildren();root.className='roadmap2026';
+ const r=summarize(rows,viewingDay(now),includeInferred,businessUnit);root.replaceChildren();root.className='roadmap2026';const opts={now,notice,synthetic,includeInferred,onInference,businessUnit,onBusinessUnit,expanded,onExpansion};const redraw=()=>render(root,rows,opts);if(root._slide)return roadSlide(root,r,opts,redraw);root.onkeydown=null;
  const header=el('header'),h=el('h1',r.year+' Roadmap'),asof=el('p','As of '+now.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}));header.append(h,asof);root.append(header);
  if(synthetic)root.append(el('p','Synthetic example data'));
  if(notice){const n=el('p',notice);n.className='notice';n.setAttribute('role','status');root.append(n);}
@@ -43,5 +43,37 @@ export function render(root,rows,{now=new Date(),notice='',synthetic=false,inclu
  if(inferred.length){const d=el('details');d.append(el('summary','Inferred evidence — '+inferred.length+' records'));const list=el('ul');inferred.forEach(x=>list.append(el('li',x.id+' · planned dispatch '+new Date(x.plannedDay).toISOString().slice(0,10)+' · actual dispatch missing · '+x.evidence.map(e=>e.field+': '+new Date(e.day).toISOString().slice(0,10)).join('; '))));d.append(list);root.append(d);}
  if(r.issues.length||r.missingIdRows||r.ambiguousSites.length){const d=el('details');d.append(el('summary','Data checks: '+r.excluded.length+' excluded · '+r.issues.length+' date issues · '+r.ambiguousSites.length+' multiple-site records · '+r.missingIdRows+' rows without SubID'));
  d.append(el('p','Checks cover the filtered records across all years; multi-site checks cover the chart year. Conflicting dates are not guessed. Missing Dates and date issues may overlap.'));const list=el('ul');r.issues.forEach(x=>list.append(el('li',x.id+': '+x.fields.join(', '))));r.ambiguousSites.forEach(x=>list.append(el('li',x.id+': '+x.sites.join(', '))));d.append(list);root.append(d);}
+ slideButton(root,redraw);return r;
+}
+
+function slideCanvas(root,title,subtitle,height,exit){
+ root.replaceChildren();root.className+=' slideCapture';root.tabIndex=0;root.onkeydown=e=>{if(e.key==='Escape'){root._slide=false;exit()}};
+ const canvas=document.createElementNS('http://www.w3.org/2000/svg','svg');canvas.setAttribute('viewBox','0 0 1200 '+height);canvas.setAttribute('role','img');canvas.setAttribute('aria-label',title+'. '+subtitle+'. Press Escape to return to controls.');canvas.setAttribute('preserveAspectRatio','xMidYMid meet');root.append(canvas);
+ const shape=(tag,a={},value)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(a))n.setAttribute(k,String(v));if(value!==undefined)n.textContent=String(value);if(a['font-size'])n.style.fontSize=a['font-size']+'px';if(a.fill)n.style.fill=a.fill;canvas.append(n);return n};
+ const text=(x,y,t,size=22,fill='#24364b',anchor='start',weight=400)=>shape('text',{x,y,'font-size':size,fill,'text-anchor':anchor,'font-weight':weight},t);
+ const rect=(x,y,w,h,fill)=>shape('rect',{x,y,width:w,height:h,fill});
+ rect(0,0,1200,height,'white');text(24,44,title,34,'#122c49','start',650);text(24,79,subtitle,20);
+ return {text,rect,shape};
+}
+function slideButton(root,draw){const b=el('button','Screenshot mode');b.className='captureButton';b.title='Slide-ready layout. Press Escape to return to controls.';b.onclick=()=>{root._slide=true;draw();root.focus?.()};root.append(b)}
+
+function roadSlide(root,r,o,exit){
+ const cats=categories.map((c,i)=>({c,i})).filter(x=>o.includeInferred||x.i!==3),height=Math.max(830,265+(r.sites.length+1)*49+100);
+ const {text,rect,shape}=slideCanvas(root,r.year+' Registration Overview','Business unit: '+(o.businessUnit==='*'?'All':o.businessUnit??'Unassigned')+' · Inferred dispatches '+(o.includeInferred?'included':'excluded')+' · As of '+o.now.toLocaleDateString('en-GB'),height,exit);
+ const warnings=[o.synthetic?'Fictional demonstration data':'',o.notice].filter(Boolean).join(' · ');if(warnings)text(24,110,warnings,18,'#8a4b00');
+ cats.forEach(({c,i},j)=>{const x=24+j*292;rect(x,133,15,15,colours[i]);text(x+24,148,c,20)});
+ const left=62,top=230,plotW=488,plotH=244,max=Math.max(1,...r.months.map(m=>m.reduce((a,b)=>a+b,0))),step=Math.max(1,Math.ceil(max/4)),ceiling=step*4,y=n=>top+plotH*(1-n/ceiling),band=plotW/12;
+ text(24,187,'Monthly submissions',24,'#122c49','start',650);
+ for(let n=0;n<=ceiling;n+=step){shape('line',{x1:left,x2:left+plotW,y1:y(n),y2:y(n),stroke:'#dbe3ec'});text(left-10,y(n)+6,n,20,'#33475c','end')}
+ r.months.forEach((values,m)=>{let base=0;values.forEach((n,i)=>{if(n)rect(left+m*band+8,y(base+n),band-16,plotH*n/ceiling,colours[i]);base+=n});text(left+(m+.5)*band,y(base)-8,base,19,'#24364b','middle',600);text(left+(m+.5)*band,503,months[m],19,'#24364b','middle')});
+ shape('line',{x1:left,x2:left+plotW,y1:y(r.average),y2:y(r.average),stroke:'#34475b','stroke-dasharray':'6 4'});text(24,539,'Monthly average: '+r.average.toFixed(1),22);
+ text(24,582,'Dispatch outlook',24,'#122c49','start',650);text(454,582,'Count',20,'#24364b','end');text(552,582,'Share',20,'#24364b','end');
+ cats.forEach(({c,i},j)=>{const yy=620+j*33;text(24,yy,c,21);text(454,yy,r.totals[i],24,'#122c49','end',650);text(552,yy,r.percentages[i].toFixed(1)+'%',22,'#24364b','end')});
+ const yy=620+cats.length*33;rect(20,yy-25,543,35,'#edf3fa');text(24,yy,'Total',22,'#122c49','start',650);text(454,yy,r.total,25,'#122c49','end',700);text(552,yy,r.total?'100%':'0%',22,'#24364b','end');
+ text(614,187,'Site breakdown',24,'#122c49','start',650);const positions=o.includeInferred?[778,880,982,1074,1174]:[810,939,1064,1174];
+ text(614,226,'Site',20);const headers=[['Dispatched'],['In progress','/ expected'],['Unconfirmed'],...(o.includeInferred?[['Inferred']]:[]),['Total']];headers.forEach((lines,i)=>lines.forEach((s,j)=>text(positions[i],226+j*23,s,16,'#33475c','end')));
+ const row=(site,i,total=false)=>{const y=287+i*49;if(total)rect(605,y-29,578,42,'#edf3fa');text(614,y,site.label.length>14?site.label.slice(0,13)+'…':site.label,22,'#122c49','start',total?700:500);cats.forEach(({i:c},j)=>text(positions[j],y,site.totals[c],24,'#24364b','end',600));text(1174,y,site.total,25,'#122c49','end',700)};
+ r.sites.forEach((s,i)=>row(s,i));row({label:'Total',totals:r.totals,total:r.total},r.sites.length,true);
+ text(24,height-28,'Missing Dates — '+r.year+': '+r.missing.length+' · Each submission counted once',20);
  return r;
 }
