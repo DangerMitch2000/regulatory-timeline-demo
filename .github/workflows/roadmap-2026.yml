@@ -44,7 +44,7 @@ jobs:
       - name: Prepare separate release assets
         run: |
           mkdir -p roadmap-release
-          cp roadmap-2026/dist/*.pbiviz roadmap-release/roadmap-2026-1.2.0.0.pbiviz
+          cp roadmap-2026/dist/*.pbiviz roadmap-release/roadmap-2026-1.2.1.0.pbiviz
           cp roadmap-2026/README.md roadmap-release/ROADMAP-INSTALL.md
           cp roadmap-2026/verify/roadmap-preview.png roadmap-release/roadmap-preview.png
           cp roadmap-2026/verify/roadmap-preview-small.png roadmap-release/roadmap-preview-small.png
@@ -59,5 +59,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create roadmap-2026-v1.2.0 --target "$GITHUB_SHA" --prerelease --title "Roadmap 1.2 — PowerPoint screenshot layout" --notes "Slide-ready screenshot mode with larger proportional labels and counts, retained filter context, and Escape to restore controls. Calculations unchanged. Current-year dispatch outlook with expandable site breakdown, dynamic Business unit filter (All initially), and optional purple inferred dispatches. Inference partitions counts using planned dispatch month; evidence dates are explicit. Missing Dates is current-year scoped and counted once. Multi-site records remain unallocated rather than double counted. Includes fictional interactive demo and source. Calculation tests, compiled host lifecycle tests, real-browser host tests and official Power BI package build passed. Regulatory Tracker is unchanged. Uncertified preview: actual Power BI import and tenant compatibility still require verification. See ROADMAP-INSTALL.md."
-          gh release upload roadmap-2026-v1.2.0 roadmap-release/*
+          gh release create roadmap-2026-v1.2.1 --target "$GITHUB_SHA" --prerelease --title "Roadmap 1.2 — PowerPoint screenshot layout" --notes "Slide-ready screenshot mode with larger proportional labels and counts, retained filter context, and Escape to restore controls. Calculations unchanged. Current-year dispatch outlook with expandable site breakdown, dynamic Business unit filter (All initially), and optional purple inferred dispatches. Inference partitions counts using planned dispatch month; evidence dates are explicit. Missing Dates is current-year scoped and counted once. Multi-site records remain unallocated rather than double counted. Includes fictional interactive demo and source. Calculation tests, compiled host lifecycle tests, real-browser host tests and official Power BI package build passed. Regulatory Tracker is unchanged. Uncertified preview: actual Power BI import and tenant compatibility still require verification. See ROADMAP-INSTALL.md."
+          gh release upload roadmap-2026-v1.2.1 roadmap-release/*

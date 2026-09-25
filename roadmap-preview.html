@@ -110,7 +110,7 @@ function render(root,rows,{now=new Date(),notice='',synthetic=false,includeInfer
 function slideCanvas(root,title,subtitle,height,exit){
  root.replaceChildren();root.className+=' slideCapture';root.tabIndex=0;root.onkeydown=e=>{if(e.key==='Escape'){root._slide=false;exit()}};
  const canvas=document.createElementNS('http://www.w3.org/2000/svg','svg');canvas.setAttribute('viewBox','0 0 1200 '+height);canvas.setAttribute('role','img');canvas.setAttribute('aria-label',title+'. '+subtitle+'. Press Escape to return to controls.');canvas.setAttribute('preserveAspectRatio','xMidYMid meet');root.append(canvas);
- const shape=(tag,a={},value)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(a))n.setAttribute(k,String(v));if(value!==undefined)n.textContent=String(value);if(a['font-size'])n.style.fontSize=a['font-size']+'px';if(a.fill)n.style.fill=a.fill;canvas.append(n);return n};
+ const shape=(tag,a={},value)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(a))n.setAttribute(k,String(v));if(value!==undefined)n.textContent=String(value);if(a['font-size'])n.style.fontSize=a['font-size']+'px';if(a.fill)n.style.fill=a.fill;if(a['font-weight'])n.style.fontWeight=String(a['font-weight']);canvas.append(n);return n};
  const text=(x,y,t,size=22,fill='#24364b',anchor='start',weight=400)=>shape('text',{x,y,'font-size':size,fill,'text-anchor':anchor,'font-weight':weight},t);
  const rect=(x,y,w,h,fill)=>shape('rect',{x,y,width:w,height:h,fill});
  rect(0,0,1200,height,'white');text(24,44,title,34,'#122c49','start',650);text(24,79,subtitle,20);
