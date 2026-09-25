@@ -16,6 +16,6 @@ export function summarize(rows,{unit='*',site=null}={}){
   });
  }
  const choices=[...sites.values()].sort((a,b)=>a.label.localeCompare(b.label)),selectedKey=site===null?(choices.find(s=>s.key.startsWith('site:'))?.key??choices[0]?.key??null):site,selected=sites.get(selectedKey)||{key:selectedKey,label:selectedKey?.startsWith('site:')?selectedKey.slice(5):'No matching site',records:0,counts:Array.from({length:2},()=>milestones.map(()=>({original:0,latest:0}))),issues:[],missing:0,fallback:0,outside:0};
- const peak=Math.max(1,...choices.flatMap(s=>s.counts.flatMap(h=>h.flatMap(c=>[c.original,c.latest])))),step=Math.pow(10,Math.floor(Math.log10(peak))),axisMax=Math.max(2,Math.ceil(peak/step)*step);
+ const peak=Math.max(1,...selected.counts.flatMap(h=>h.flatMap(c=>[c.original,c.latest]))),step=Math.pow(10,Math.floor(Math.log10(peak)))/2,axisMax=Math.max(2,Math.ceil(peak/step)*step);
  return {units,choices,selected,axisMax,missingIds};
 }

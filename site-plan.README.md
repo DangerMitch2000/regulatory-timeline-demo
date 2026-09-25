@@ -4,7 +4,7 @@ Separate Power BI visual for compact site-update slides: **H1 and H2 side by sid
 
 ## Install and map
 
-Import `site-regulatory-plan-2026-1.0.1.0.pbiviz` as a custom visual. Add to a report page and map the following raw columns (not date hierarchies):
+Import `site-regulatory-plan-2026-1.0.2.0.pbiviz` as a custom visual. Add to a report page and map the following raw columns (not date hierarchies):
 
 | Field well | Source |
 |---|---|
@@ -23,12 +23,12 @@ Map SubID, Site and all six date fields. A mapped column may contain blanks; an 
 ## Counts
 
 - Fixed to **2026**, H1 January–June, H2 July–December. Each milestone uses its **own** planned date. No actual completion dates or submission status filters are used.
-- Original plan counts use original dates. Latest estimates use latest dates, falling back to original **only when latest is blank**. The chart footer explicitly notes fallback use. Both blank means missing, not zero-date placement.
+- Original plan counts use original dates. Latest estimates use latest dates, falling back to original **only when latest is blank**. Fallback use is reported in expandable all-year data checks. Both blank means missing, not zero-date placement.
 - Each SubID counts once per milestone, half-year and plan. Product or country join duplicates do not inflate totals. One submission can have dispatch in H1 and approval in H2. An original date and revised date can fall in different halves or years.
 - Conflicting/invalid dates are flagged and omitted for the affected series. An invalid latest date does not fall back. A valid latest can count when its original is invalid.
 - Site choices are derived from delivered data, allowing your six main sites to be selected without inventing a fixed list. Optional Business unit filters both chart and site choices. All units is the default. Internal selections do not filter other Power BI visuals.
 - For IDs associated with several sites, all associations are retained and counted once in **Multiple sites (unallocated)**, never duplicated across named sites. Missing sites are **Unassigned**. Missing IDs are reported separately. Confirm relationships if you expect exactly one site per submission.
-- H1, H2 and all sites use one scale within the delivered data and selected business unit. Choosing a site alone does not change the scale, supporting fair comparison across six slides. Different report filters or refreshes can change that common scale.
+- H1 and H2 share one scale fitted to the selected site, including original and latest plans. Scales differ between sites; compare count labels, not bar lengths.
 - Counts reflect delivered records. Partial delivery warnings remain visible, including in screenshot mode.
 
 ## Screenshot workflow
@@ -40,7 +40,7 @@ Map SubID, Site and all six date fields. A mapped column may contain blanks; an 
 
 The SVG chart is crisp at the rendered size, but a Snipping Tool capture is still a raster screenshot. Enlarging before capture helps resolution; it does not eliminate the need to check final text size. At approximately 550×204 pixels the principal 26–34-unit labels appear around 14–19 pixels. At smaller sizes readability will decrease. No claim of readability at arbitrary sizes.
 
-Hover/focus a bar for both exact counts. Outlines show originals; bold labels show latest estimates. Screenshot mode hides selectors/data-check controls, not meaningful warnings. The public demo includes small/full-size preview buttons; these are demonstration controls outside the Power BI visual.
+Hover/focus a bar for both exact counts. Outlines show originals; bold labels show latest estimates. The chart footer describes only January–December 2026. All-year diagnostics are in expandable data checks, labelled by scope; undated records cannot be assigned to a year. Partial-delivery warnings remain visible in screenshot mode. The public demo includes small/full-size preview buttons; these are demonstration controls outside the Power BI visual.
 
 ## Build and verification
 
